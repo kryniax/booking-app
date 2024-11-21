@@ -29,3 +29,12 @@ export const validateRegisterUserRequest = [
     .withMessage("Lastname must be a string!"),
   handleValidationErrors,
 ];
+
+export const validateLoginUserRequest = [
+  body("email").isEmail().notEmpty().withMessage("Email is required!"),
+  body("password")
+    .isStrongPassword()
+    .notEmpty()
+    .withMessage("Password is required!"),
+  handleValidationErrors,
+];
