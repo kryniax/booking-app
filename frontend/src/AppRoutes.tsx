@@ -10,7 +10,22 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route path="/" element={<Layout></Layout>} />
+      <Route
+        path="/"
+        element={
+          <Layout>
+            <p>HomePage</p>
+          </Layout>
+        }
+      />
+      <Route
+        path="/search"
+        element={
+          <Layout>
+            <p>Search page</p>
+          </Layout>
+        }
+      />
     </Routes>
   );
 }
