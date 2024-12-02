@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 import { RegisterFormData } from "../pages/RegisterPage";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { LoginFormData } from "../pages/LoginPage";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -39,6 +40,42 @@ export const useCreateUser = () => {
     isError: status === "error",
     isSuccess: status === "success",
   };
+};
+
+export const useLoginUser = () => {
+  const { showToast } = useAppContext();
+  const navigate = useNavigate();
+  const loginUserRequest = async (formData: LoginFormData) => {
+    const response = await fetch(`${API_BASE_URL}/api/user/login`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const body = await response.json();
+
+    if (!response.ok) {
+      throw new Error(body.message);
+    }
+
+    return body;
+  };
+
+  const { mutateAsync: loginUser } = useMutation({
+    mutationFn: loginUserRequest,
+    onSuccess: () => {
+      showToast({ message: "SignIn Successful", type: "SUCCESS" });
+      navigate("/");
+    },
+    onError: (error: Error) => {
+      showToast({ message: error.message, type: "ERROR" });
+    },
+  });
+
+  return { loginUser };
 };
 
 export const useValidateToken = () => {
