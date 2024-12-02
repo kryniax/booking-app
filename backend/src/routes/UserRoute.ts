@@ -4,6 +4,7 @@ import {
   validateLoginUserRequest,
   validateRegisterUserRequest,
 } from "../middleware/validation";
+import verifyToken from "../middleware/auth";
 
 const router = express.Router();
 
@@ -14,5 +15,7 @@ router.post(
 );
 
 router.post("/login", validateLoginUserRequest, UserController.getUser);
+
+router.get("/validate-token", verifyToken, UserController.getUserToken);
 
 export default router;

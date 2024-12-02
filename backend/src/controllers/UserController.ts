@@ -67,4 +67,8 @@ const getUser = async (req: Request, res: any) => {
   }
 };
 
-export default { createUser, getUser };
+const getUserToken = async (req: Request, res: any) => {
+  return res.status(200).send({ userId: req.userId });
+};
+
+export default { createUser, getUser, getUserToken };
