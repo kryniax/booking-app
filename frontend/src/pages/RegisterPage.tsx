@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateUser } from "../api/UserApi";
-import { useNavigate } from "react-router-dom";
 
 const formSchema = z
   .object({
@@ -34,8 +33,6 @@ const formSchema = z
 export type RegisterFormData = z.infer<typeof formSchema>;
 
 const RegisterPage = () => {
-  const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -44,12 +41,11 @@ const RegisterPage = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const { createUser, isError, isSuccess } = useCreateUser();
+  const { createUser } = useCreateUser();
 
   const onSubmit = handleSubmit(async (data) => {
     try {
       await createUser(data);
-      //navigate("/");
     } catch (error) {
       console.error("Registration failed: ", error);
     }
