@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 
 function AppRoutes() {
   return (
@@ -26,6 +27,14 @@ function AppRoutes() {
         element={
           <Layout>
             <RegisterPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <Layout>
+            <LoginPage />
           </Layout>
         }
       />
