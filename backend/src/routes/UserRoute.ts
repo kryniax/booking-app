@@ -13,9 +13,8 @@ router.post(
   validateRegisterUserRequest,
   UserController.createUser
 );
-
 router.post("/login", validateLoginUserRequest, UserController.getUser);
-
 router.get("/validate-token", verifyToken, UserController.getUserToken);
+router.post("/logout", UserController.logoutUser);
 
 export default router;

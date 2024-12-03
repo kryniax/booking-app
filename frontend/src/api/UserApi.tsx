@@ -78,6 +78,25 @@ export const useLoginUser = () => {
   return { loginUser };
 };
 
+const useLogoutUser = () => {
+  const logoutUserRequest = async () => {
+    const response = await fetch(`${API_BASE_URL}/api/user/logout`, {
+      credentials: "include",
+      method: "POST",
+    });
+
+    if (!response.ok) {
+      throw new Error("Error durring logout");
+    }
+  };
+
+  const { mutateAsync: logoutUser } = useMutation({
+    mutationFn: logoutUserRequest,
+  });
+
+  return { logoutUser };
+};
+
 export const useValidateToken = () => {
   const validateToken = async () => {
     const response = await fetch(`${API_BASE_URL}/api/user/validate-token`, {

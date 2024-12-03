@@ -67,8 +67,14 @@ const getUser = async (req: Request, res: any) => {
   }
 };
 
+const logoutUser = async (req: Request, res: any) => {
+  res.cookie("auth_token", "", {
+    expires: new Date(0),
+  });
+};
+
 const getUserToken = async (req: Request, res: any) => {
   return res.status(200).send({ userId: req.userId });
 };
 
-export default { createUser, getUser, getUserToken };
+export default { createUser, getUser, getUserToken, logoutUser };
