@@ -71,6 +71,8 @@ const logoutUser = async (req: Request, res: any) => {
   res.cookie("auth_token", "", {
     expires: new Date(0),
   });
+
+  res.send();
 };
 
 const getUserToken = async (req: Request, res: any) => {
