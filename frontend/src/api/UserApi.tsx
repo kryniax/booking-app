@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 import { RegisterFormData } from "../pages/RegisterPage";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { LoginFormData } from "../pages/LoginPage";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const useCreateUser = () => {
+  const queryClient = useQueryClient();
   const { showToast } = useAppContext();
   const navigate = useNavigate();
   const createUserRequest = async (formData: RegisterFormData) => {
@@ -26,8 +27,9 @@ export const useCreateUser = () => {
 
   const { mutateAsync: createUser, status } = useMutation({
     mutationFn: createUserRequest,
-    onSuccess: () => {
+    onSuccess: async () => {
       showToast({ message: "Registration Success", type: "SUCCESS" });
+      await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
       navigate("/");
     },
     onError: (error: Error) => {
@@ -43,6 +45,7 @@ export const useCreateUser = () => {
 };
 
 export const useLoginUser = () => {
+  const queryClient = useQueryClient();
   const { showToast } = useAppContext();
   const navigate = useNavigate();
   const loginUserRequest = async (formData: LoginFormData) => {
@@ -66,8 +69,9 @@ export const useLoginUser = () => {
 
   const { mutateAsync: loginUser } = useMutation({
     mutationFn: loginUserRequest,
-    onSuccess: () => {
-      showToast({ message: "SignIn Successful", type: "SUCCESS" });
+    onSuccess: async () => {
+      showToast({ message: "Signed In", type: "SUCCESS" });
+      await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
       navigate("/");
     },
     onError: (error: Error) => {
@@ -78,7 +82,10 @@ export const useLoginUser = () => {
   return { loginUser };
 };
 
-const useLogoutUser = () => {
+export const useLogoutUser = () => {
+  const queryClient = useQueryClient();
+  const { showToast } = useAppContext();
+  const navigate = useNavigate();
   const logoutUserRequest = async () => {
     const response = await fetch(`${API_BASE_URL}/api/user/logout`, {
       credentials: "include",
@@ -92,6 +99,14 @@ const useLogoutUser = () => {
 
   const { mutateAsync: logoutUser } = useMutation({
     mutationFn: logoutUserRequest,
+    onSuccess: async () => {
+      showToast({ message: "Signed Out", type: "SUCCESS" });
+      await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
+      navigate("/");
+    },
+    onError: (error: Error) => {
+      showToast({ message: error.message, type: "ERROR" });
+    },
   });
 
   return { logoutUser };
