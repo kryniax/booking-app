@@ -4,6 +4,7 @@ import { z } from "zod";
 import Input from "../components/Input";
 import { useLoginUser } from "../api/UserApi";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "react-router-dom";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -59,12 +60,23 @@ const LoginPage = () => {
         error={errors.password}
         {...register("password")}
       />
-      <button
-        type="submit"
-        className="bg-blue-600 text-white text-xl p-2 font-bold rounded-md hover:bg-blue-500 transition duration-100"
-      >
-        Sign In
-      </button>
+      <span className="flex items-center justify-between">
+        <span className="text-sm">
+          Not Registered?{" "}
+          <Link
+            className="underline hover:text-black/80 transition duration-100"
+            to="/register"
+          >
+            Create an account
+          </Link>
+        </span>
+        <button
+          type="submit"
+          className="bg-blue-600 text-white text-xl p-2 font-bold rounded-md hover:bg-blue-500 transition duration-100"
+        >
+          Sign In
+        </button>
+      </span>
     </form>
   );
 };
