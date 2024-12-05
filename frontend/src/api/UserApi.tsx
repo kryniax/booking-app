@@ -70,7 +70,7 @@ export const useLoginUser = () => {
   const { mutateAsync: loginUser } = useMutation({
     mutationFn: loginUserRequest,
     onSuccess: async () => {
-      showToast({ message: "Signed In", type: "SUCCESS" });
+      showToast({ message: "Sign in Successful", type: "SUCCESS" });
       await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
       navigate("/");
     },

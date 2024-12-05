@@ -21,6 +21,7 @@ backent/dist-ssr
 .idea
 .DS_Store
 **/.env
+**/.env.e2e
 **/.DS_Store
 **/.suo
 **/.ntvs*
