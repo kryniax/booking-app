@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
 import userRoute from "./routes/UserRoute";
+import myHotelRoute from "./routes/MyHotelRoute";
 import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from "cloudinary";
 
@@ -28,6 +29,7 @@ app.use(
 );
 
 app.use("/api/user", userRoute);
+app.use("api/my/hotel", myHotelRoute);
 
 app.listen(8000, () => {
   console.log("server running on localhost:8000");

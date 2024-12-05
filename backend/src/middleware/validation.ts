@@ -38,3 +38,29 @@ export const validateLoginUserRequest = [
     .withMessage("Password is required!"),
   handleValidationErrors,
 ];
+
+export const validateCreateHotelRequest = [
+  body("name").notEmpty().withMessage("Name is required"),
+  body("city").notEmpty().withMessage("City is required"),
+  body("country").notEmpty().withMessage("Country is required"),
+  body("description").notEmpty().withMessage("Description is required"),
+  body("type").notEmpty().withMessage("Type is required"),
+  body("pricePerNight")
+    .notEmpty()
+    .isNumeric()
+    .withMessage("Price per night is required and must be a number"),
+  body("adultCount")
+    .notEmpty()
+    .isNumeric()
+    .withMessage("Adult count is required and must be a number"),
+  body("childCount")
+    .notEmpty()
+    .isNumeric()
+    .withMessage("Child count is required and must be a number"),
+  body("facilities").notEmpty().isArray().withMessage("Facilities is required"),
+  body("starRating")
+    .notEmpty()
+    .isNumeric()
+    .withMessage("Star rating is required and must be a number"),
+  body("imageUrls").notEmpty().isArray().withMessage("Images is required"),
+];
