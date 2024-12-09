@@ -1,15 +1,19 @@
 import { forwardRef, HTMLProps, Ref } from "react";
 import { FieldError } from "react-hook-form";
+import { twMerge } from "tailwind-merge";
 
 interface InputProps extends HTMLProps<HTMLInputElement> {
   label: string;
+  labelClass?: string;
   error?: FieldError;
 }
 
 const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
-  const { label, error, ...inputProps } = props;
+  const { label, labelClass, error, ...inputProps } = props;
   return (
-    <label className="text-gray-700 text-sm font-bold flex-1">
+    <label
+      className={twMerge(`text-gray-700 text-sm font-bold flex-1`, labelClass)}
+    >
       <span className="capitalize">{label}</span>
       <input
         {...inputProps}
