@@ -29,7 +29,7 @@ app.use(
 );
 
 app.use("/api/user", userRoute);
-app.use("api/my/hotel", myHotelRoute);
+app.use("/api/my/hotel", myHotelRoute);
 
 app.listen(8000, () => {
   console.log("server running on localhost:8000");
