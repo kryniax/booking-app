@@ -84,8 +84,12 @@ const ManageHotelForm = (props: ManageHotelFormProps) => {
         <GuestSection />
         <ImagesSection />
         <span className="flex justify-end">
-          <button className="bg-blue-600 text-white p-2 font-bold rounded-md hover:bg-blue-500 text-xl">
-            Save
+          <button
+            disabled={isLoading}
+            type="submit"
+            className="bg-blue-600 text-white p-2 font-bold rounded-md hover:bg-blue-500 text-xl disabled:bg-gray-500"
+          >
+            {isLoading ? "Saving..." : "Save"}
           </button>
         </span>
       </form>
