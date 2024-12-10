@@ -81,6 +81,7 @@ const UpdateMyHotel = async (req: Request, res: any) => {
     }
 
     await hotel.save();
+    res.status(201).json(hotel);
   } catch (error) {
     return res.status(500).json({ message: "Error updating hotel" });
   }

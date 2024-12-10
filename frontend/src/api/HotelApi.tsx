@@ -93,3 +93,42 @@ export const useGetMyHotelById = (hotelId: string) => {
     isLoading,
   };
 };
+
+export const useUpdateMyHotelById = () => {
+  const { showToast } = useAppContext();
+  const navigate = useNavigate();
+  const updateMyHotelByIdRequest = async (
+    hotelFormData: FormData
+  ): Promise<HotelType> => {
+    const response = await fetch(
+      `${API_BASE_URL}/api/my/hotel/${hotelFormData.get("hotelId")}`,
+      {
+        method: "PUT",
+        body: hotelFormData,
+        credentials: "include",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to update hotel by ID");
+    }
+
+    return response.json();
+  };
+
+  const { mutateAsync: updateMyHotel, isPending } = useMutation({
+    mutationFn: updateMyHotelByIdRequest,
+    onSuccess: async () => {
+      showToast({ message: "Hotel Updated", type: "SUCCESS" });
+      navigate("/");
+    },
+    onError: (error: Error) => {
+      showToast({ message: error.message, type: "ERROR" });
+    },
+  });
+
+  return {
+    updateMyHotel,
+    isPending,
+  };
+};
