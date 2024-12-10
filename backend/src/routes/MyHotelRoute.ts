@@ -24,4 +24,6 @@ router.post(
 
 router.get("/", verifyToken, MyHotelsController.GetMyHotels);
 
+router.get("/:id", verifyToken, MyHotelsController.GetMyHotelById);
+
 export default router;

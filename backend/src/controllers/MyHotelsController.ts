@@ -47,4 +47,22 @@ const GetMyHotels = async (req: Request, res: any) => {
   }
 };
 
-export default { CreateMyHotel, GetMyHotels };
+const GetMyHotelById = async (req: Request, res: any) => {
+  try {
+    const hotelId = req.params.id.toString();
+    const hotel = await Hotel.find({
+      _id: hotelId,
+      userId: req.userId,
+    });
+
+    if (!hotel) {
+      return res.status(404).json({ message: "Hotel not found" });
+    }
+
+    res.json(hotel);
+  } catch (error) {
+    return res.status(500).json({ message: "Error fetching hotel by id" });
+  }
+};
+
+export default { CreateMyHotel, GetMyHotels, GetMyHotelById };
