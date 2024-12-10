@@ -4,6 +4,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import AddHotel from "./pages/AddHotel";
 import { useAppContext } from "./contexts/AppContext";
+import MyHotels from "./pages/MyHotels";
 
 function AppRoutes() {
   const { isLoggedIn } = useAppContext();
@@ -48,6 +49,14 @@ function AppRoutes() {
             element={
               <Layout>
                 <AddHotel />
+              </Layout>
+            }
+          />
+          <Route
+            path="/my-hotels"
+            element={
+              <Layout>
+                <MyHotels />
               </Layout>
             }
           />
