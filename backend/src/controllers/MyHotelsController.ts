@@ -50,7 +50,7 @@ const GetMyHotels = async (req: Request, res: any) => {
 const GetMyHotelById = async (req: Request, res: any) => {
   try {
     const hotelId = req.params.id.toString();
-    const hotel = await Hotel.find({
+    const hotel = await Hotel.findOne({
       _id: hotelId,
       userId: req.userId,
     });

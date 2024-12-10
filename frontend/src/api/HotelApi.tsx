@@ -1,5 +1,4 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { HotelFormData } from "../forms/manage-hotel-form/ManageHotelForm";
 import { useAppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
 import { HotelType } from "../types";
@@ -66,5 +65,31 @@ export const useGetMyHotels = () => {
   return {
     myHotels,
     isLoading: status === "pending",
+  };
+};
+
+export const useGetMyHotelById = (hotelId: string) => {
+  const getMyHotelByIdRequest = async (): Promise<HotelType> => {
+    const response = await fetch(`${API_BASE_URL}/api/my/hotel/${hotelId}`, {
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to get hotel by ID");
+    }
+
+    return response.json();
+  };
+
+  const { data: myHotelById, isLoading } = useQuery({
+    queryKey: ["fetchMyHotelById", hotelId],
+    queryFn: getMyHotelByIdRequest,
+    retry: false,
+    enabled: !!hotelId,
+  });
+
+  return {
+    myHotelById,
+    isLoading,
   };
 };

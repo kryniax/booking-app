@@ -3,7 +3,6 @@ import ManageHotelForm from "../forms/manage-hotel-form/ManageHotelForm";
 
 const AddHotel = () => {
   const { createMyHotel, isLoading } = useCreateMyHotel();
-
   const saveHotelHandler = (hotelFormData: FormData) => {
     createMyHotel(hotelFormData);
   };

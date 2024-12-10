@@ -2,14 +2,19 @@ import { useFormContext } from "react-hook-form";
 import Input from "../../../components/Input";
 import { HotelFormData } from "../ManageHotelForm";
 
-const DetailsSection = () => {
+type DetailsSectionProps = {
+  title: string;
+};
+
+const DetailsSection = (props: DetailsSectionProps) => {
+  const { title } = props;
   const {
     register,
     formState: { errors },
   } = useFormContext<HotelFormData>();
   return (
     <div className="flex flex-col gap-4 ">
-      <h1 className="text-3xl font-bold mb-3">Add Hotel</h1>
+      <h1 className="text-3xl font-bold mb-3">{`${title} Hotel`}</h1>
       <Input
         label="Name"
         type="text"
@@ -59,7 +64,9 @@ const DetailsSection = () => {
             Select as Rating
           </option>
           {[1, 2, 3, 4, 5].map((num) => (
-            <option value={num}>{num}</option>
+            <option key={`option${num}`} value={num}>
+              {num}
+            </option>
           ))}
         </select>
         {errors.starRating && (

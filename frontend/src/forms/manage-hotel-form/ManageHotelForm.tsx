@@ -6,6 +6,8 @@ import FacilitiesSection from "./sections/FacilitiesSection";
 import GuestSection from "./sections/GuestSection";
 import ImagesSection from "./sections/ImagesSection";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { HotelType } from "../../types";
+import { useEffect, useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(3, { message: "Name is required" }),
@@ -32,6 +34,7 @@ const formSchema = z.object({
     required_error: "Child count is required",
     invalid_type_error: "must be a valid number",
   }),
+  imageUrls: z.array(z.string().optional()),
   imageFiles: z
     .instanceof(FileList, { message: "Image is required" })
     .optional(),
@@ -40,18 +43,28 @@ const formSchema = z.object({
 export type HotelFormData = z.infer<typeof formSchema>;
 
 type ManageHotelFormProps = {
+  hotel: HotelType;
   onSave: (hotelFormData: FormData) => void;
   isLoading: boolean;
 };
 
 const ManageHotelForm = (props: ManageHotelFormProps) => {
-  const { onSave, isLoading } = props;
+  const [title, setTitle] = useState("");
+  const { onSave, isLoading, hotel } = props;
 
   const form = useForm<HotelFormData>({
     resolver: zodResolver(formSchema),
   });
-  const { handleSubmit } = form;
+  const { handleSubmit, reset } = form;
 
+  useEffect(() => {
+    if (hotel !== undefined) {
+      setTitle("Update");
+    } else {
+      setTitle("Add");
+    }
+    reset(hotel);
+  }, [hotel, reset]);
   const onSubmit = handleSubmit((formDataJson: HotelFormData) => {
     const formData = new FormData();
     formData.append("name", formDataJson.name);
@@ -78,7 +91,7 @@ const ManageHotelForm = (props: ManageHotelFormProps) => {
   return (
     <FormProvider {...form}>
       <form onSubmit={onSubmit} className="flex flex-col gap-10">
-        <DetailsSection />
+        <DetailsSection title={title} />
         <TypeSection />
         <FacilitiesSection />
         <GuestSection />
