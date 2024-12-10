@@ -26,4 +26,11 @@ router.get("/", verifyToken, MyHotelsController.GetMyHotels);
 
 router.get("/:id", verifyToken, MyHotelsController.GetMyHotelById);
 
+router.put(
+  "/:hotelId",
+  verifyToken,
+  upload.array("imageFiles"),
+  MyHotelsController.UpdateMyHotel
+);
+
 export default router;

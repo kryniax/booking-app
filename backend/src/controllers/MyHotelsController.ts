@@ -20,18 +20,6 @@ const CreateMyHotel = async (req: Request, res: any) => {
   }
 };
 
-const uploadImage = async (files: Express.Multer.File[]) => {
-  const uploadPromises = files.map(async (file) => {
-    const image = file;
-    const base64Image = Buffer.from(image.buffer).toString("base64");
-    const dataURI = `data:${image.mimetype};base64,${base64Image}`;
-    const uploadResponse = await cloudinary.v2.uploader.upload(dataURI);
-    return uploadResponse.url;
-  });
-  const imageUrls = await Promise.all(uploadPromises);
-  return imageUrls;
-};
-
 const GetMyHotels = async (req: Request, res: any) => {
   try {
     const hotels = await Hotel.find({ userId: req.userId });
@@ -65,4 +53,49 @@ const GetMyHotelById = async (req: Request, res: any) => {
   }
 };
 
-export default { CreateMyHotel, GetMyHotels, GetMyHotelById };
+const UpdateMyHotel = async (req: Request, res: any) => {
+  try {
+    const updatedHotel = req.body;
+    updatedHotel.lastUpdated = new Date();
+
+    const hotel = await Hotel.findOneAndUpdate(
+      {
+        _id: req.params.hotelId,
+        userId: req.userId,
+      },
+      updatedHotel,
+      { new: true }
+    );
+
+    if (!hotel) {
+      return res.status(404).json({ message: "Hotel not found" });
+    }
+
+    if (req.files) {
+      const files = req.files as Express.Multer.File[];
+      const updatedImageUrls = await uploadImage(files);
+      hotel.imageUrls = [
+        ...updatedImageUrls,
+        ...(updatedHotel.imageUrls || []),
+      ];
+    }
+
+    await hotel.save();
+  } catch (error) {
+    return res.status(500).json({ message: "Error updating hotel" });
+  }
+};
+
+const uploadImage = async (files: Express.Multer.File[]) => {
+  const uploadPromises = files.map(async (file) => {
+    const image = file;
+    const base64Image = Buffer.from(image.buffer).toString("base64");
+    const dataURI = `data:${image.mimetype};base64,${base64Image}`;
+    const uploadResponse = await cloudinary.v2.uploader.upload(dataURI);
+    return uploadResponse.url;
+  });
+  const imageUrls = await Promise.all(uploadPromises);
+  return imageUrls;
+};
+
+export default { CreateMyHotel, GetMyHotels, GetMyHotelById, UpdateMyHotel };
