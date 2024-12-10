@@ -32,4 +32,19 @@ const uploadImage = async (files: Express.Multer.File[]) => {
   return imageUrls;
 };
 
-export default { CreateMyHotel };
+const GetMyHotels = async (req: Request, res: any) => {
+  try {
+    const hotels = await Hotel.find({ userId: req.userId });
+
+    if (!hotels) {
+      return res.status(404).json({ message: "Hotels not found" });
+    }
+
+    res.json(hotels);
+  } catch (error) {
+    console.log("error: ", error);
+    return res.status(500).json({ message: "Error fetching hotels" });
+  }
+};
+
+export default { CreateMyHotel, GetMyHotels };
