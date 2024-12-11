@@ -34,7 +34,7 @@ const formSchema = z.object({
     required_error: "Child count is required",
     invalid_type_error: "must be a valid number",
   }),
-  imageUrls: z.array(z.string().optional()),
+  imageUrls: z.array(z.string()).optional(),
   imageFiles: z
     .instanceof(FileList, { message: "Image is required" })
     .optional(),
@@ -66,6 +66,7 @@ const ManageHotelForm = (props: ManageHotelFormProps) => {
     reset(hotel);
   }, [hotel, reset]);
   const onSubmit = handleSubmit((formDataJson: HotelFormData) => {
+    console.log(formDataJson.name);
     const formData = new FormData();
     if (hotel) {
       formData.append("hotelId", hotel._id);
