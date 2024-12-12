@@ -11,7 +11,7 @@ export const useSearchHotel = (searchParams: SearchHotelParams) => {
     queryHotelParams.append("checkOut", searchParams.checkOut || "");
     queryHotelParams.append("adultCount", searchParams.adultCount || "");
     queryHotelParams.append("childCount", searchParams.childCount || "");
-
+    queryHotelParams.append("page", searchParams.page || "");
     const response = await fetch(
       `${API_BASE_URL}/api/hotel/search?${queryHotelParams}`
     );
