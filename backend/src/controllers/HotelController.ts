@@ -20,6 +20,8 @@ const searchHotel = async (req: Request, res: any) => {
         pages: Math.ceil(total / pageSize),
       },
     };
+
+    return res.json(response);
   } catch (error) {
     console.log("search hotel error: ", error);
     return res.status(500).json({ message: "Error while search hotels" });
