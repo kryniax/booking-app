@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSearchContext } from "../contexts/SearchContext";
 import { useSearchHotel } from "../api/HotelApi";
+import SearchResultCard from "../components/SearchResultCard";
 
 const SearchPage = () => {
   const search = useSearchContext();
@@ -14,10 +15,33 @@ const SearchPage = () => {
     page: page.toString(),
   };
   const { hotelData, isLoading } = useSearchHotel(searchParams);
-  console.log(hotelData);
-  console.log(isLoading);
-  console.log(search);
-  return <div>SearchPage</div>;
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
+      <div className="rounded-lg border border-slate-300 p-5 h-fit sticky top-10">
+        <div className="space-y-5">
+          <header>
+            <h3 className="text-lg font-semibold border-b border-slate-300 pb-5">
+              Filter by:
+            </h3>
+          </header>
+        </div>
+      </div>
+      <div className="flex flex-col gap-5">
+        <div className="flex justify-between items-center">
+          <header>
+            <h2 className="text-xl font-bold">
+              {hotelData?.pagination.total} Hotels found
+              {search.destination ? ` in ${search.destination}` : ""}
+            </h2>
+          </header>
+        </div>
+        {hotelData?.data.map((hotel) => (
+          <SearchResultCard hotel={hotel} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default SearchPage;
