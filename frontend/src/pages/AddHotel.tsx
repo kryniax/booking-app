@@ -1,4 +1,4 @@
-import { useCreateMyHotel } from "../api/HotelApi";
+import { useCreateMyHotel } from "../api/MyHotelApi";
 import ManageHotelForm from "../forms/manage-hotel-form/ManageHotelForm";
 
 const AddHotel = () => {

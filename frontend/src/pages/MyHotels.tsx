@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useGetMyHotels } from "../api/HotelApi";
+import { useGetMyHotels } from "../api/MyHotelApi";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { BsBuilding } from "react-icons/bs";
 import { BiMoney, BiHotel, BiStar } from "react-icons/bi";

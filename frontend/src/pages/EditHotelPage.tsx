@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetMyHotelById, useUpdateMyHotelById } from "../api/HotelApi";
+import { useGetMyHotelById, useUpdateMyHotelById } from "../api/MyHotelApi";
 import ManageHotelForm from "../forms/manage-hotel-form/ManageHotelForm";
 
 const EditHotelPage = () => {
