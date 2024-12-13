@@ -29,7 +29,7 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
           </div>
           <header>
             <Link
-              to={`/deail/${hotel._id}`}
+              to={`/detail/${hotel._id}`}
               className="text-2xl font-bold cursor-pointer"
             >
               {hotel.name}
@@ -54,7 +54,7 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
           <div className="flex flex-col items-end gap-1">
             <span className="font-bold">{hotel.pricePerNight}$ per night</span>
             <Link
-              to={`/deail/${hotel._id}`}
+              to={`/detail/${hotel._id}`}
               className="bg-blue-600 text-white h-full p-2 font-bold text-xl max-w-fit rounded-md"
             >
               View More
