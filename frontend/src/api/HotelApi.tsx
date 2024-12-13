@@ -12,6 +12,22 @@ export const useSearchHotel = (searchParams: SearchHotelParams) => {
     queryHotelParams.append("adultCount", searchParams.adultCount || "");
     queryHotelParams.append("childCount", searchParams.childCount || "");
     queryHotelParams.append("page", searchParams.page || "");
+
+    queryHotelParams.append("maxPrice", searchParams.maxPrice || "");
+    queryHotelParams.append("sortOption", searchParams.sortOption || "");
+
+    searchParams.facilities?.forEach((facility) =>
+      queryHotelParams.append("facilities", facility)
+    );
+
+    searchParams.types?.forEach((type) =>
+      queryHotelParams.append("types", type)
+    );
+
+    searchParams.stars?.forEach((star) =>
+      queryHotelParams.append("stars", star)
+    );
+
     const response = await fetch(
       `${API_BASE_URL}/api/hotel/search?${queryHotelParams}`
     );
