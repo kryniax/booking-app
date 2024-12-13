@@ -1,6 +1,23 @@
 import { query, Request } from "express";
 import Hotel from "../models/hotel";
 
+const getHotel = async (req: Request, res: any) => {
+  try {
+    const hotelId = req.params.hotelId;
+
+    const hotel = await Hotel.findById(hotelId);
+
+    if (!hotel) {
+      return res.status(404).json({ message: "Hotel not found" });
+    }
+
+    res.json(hotel);
+  } catch (error) {
+    console.log("get hotel error: ", error);
+    return res.status(500).json({ message: "Failed to get hotel" });
+  }
+};
+
 const searchHotel = async (req: Request, res: any) => {
   try {
     const query = constructSearchQuery(req.query);
@@ -98,4 +115,4 @@ const constructSearchQuery = (queryParams: any) => {
   return constructedQuery;
 };
 
-export default { searchHotel };
+export default { getHotel, searchHotel };

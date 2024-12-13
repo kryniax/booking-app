@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { HotelSearchResponse, SearchHotelParams } from "../types";
+import { HotelSearchResponse, HotelType, SearchHotelParams } from "../types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -51,5 +51,33 @@ export const useSearchHotel = (searchParams: SearchHotelParams) => {
     hotelData,
     isLoading,
     isError,
+  };
+};
+
+export const useGetHotelById = (hotelId: string) => {
+  const getHotelByIdRequest = async (): Promise<HotelType> => {
+    const response = await fetch(`${API_BASE_URL}/api/hotel/${hotelId}`);
+
+    if (!response.ok) {
+      throw new Error("Failed to get hotel by id");
+    }
+
+    return response.json();
+  };
+
+  const {
+    data: hotelDataById,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["fetchHotelById", hotelId],
+    queryFn: getHotelByIdRequest,
+    enabled: !!hotelId,
+  });
+
+  return {
+    hotelDataById,
+    isError,
+    isLoading,
   };
 };
