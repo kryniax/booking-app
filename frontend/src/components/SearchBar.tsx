@@ -55,6 +55,7 @@ const SearchBar = () => {
             className="w-full p-1 focus:outline-none font-bold"
             min={1}
             max={12}
+            value={adultCount}
             onChange={(event) => setAdultCount(parseInt(event.target.value))}
           />
         </label>
@@ -65,6 +66,7 @@ const SearchBar = () => {
             className="w-full p-1 focus:outline-none font-bold"
             min={1}
             max={12}
+            value={childCount}
             onChange={(event) => setChildCount(parseInt(event.target.value))}
           />
         </label>
@@ -89,14 +91,14 @@ const SearchBar = () => {
         <DatePicker
           locale="en"
           dateFormat="dd/MM/yyyy"
-          selected={checkIn}
-          onChange={(date) => setCheckIn(date as Date)}
+          selected={checkOut}
+          onChange={(date) => setCheckOut(date as Date)}
           selectsStart
           startDate={checkIn}
           endDate={checkOut}
           minDate={minDate}
           maxDate={maxDate}
-          placeholderText="Check-in Date"
+          placeholderText="Check-out Date"
           className="min-w-full bg-white p-2 focus:outline-none"
           wrapperClassName="min-w-full"
         />

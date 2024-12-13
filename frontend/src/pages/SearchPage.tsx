@@ -18,7 +18,9 @@ const SearchPage = () => {
     string[]
   >([]);
   const [selectedPrice, setSelectedPrice] = useState<number | undefined>();
-  const [selectedSortOption, setSelectedSortOption] = useState<string>("");
+  const [selectedSortOption, setSelectedSortOption] = useState<
+    string | undefined
+  >("");
 
   const searchParams = {
     destination: search.destination,

@@ -1,6 +1,6 @@
 type SortHotelFilterProps = {
   selectedSortOption?: string;
-  onChange: (value?: string) => void;
+  onChange: (value: string) => void;
 };
 
 const SortHotelFilter = ({
