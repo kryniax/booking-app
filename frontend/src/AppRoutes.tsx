@@ -7,6 +7,7 @@ import { useAppContext } from "./contexts/AppContext";
 import MyHotels from "./pages/MyHotels";
 import EditHotelPage from "./pages/EditHotelPage";
 import SearchPage from "./pages/SearchPage";
+import DetailPage from "./pages/DetailPage";
 
 function AppRoutes() {
   const { isLoggedIn } = useAppContext();
@@ -25,6 +26,14 @@ function AppRoutes() {
         element={
           <Layout>
             <SearchPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/detail/:hotelId"
+        element={
+          <Layout>
+            <DetailPage />
           </Layout>
         }
       />

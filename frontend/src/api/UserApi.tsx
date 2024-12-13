@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 import { RegisterFormData } from "../pages/RegisterPage";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -48,6 +48,7 @@ export const useLoginUser = () => {
   const queryClient = useQueryClient();
   const { showToast } = useAppContext();
   const navigate = useNavigate();
+  const location = useLocation();
   const loginUserRequest = async (formData: LoginFormData) => {
     const response = await fetch(`${API_BASE_URL}/api/user/login`, {
       method: "POST",
@@ -72,7 +73,7 @@ export const useLoginUser = () => {
     onSuccess: async () => {
       showToast({ message: "Sign in Successful", type: "SUCCESS" });
       await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
-      navigate("/");
+      navigate(location.state?.from?.pathname || "/");
     },
     onError: (error: Error) => {
       showToast({ message: error.message, type: "ERROR" });
