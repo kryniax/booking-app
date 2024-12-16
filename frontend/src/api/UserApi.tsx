@@ -3,6 +3,7 @@ import { useAppContext } from "../contexts/AppContext";
 import { RegisterFormData } from "../pages/RegisterPage";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { LoginFormData } from "../pages/LoginPage";
+import { UserType } from "../types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -136,4 +137,25 @@ export const useValidateToken = () => {
     authToken,
     isError,
   };
+};
+
+export const useGetCurrentUser = () => {
+  const getCurrentUserRequest = async (): Promise<UserType> => {
+    const response = await fetch(`${API_BASE_URL}/api/user/me`, {
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      throw new Error("Error get current user");
+    }
+
+    return response.json();
+  };
+
+  const { data: currentUser, isError } = useQuery({
+    queryKey: ["fetchCurrent"],
+    queryFn: getCurrentUserRequest,
+  });
+
+  return { currentUser, isError };
 };

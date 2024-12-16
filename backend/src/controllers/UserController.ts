@@ -67,6 +67,21 @@ const getUser = async (req: Request, res: any) => {
   }
 };
 
+const getUserToBook = async (req: Request, res: any) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+    return res.json(user);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Something went wrong with getting user to book",
+    });
+  }
+};
+
 const logoutUser = async (req: Request, res: any) => {
   res.cookie("auth_token", "", {
     expires: new Date(0),
@@ -79,4 +94,4 @@ const getUserToken = async (req: Request, res: any) => {
   return res.status(200).send({ userId: req.userId });
 };
 
-export default { createUser, getUser, getUserToken, logoutUser };
+export default { createUser, getUser, getUserToBook, getUserToken, logoutUser };

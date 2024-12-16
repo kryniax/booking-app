@@ -16,5 +16,6 @@ router.post(
 router.post("/login", validateLoginUserRequest, UserController.getUser);
 router.get("/validate-token", verifyToken, UserController.getUserToken);
 router.post("/logout", UserController.logoutUser);
+router.get("/me", verifyToken, UserController.getUserToBook);
 
 export default router;
