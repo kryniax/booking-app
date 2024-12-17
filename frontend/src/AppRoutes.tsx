@@ -19,7 +19,7 @@ function AppRoutes() {
       <Route
         path="/"
         element={
-          <Layout>
+          <Layout showSearchBar>
             <HomePage />
           </Layout>
         }
@@ -27,7 +27,7 @@ function AppRoutes() {
       <Route
         path="/search"
         element={
-          <Layout>
+          <Layout showSearchBar>
             <SearchPage />
           </Layout>
         }
@@ -35,7 +35,7 @@ function AppRoutes() {
       <Route
         path="/detail/:hotelId"
         element={
-          <Layout>
+          <Layout showSearchBar>
             <DetailPage />
           </Layout>
         }
