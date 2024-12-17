@@ -8,7 +8,7 @@ const getHotel = async (req: Request, res: any) => {
     const hotel = await Hotel.findById(hotelId);
 
     if (!hotel) {
-      return res.status(404).json({ message: "Hotel not found" });
+      return res.status(400).json({ message: "Hotel not found" });
     }
 
     res.json(hotel);
@@ -58,6 +58,20 @@ const searchHotel = async (req: Request, res: any) => {
   } catch (error) {
     console.log("search hotel error: ", error);
     return res.status(500).json({ message: "Error while search hotels" });
+  }
+};
+
+const getMainPageHotels = async (req: Request, res: any) => {
+  try {
+    const hotels = await Hotel.find().sort("-lastUpdated");
+
+    if (!hotels) {
+      return res.status(400).json({ message: "Hotels not found" });
+    }
+    return res.json(hotels);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Failed to get main page hotels" });
   }
 };
 
@@ -115,4 +129,4 @@ const constructSearchQuery = (queryParams: any) => {
   return constructedQuery;
 };
 
-export default { getHotel, searchHotel };
+export default { getHotel, searchHotel, getMainPageHotels };

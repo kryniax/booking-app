@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get("/search", HotelController.searchHotel);
 
+router.get("/", HotelController.getMainPageHotels);
+
 router.get(
   "/:hotelId",
   param("hotelId")

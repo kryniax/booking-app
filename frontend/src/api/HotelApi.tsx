@@ -81,3 +81,21 @@ export const useGetHotelById = (hotelId: string) => {
     isLoading,
   };
 };
+
+export const useGetMainPageHotels = () => {
+  const getMainPageHotelsRequest = async (): Promise<HotelType[]> => {
+    const response = await fetch(`${API_BASE_URL}/api/hotel`);
+    if (!response.ok) {
+      throw new Error("Failed to get main page hotels");
+    }
+
+    return response.json();
+  };
+
+  const { data: mainPageHotels, isLoading } = useQuery({
+    queryKey: ["fetchMainPageHotels"],
+    queryFn: getMainPageHotelsRequest,
+  });
+
+  return { mainPageHotels, isLoading };
+};
