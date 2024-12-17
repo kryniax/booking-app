@@ -9,6 +9,7 @@ import EditHotelPage from "./pages/EditHotelPage";
 import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
 import BookingPage from "./pages/BookingPage";
+import MyBookingPage from "./pages/MyBookingPage";
 
 function AppRoutes() {
   const { isLoggedIn } = useAppContext();
@@ -85,6 +86,14 @@ function AppRoutes() {
             element={
               <Layout>
                 <BookingPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/my-bookings"
+            element={
+              <Layout>
+                <MyBookingPage />
               </Layout>
             }
           />
