@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetCurrentUser } from "../api/UserApi";
 import BookingForm from "../forms/booking-form/BookingForm";
 import { useSearchContext } from "../contexts/SearchContext";
 import { useParams } from "react-router-dom";
-import { useGetMyHotelById } from "../api/MyHotelApi";
+import { Elements } from "@stripe/react-stripe-js";
 import { useGetHotelById } from "../api/HotelApi";
 import BookingDetailSummary from "../components/BookingDetailSummary";
+import { useCreatePaymentIntent } from "../api/BookingApi";
+import { useAppContext } from "../contexts/AppContext";
 
 const BookingPage = () => {
   const search = useSearchContext();
+  const { stripePromise } = useAppContext();
+
   const { hotelId } = useParams();
   if (!hotelId) {
     return <span>There is no hotel</span>;
@@ -22,6 +26,10 @@ const BookingPage = () => {
   const { currentUser } = useGetCurrentUser();
 
   const [numberOfNights, setNumberofNights] = useState<number>(0);
+  const { paymentIntentData, isLoading } = useCreatePaymentIntent(
+    hotelId,
+    numberOfNights
+  );
 
   useEffect(() => {
     if (search.checkIn && search.checkOut) {
@@ -47,7 +55,19 @@ const BookingPage = () => {
         numberOfNights={numberOfNights}
         hotel={hotelDataById}
       />
-      <BookingForm currentUser={currentUser} />
+      {currentUser && paymentIntentData && (
+        <Elements
+          stripe={stripePromise}
+          options={{
+            clientSecret: paymentIntentData.clientSecret,
+          }}
+        >
+          <BookingForm
+            currentUser={currentUser}
+            paymentIntent={paymentIntentData}
+          />
+        </Elements>
+      )}
     </div>
   );
 };
