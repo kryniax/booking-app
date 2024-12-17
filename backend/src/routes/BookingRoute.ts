@@ -16,4 +16,6 @@ router.post(
   BookingController.processPayment
 );
 
+router.get("/my-bookings", verifyToken, BookingController.getMyBooking);
+
 export default router;

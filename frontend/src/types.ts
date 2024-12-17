@@ -65,3 +65,7 @@ export type BookingType = {
   checkOut: Date;
   totalCost: number;
 };
+
+export type MyBookingType = Omit<BookingType, "hotelId"> & {
+  hotelId: HotelType;
+};

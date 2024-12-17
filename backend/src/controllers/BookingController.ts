@@ -94,4 +94,24 @@ const processPayment = async (req: Request, res: any) => {
   }
 };
 
-export default { createPayment, processPayment };
+const getMyBooking = async (req: Request, res: any) => {
+  try {
+    const bookings = await Booking.find({ userId: req.userId }).populate({
+      path: "hotelId",
+      select: "name city country imageUrls",
+    });
+
+    if (!bookings) {
+      return res.status(400).json({ message: "Bookings not found" });
+    }
+
+    return res.json(bookings);
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "Something went wrong while getting my booking" });
+  }
+};
+
+export default { createPayment, processPayment, getMyBooking };

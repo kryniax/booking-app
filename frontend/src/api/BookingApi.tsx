@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { PaymentIntentResponse } from "../types";
+import { BookingType, MyBookingType, PaymentIntentResponse } from "../types";
 import { BookingFormData } from "../forms/booking-form/BookingForm";
 import { useAppContext } from "../contexts/AppContext";
 
@@ -73,4 +73,25 @@ export const useCreateBooking = () => {
   });
 
   return { bookHotel, isPending, isSuccess };
+};
+
+export const useGetMyBooking = () => {
+  const getMyBookingRequest = async (): Promise<MyBookingType[]> => {
+    const response = await fetch(`${API_BASE_URL}/api/booking/my-bookings`, {
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      throw new Error("Error fetching bookings");
+    }
+
+    return response.json();
+  };
+
+  const { data: bookings, isLoading } = useQuery({
+    queryKey: ["getMyBookings"],
+    queryFn: getMyBookingRequest,
+  });
+
+  return { bookings, isLoading };
 };
