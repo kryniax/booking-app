@@ -3,13 +3,14 @@ import { useGetHotelById } from "../api/HotelApi";
 import { useParams } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import GuestInfoForm from "../forms/guest-info-form/GuestInfoForm";
+import { useTranslation } from "react-i18next";
 
 const DetailPage = () => {
   const { hotelId } = useParams();
   const { hotelDataById } = useGetHotelById(hotelId as string);
-
+  const { t } = useTranslation();
   if (!hotelDataById) {
-    return <>Hotel doesn't exist</>;
+    return <span>{t("BookingApp.noHotel")}</span>;
   }
 
   return (

@@ -8,19 +8,21 @@ import { useGetHotelById } from "../api/HotelApi";
 import BookingDetailSummary from "../components/BookingDetailSummary";
 import { useCreatePaymentIntent } from "../api/BookingApi";
 import { useAppContext } from "../contexts/AppContext";
+import { useTranslation } from "react-i18next";
 
 const BookingPage = () => {
   const search = useSearchContext();
   const { stripePromise } = useAppContext();
+  const { t } = useTranslation();
 
   const { hotelId } = useParams();
   if (!hotelId) {
-    return <span>There is no hotel</span>;
+    return <span>{t("BookingPage.noHotel")}</span>;
   }
 
   const { hotelDataById } = useGetHotelById(hotelId);
   if (!hotelDataById) {
-    return <span>There is no hotel</span>;
+    return <span>{t("BookingPage.noHotel")}</span>;
   }
 
   const { currentUser } = useGetCurrentUser();
@@ -42,7 +44,7 @@ const BookingPage = () => {
   }, [search.checkIn, search.checkOut]);
 
   if (!currentUser) {
-    return <span>There is no current user</span>;
+    return <span>{t("BookingPage.noUser")}</span>;
   }
 
   return (

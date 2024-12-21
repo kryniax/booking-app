@@ -1,33 +1,43 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Input from "../components/Input";
 import { useLoginUser } from "../api/UserApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
+import { TFunction } from "i18next";
+import { useTranslation } from "react-i18next";
 
-const formSchema = z.object({
-  email: z.string().email({ message: "Invalid email address" }),
-  password: z
-    .string()
-    .min(8, "Password is required")
-    .refine(
-      (value) => /[A-Z]/.test(value),
-      "Password must contain at least one uppercase letter"
-    )
-    .refine(
-      (value) => /[0-9]/.test(value),
-      "Password must contain at least one number"
-    )
-    .refine(
-      (value) => /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(value),
-      "Password must contain at least one special character"
-    ),
-});
+const loginFormSchema = (t: TFunction) =>
+  z.object({
+    email: z
+      .string()
+      .email({ message: t("LoginPage.validation.email.message") }),
+    password: z
+      .string()
+      .min(8, t("LoginPage.validation.password.min"))
+      .refine(
+        (value) => /[A-Z]/.test(value),
+        t("LoginPage.validation.password.upperCase")
+      )
+      .refine(
+        (value) => /[0-9]/.test(value),
+        t("LoginPage.validation.password.number")
+      )
+      .refine(
+        (value) => /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(value),
+        t("LoginPage.validation.password.special")
+      ),
+  });
 
-export type LoginFormData = z.infer<typeof formSchema>;
+export type LoginFormData = z.infer<ReturnType<typeof loginFormSchema>>;
 
 const LoginPage = () => {
+  const { t } = useTranslation();
+  const formSchema = useMemo(() => {
+    return loginFormSchema(t);
+  }, [t]);
+
   const {
     register,
     handleSubmit,
@@ -47,34 +57,36 @@ const LoginPage = () => {
   });
   return (
     <form className="flex flex-col gap-5" onSubmit={onSubmit}>
-      <h2 className="text-3xl font-bold">Sign In</h2>
+      <h2 className="text-3xl font-bold capitalize">
+        {t("BookingApp.signIn")}
+      </h2>
       <Input
-        label="Email"
+        label={t("LoginPage.validation.email.label")}
         type="email"
         error={errors.email}
         {...register("email")}
       />
       <Input
-        label="Password"
+        label={t("LoginPage.validation.password.label")}
         type="password"
         error={errors.password}
         {...register("password")}
       />
       <span className="flex items-center justify-between">
         <span className="text-sm">
-          Not Registered?{" "}
+          {t("LoginPage.notRegistered")}{" "}
           <Link
             className="underline hover:text-black/80 transition duration-100"
             to="/register"
           >
-            Create an account
+            {t("LoginPage.createAccount")}
           </Link>
         </span>
         <button
           type="submit"
-          className="bg-blue-600 text-white text-xl p-2 font-bold rounded-md hover:bg-blue-500 transition duration-100"
+          className="bg-blue-600 text-white text-xl capitalize p-2 font-bold rounded-md hover:bg-blue-500 transition duration-100"
         >
-          Sign In
+          {t("BookingApp.signIn")}
         </button>
       </span>
     </form>

@@ -8,9 +8,11 @@ import HotelTypesFilter from "../components/HotelTypesFilter";
 import FacilitiesFilter from "../components/FacilitiesFilter";
 import PriceFilter from "../components/PriceFilter";
 import SortHotelFilter from "../components/SortHotelFilter";
+import { useTranslation } from "react-i18next";
 
 const SearchPage = () => {
   const search = useSearchContext();
+  const { t } = useTranslation();
   const [page, setPage] = useState<number>(1);
   const [selectedStars, setSelectedStars] = useState<string[]>([]);
   const [selectedHotelType, setSelectedHotelType] = useState<string[]>([]);
@@ -85,7 +87,7 @@ const SearchPage = () => {
         <div className="space-y-5">
           <header>
             <h3 className="text-lg font-semibold border-b border-slate-300 pb-5">
-              Filter by:
+              {t("SearchPage.filterBy")}
             </h3>
           </header>
           <StarRatingFilter
@@ -110,8 +112,10 @@ const SearchPage = () => {
         <div className="flex justify-between items-center">
           <header>
             <h2 className="text-xl font-bold">
-              {hotelData?.pagination.total} Hotels found
-              {search.destination ? ` in ${search.destination}` : ""}
+              {`${hotelData?.pagination.total} ${t("SearchPage.hotelsFound")}`}
+              {search.destination
+                ? ` ${t("SearchPage.in")} ${search.destination}`
+                : ""}
             </h2>
           </header>
           <SortHotelFilter

@@ -1,12 +1,14 @@
 import React from "react";
 import { useGetMyBooking } from "../api/BookingApi";
 import BookingCard from "../components/BookingCard";
+import { useTranslation } from "react-i18next";
 
 const MyBookingPage = () => {
   const { bookings, isLoading } = useGetMyBooking();
+  const { t } = useTranslation();
 
   if (!bookings) {
-    return <span>Bookings not found</span>;
+    return <span>{t("MyBookingPage.noBooking")}</span>;
   }
   console.log(bookings);
   return (

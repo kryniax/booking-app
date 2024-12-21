@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useGetMyHotelById, useUpdateMyHotelById } from "../api/MyHotelApi";
 import ManageHotelForm from "../forms/manage-hotel-form/ManageHotelForm";
+import { useTranslation } from "react-i18next";
 
 const EditHotelPage = () => {
   const { updateMyHotel, isPending } = useUpdateMyHotelById();
   const { hotelId } = useParams();
+  const { t } = useTranslation();
   if (!hotelId) {
-    return <span>No hotel to fetch</span>;
+    return <span>{t("BookingApp.noHotel")}</span>;
   }
   const { myHotelById } = useGetMyHotelById(hotelId);
 

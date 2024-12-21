@@ -2,8 +2,10 @@ import { useFormContext } from "react-hook-form";
 import { HotelFormData } from "../ManageHotelForm";
 import Input from "../../../components/Input";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const ImagesSection = () => {
+  const { t } = useTranslation();
   const {
     register,
     watch,
@@ -20,12 +22,12 @@ const ImagesSection = () => {
     event.preventDefault();
     setValue(
       "imageUrls",
-      existingImageUrls.filter((url) => url !== imageUrl)
+      existingImageUrls?.filter((url) => url !== imageUrl)
     );
   };
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-3">Images</h2>
+      <h2 className="text-2xl font-bold mb-3">{t("ImagesSection.name")}</h2>
       <div className="border rounded p-4 flex flex-col gap-4">
         {existingImageUrls && (
           <div className="grid grid-cols-6 gap-4">
@@ -52,7 +54,7 @@ const ImagesSection = () => {
           </div>
         )}
         <Input
-          label="Image"
+          label={t("ImagesSection.label")}
           type="file"
           multiple
           accept="image/*"

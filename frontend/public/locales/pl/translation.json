@@ -1,0 +1,164 @@
+{
+  "BookingApp": {
+    "adult": "dorosły",
+    "adults": "dorośli",
+    "child": "dzieci",
+    "children": "dzieci",
+    "guests": "goście",
+    "checkIn": "zameldowanie",
+    "checkOut": "wymeldowanie",
+    "facilities": "udogodnienia",
+    "hotelType": "typ hotelu",
+    "signIn": "zaloguj się",
+    "signOut": "wyloguj się",
+    "search": "szukaj",
+    "clear": "wyczyść",
+    "perNight": "za noc",
+    "starRating": "gwiazdki",
+    "sortBy": "sortuj według"
+  },
+  "BookingCard": {
+    "dates": "Terminy: ",
+    "guests": "Goście: ",
+    "adults": "dorośli ",
+    "children": "dzieci "
+  },
+  "BookingDetailSummary": {
+    "yourBookingDetails": "Szczegóły Twojej Rezerwacji",
+    "location": "Lokalizacja: ",
+    "totalStay": "Całkowity pobyt: ",
+    "checkIn": "zameldowanie",
+    "checkOut": "wymeldowanie"
+  },
+  "Footer": {
+    "privacyPolicy": "Polityka Prywatności",
+    "termsOfService": "Warunki Korzystania z Usług"
+  },
+  "Header": {
+    "myBookings": "Moje Rezerwacje",
+    "myHotels": "Moje Hotele"
+  },
+  "Hero": {
+    "header": "Znajdź swój następny pobyt",
+    "description": "Szukaj niskich cen w hotelach na wymarzony urlop."
+  },
+  "PriceFilter": {
+    "maxPrice": "Maksymalna Cena",
+    "selectMaxPrice": "Wybierz Maksymalną Cenę"
+  },
+  "SearchResultCard": {
+    "viewMore": "Zobacz Więcej"
+  },
+  "SortHotelFilter": {
+    "pricePerNightAsc": "Cena za noc (od najniższej)",
+    "pricePerNightDesc": "Cena za noc (od najwyższej)"
+  },
+  "StarRatingFilter": {
+    "propertyRating": "Ocena Obiektu",
+    "stars": "Gwiazdki"
+  },
+  "ManageHotelForm": {
+    "title": "Dodaj Hotel",
+    "titleUpdate": "Zaktualizuj Hotel",
+    "validation": {
+      "name": "Nazwa jest wymagana",
+      "city": "Miasto jest wymagane",
+      "country": "Kraj jest wymagany",
+      "description": "Opis jest wymagany",
+      "type": "Typ jest wymagany",
+      "pricePerNight": {
+        "required": "Cena za noc jest wymagana",
+        "invalid": "Musi być prawidłową liczbą"
+      },
+      "starRating": {
+        "required": "Liczba gwiazdek jest wymagana",
+        "invalid": "Musi być prawidłową liczbą"
+      },
+      "facilities": "Wybierz co najmniej jedno udogodnienie",
+      "adultCount": {
+        "required": "Liczba dorosłych jest wymagana",
+        "invalid": "Musi być prawidłową liczbą"
+      },
+      "childCount": {
+        "required": "Liczba dzieci jest wymagana",
+        "invalid": "Musi być prawidłową liczbą"
+      }
+    },
+    "createHotelButton": "Dodaj",
+    "savingHotelButton": "Zapisywanie...",
+    "saveHotelButton": "Zapisz"
+  },
+  "DetailsSection": {
+    "name": {
+      "label": "Nazwa"
+    },
+    "city": {
+      "label": "Miasto",
+      "placeholder": "Wprowadź miasto"
+    },
+    "country": {
+      "label": "Kraj",
+      "placeholder": "Wprowadź kraj"
+    },
+    "description": {
+      "label": "Opis",
+      "placeholder": "Wprowadź opis hotelu"
+    },
+    "pricePerNight": {
+      "label": "Cena za noc",
+      "placeholder": "Wprowadź cenę za noc"
+    },
+    "starRating": {
+      "label": "Liczba gwiazdek",
+      "select": "Wybierz ocenę"
+    },
+    "validation": {
+      "required": "To pole jest wymagane",
+      "invalidPrice": "Cena musi być większa niż 0",
+      "invalidRating": "Wybierz prawidłową ocenę"
+    }
+  },
+  "TypeSection": {
+    "name": "Typ",
+    "hotelTypes": {
+      "budget": "Ekonomiczny",
+      "boutique": "Butikowy",
+      "luxury": "Luksusowy",
+      "skiResort": "Ośrodek narciarski",
+      "business": "Biznesowy",
+      "family": "Rodzinny",
+      "romantic": "Romantyczny",
+      "hikingResort": "Ośrodek turystyczny",
+      "cabin": "Domek",
+      "beachResort": "Kurort nadmorski",
+      "golfResort": "Pole golfowe",
+      "motel": "Motel",
+      "allInclusive": "All Inclusive",
+      "petFriendly": "Przyjazny zwierzętom",
+      "selfCatering": "Z własnym wyżywieniem"
+    }
+  },
+  "FacilitiesSection": {
+    "name": "Udogodnienia",
+    "hotelFacilities": {
+      "freeWiFi": "Darmowe WiFi",
+      "tv": "Telewizor w pokojach",
+      "parking": "Parking",
+      "familyRooms": "Pokoje rodzinne",
+      "nonsmokingRooms": "Pokoje dla niepalących",
+      "outdoorPool": "Basen zewnętrzny",
+      "spa": "SPA",
+      "fitnessCenter": "Centrum fitness",
+      "meals": "Posiłki"
+    }
+  },
+  "GuestsSection": {
+    "name": "Goście",
+    "adults": "Dorośli",
+    "children": "Dzieci"
+  },
+  "ImagesSection": {
+    "name": "Zdjęcia",
+    "label": "Zdjęcie"
+  }
+}

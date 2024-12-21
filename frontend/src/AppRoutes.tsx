@@ -4,7 +4,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import AddHotel from "./pages/AddHotel";
 import { useAppContext } from "./contexts/AppContext";
-import MyHotels from "./pages/MyHotels";
+import MyHotelsPage from "./pages/MyHotelsPage";
 import EditHotelPage from "./pages/EditHotelPage";
 import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
@@ -70,7 +70,7 @@ function AppRoutes() {
             path="/my-hotels"
             element={
               <Layout>
-                <MyHotels />
+                <MyHotelsPage />
               </Layout>
             }
           />

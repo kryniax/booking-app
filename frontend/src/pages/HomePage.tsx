@@ -1,12 +1,14 @@
 import React from "react";
 import { useGetMainPageHotels } from "../api/HotelApi";
 import LatestDestionationCard from "../components/LatestDestionationCard";
+import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
   const { mainPageHotels, isLoading } = useGetMainPageHotels();
+  const { t } = useTranslation();
 
   if (!mainPageHotels) {
-    return <span>We haven't hotels yet</span>;
+    return <span>{t("HomePage.noHotel")}</span>;
   }
 
   const topRowHotels = mainPageHotels.slice(0, 2);
@@ -15,9 +17,11 @@ const HomePage = () => {
   return (
     <div className="space-y-3">
       <header>
-        <h2 className="text-3xl font-bold">Latest Destinations</h2>
+        <h2 className="text-3xl font-bold">
+          {t("HomePage.latestDestinations")}
+        </h2>
       </header>
-      <p>Most recent destinations addes by our hosts</p>
+      <p>{t("HomePage.recentDestinations")}</p>
       <div className="grid gap-4">
         <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
           {topRowHotels.map((hotel) => (

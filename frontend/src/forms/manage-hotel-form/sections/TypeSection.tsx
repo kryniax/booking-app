@@ -1,9 +1,11 @@
 import { useFormContext } from "react-hook-form";
-import { hotelTypes } from "../../../config/hotel-options-config";
+import { hotelTypeKeys } from "../../../config/hotel-options-config";
 import { twMerge } from "tailwind-merge";
 import { HotelFormData } from "../ManageHotelForm";
+import { useTranslation } from "react-i18next";
 
 const TypeSection = () => {
+  const { t } = useTranslation();
   const {
     register,
     watch,
@@ -14,7 +16,7 @@ const TypeSection = () => {
     <div>
       <h2 className="text-2xl font-bold mb-3">Type</h2>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
-        {hotelTypes.map((type) => (
+        {hotelTypeKeys.map((type) => (
           <label
             key={type}
             className={twMerge(
@@ -28,7 +30,7 @@ const TypeSection = () => {
               className="hidden"
               {...register("type")}
             />
-            <span>{type}</span>
+            <span>{t(`TypeSection.hotelTypes.${type}`)}</span>
           </label>
         ))}
       </div>

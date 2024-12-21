@@ -2,37 +2,51 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateUser } from "../api/UserApi";
+import { TFunction } from "i18next";
+import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 
-const formSchema = z
-  .object({
-    firstName: z.string().min(3, { message: "Firstname is required" }),
-    lastName: z.string().min(3, { message: "Lastname is required" }),
-    email: z.string().email({ message: "Invalid email address" }),
-    password: z
-      .string()
-      .min(8, "Password is required")
-      .refine(
-        (value) => /[A-Z]/.test(value),
-        "Password must contain at least one uppercase letter"
-      )
-      .refine(
-        (value) => /[0-9]/.test(value),
-        "Password must contain at least one number"
-      )
-      .refine(
-        (value) => /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(value),
-        "Password must contain at least one special character"
-      ),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
-    path: ["confirmPassword"],
-  });
+const registerFormSchema = (t: TFunction) =>
+  z
+    .object({
+      firstName: z
+        .string()
+        .min(3, { message: t("RegisterPage.validation.firstName.message") }),
+      lastName: z
+        .string()
+        .min(3, { message: t("RegisterPage.validation.lastName.message") }),
+      email: z
+        .string()
+        .email({ message: t("RegisterPage.validation.email.message") }),
+      password: z
+        .string()
+        .min(8, t("RegisterPage.validation.password.min"))
+        .refine(
+          (value) => /[A-Z]/.test(value),
+          t("RegisterPage.validation.password.upperCase")
+        )
+        .refine(
+          (value) => /[0-9]/.test(value),
+          t("RegisterPage.validation.password.number")
+        )
+        .refine(
+          (value) => /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>/?]/.test(value),
+          t("RegisterPage.validation.password.special")
+        ),
+      confirmPassword: z.string(),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: t("RegisterPage.validation.confirmPassword.message"),
+      path: ["confirmPassword"],
+    });
 
-export type RegisterFormData = z.infer<typeof formSchema>;
+export type RegisterFormData = z.infer<ReturnType<typeof registerFormSchema>>;
 
 const RegisterPage = () => {
+  const { t } = useTranslation();
+  const formSchema = useMemo(() => {
+    return registerFormSchema(t);
+  }, [t]);
   const {
     register,
     handleSubmit,
@@ -53,10 +67,10 @@ const RegisterPage = () => {
 
   return (
     <form className="flex flex-col gap-5" onSubmit={onSubmit}>
-      <h2 className="text-3xl font-bold">Create an Account</h2>
+      <h2 className="text-3xl font-bold">{t("RegisterPage.title")}</h2>
       <div className="flex flex-col md:flex-row gap-5">
-        <label className="text-gray-700 text-sm font-bold flex-1">
-          First Name
+        <label className="text-gray-700 text-sm capitalize font-bold flex-1">
+          {t("RegisterPage.validation.firstName.label")}
           <input
             className="border rounded w-full py-1 px-2 font-normal"
             {...register("firstName")}
@@ -65,8 +79,8 @@ const RegisterPage = () => {
             <span className="text-red-500">{errors.firstName.message}</span>
           )}
         </label>
-        <label className="text-gray-700 text-sm font-bold flex-1">
-          Last Name
+        <label className="text-gray-700 text-sm capitalize font-bold flex-1">
+          {t("RegisterPage.validation.lastName.label")}
           <input
             className="border rounded w-full py-1 px-2 font-normal"
             {...register("lastName")}
@@ -76,8 +90,8 @@ const RegisterPage = () => {
           )}
         </label>
       </div>
-      <label className="text-gray-700 text-sm font-bold flex-1">
-        Email
+      <label className="text-gray-700 text-sm capitalize font-bold flex-1">
+        {t("RegisterPage.validation.email.label")}
         <input
           type="email"
           className="border rounded w-full py-1 px-2 font-normal"
@@ -87,8 +101,8 @@ const RegisterPage = () => {
           <span className="text-red-500">{errors.email.message}</span>
         )}
       </label>
-      <label className="text-gray-700 text-sm font-bold flex-1">
-        Password
+      <label className="text-gray-700 text-sm capitalize font-bold flex-1">
+        {t("RegisterPage.validation.password.label")}
         <input
           type="password"
           className="border rounded w-full py-1 px-2 font-normal"
@@ -98,8 +112,8 @@ const RegisterPage = () => {
           <span className="text-red-500">{errors.password.message}</span>
         )}
       </label>
-      <label className="text-gray-700 text-sm font-bold flex-1">
-        Confirm Password
+      <label className="text-gray-700 text-sm capitalize font-bold flex-1">
+        {t("RegisterPage.validation.confirmPassword.label")}
         <input
           type="password"
           className="border rounded w-full py-1 px-2 font-normal"
@@ -114,7 +128,7 @@ const RegisterPage = () => {
           type="submit"
           className="bg-blue-600 text-white text-xl p-2 font-bold rounded-md hover:bg-blue-500 transition duration-100"
         >
-          Create Account
+          {t("RegisterPage.button")}
         </button>
       </span>
     </form>

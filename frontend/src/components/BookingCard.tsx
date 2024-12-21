@@ -1,11 +1,13 @@
 import React from "react";
 import { MyBookingType } from "../types";
+import { useTranslation } from "react-i18next";
 
 type BookingCardProps = {
   booking: MyBookingType;
 };
 
 const BookingCard = ({ booking }: BookingCardProps) => {
+  const { t } = useTranslation();
   return (
     <div className="w-full border border-slate-300 rounded-md p-5 grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-5">
       <div className="w-full h-[250px]">
@@ -23,7 +25,7 @@ const BookingCard = ({ booking }: BookingCardProps) => {
           </p>
         </header>
         <div className="flex flex-col">
-          <span className="font-bold mr-2">Dates: </span>
+          <span className="font-bold mr-2">{t("BookingCard.dates")}</span>
           <span>
             {new Date(booking.checkIn).toDateString()} -
             {new Date(booking.checkOut).toDateString()}
@@ -31,8 +33,9 @@ const BookingCard = ({ booking }: BookingCardProps) => {
         </div>
         <div className="flex flex-col">
           <p>
-            <span className="font-bold">Guests: </span>
-            {booking.adultCount} adults, {booking.childCount} children
+            <span className="font-bold">{t("BookingCard.guests")}</span>
+            {booking.adultCount} {t("BookingCard.adults")}, {booking.childCount}{" "}
+            {t("BookingCard.children")}
           </p>
         </div>
       </div>

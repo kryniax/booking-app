@@ -2,12 +2,14 @@ import React from "react";
 import { HotelType } from "../types";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 type SearchResultsCardProps = {
   hotel: HotelType;
 };
 
 const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-1 xl:grid-cols-[2fr_3fr] border border-slate-300 rounded-lg p-8 gap-8">
       <div className="w-full h-[250px]">
@@ -43,7 +45,7 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
           <div className="flex gap-1 items-center">
             {hotel.facilities.slice(0, 3).map((facility) => (
               <span className="bg-slate-300 p-2 rounded-lg font-semibold text-xs whitespace-nowrap">
-                {facility}
+                {t(`FacilitiesSection.hotelFacilities.${facility}`)}
               </span>
             ))}
             <span className="text-sm">
@@ -52,12 +54,14 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
             </span>
           </div>
           <div className="flex flex-col items-end gap-1">
-            <span className="font-bold">{hotel.pricePerNight}$ per night</span>
+            <span className="font-bold">
+              {hotel.pricePerNight}$ {t("BookingApp.perNight")}
+            </span>
             <Link
               to={`/detail/${hotel._id}`}
               className="bg-blue-600 text-white h-full p-2 font-bold text-xl max-w-fit rounded-md"
             >
-              View More
+              {t("SearchResultCard.viewMore")}
             </Link>
           </div>
         </div>

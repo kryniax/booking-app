@@ -3,6 +3,7 @@ import Toast from "../components/Toast";
 import { useQuery } from "@tanstack/react-query";
 import { useValidateToken } from "../api/UserApi";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
+import { useTranslation } from "react-i18next";
 
 const STRIPE_PUBLIC_KEY = import.meta.env.VITE_STRIPE_PUBLIC_KEY || "";
 
@@ -15,6 +16,8 @@ type AppContext = {
   showToast: (toastMessage: ToastMessage) => void;
   isLoggedIn: boolean;
   stripePromise: Promise<Stripe | null>;
+  currentLanguage: string;
+  changeLanguage: (lang: string) => void;
 };
 
 const AppContext = React.createContext<AppContext | undefined>(undefined);
@@ -25,6 +28,11 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
   const { children } = props;
   const [toast, setToast] = useState<ToastMessage | undefined>(undefined);
   const { isError } = useValidateToken();
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lang: string) => {
+    i18n.changeLanguage(lang);
+  };
 
   return (
     <AppContext.Provider
@@ -32,6 +40,8 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
         showToast: (toastMessage) => setToast(toastMessage),
         isLoggedIn: !isError,
         stripePromise,
+        currentLanguage: i18n.language,
+        changeLanguage,
       }}
     >
       {toast && (

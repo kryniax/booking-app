@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="bg-blue-800 py-10">
       <div className="container mx-auto flex justify-between items-center">
@@ -8,8 +10,8 @@ const Footer = () => {
           Niceplace.com
         </span>
         <span className="text-white font-bold tracking-tight flex gap-4">
-          <Link to="/">Privacy Policy</Link>
-          <Link to="/">Terms of Service</Link>
+          <Link to="/">{t("Footer.privacyPolicy")}</Link>
+          <Link to="/">{t("Footer.termsOfService")}</Link>
         </span>
       </div>
     </footer>
