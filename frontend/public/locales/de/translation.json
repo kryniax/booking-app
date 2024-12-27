@@ -1,0 +1,243 @@
+{
+  "BookingApp": {
+    "language": "Deutsch",
+    "languagePL": "Polnisch",
+    "languageEN": "Englisch",
+    "languageDE": "Deutsch",
+    "adult": "Erwachsener",
+    "adults": "Erwachsene",
+    "child": "Kind",
+    "children": "Kinder",
+    "guests": "Gäste",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "facilities": "Einrichtungen",
+    "hotelType": "Hoteltyp",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "search": "Suchen",
+    "clear": "Löschen",
+    "perNight": "pro Nacht",
+    "starRating": "Sternebewertung",
+    "sortBy": "Sortieren nach",
+    "noHotel": "Kein Hotel verfügbar"
+  },
+  "BookingCard": {
+    "dates": "Termine: ",
+    "guests": "Gäste: ",
+    "adults": "Erwachsene ",
+    "children": "Kinder "
+  },
+  "BookingDetailSummary": {
+    "yourBookingDetails": "Ihre Buchungsdetails",
+    "location": "Standort: ",
+    "totalStay": "Gesamtaufenthalt: ",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out"
+  },
+  "Footer": {
+    "privacyPolicy": "Datenschutzerklärung",
+    "termsOfService": "Nutzungsbedingungen"
+  },
+  "Header": {
+    "mainPage": "Hauptseite",
+    "myBookings": "Meine Buchungen",
+    "myHotels": "Meine Hotels"
+  },
+  "Hero": {
+    "header": "Finden Sie Ihren nächsten Aufenthalt",
+    "description": "Suchen Sie nach günstigen Hotelpreisen für Ihren Traumurlaub."
+  },
+  "PriceFilter": {
+    "maxPrice": "Höchstpreis",
+    "selectMaxPrice": "Höchstpreis auswählen"
+  },
+  "SearchBar": {
+    "where": "Wohin möchten Sie reisen?"
+  },
+  "SearchResultCard": {
+    "viewMore": "Mehr anzeigen"
+  },
+  "SortHotelFilter": {
+    "pricePerNightAsc": "Preis pro Nacht (niedrig bis hoch)",
+    "pricePerNightDesc": "Preis pro Nacht (hoch bis niedrig)"
+  },
+  "StarRatingFilter": {
+    "propertyRating": "Hotelbewertung",
+    "stars": "Sterne"
+  },
+  "ManageHotelForm": {
+    "title": "Hotel hinzufügen",
+    "titleUpdate": "Hotel aktualisieren",
+    "validation": {
+      "name": "Name ist erforderlich",
+      "city": "Stadt ist erforderlich",
+      "country": "Land ist erforderlich",
+      "description": "Beschreibung ist erforderlich",
+      "type": "Typ ist erforderlich",
+      "pricePerNight": {
+        "required": "Preis pro Nacht ist erforderlich",
+        "invalid": "Muss eine gültige Zahl sein"
+      },
+      "starRating": {
+        "required": "Sternebewertung ist erforderlich",
+        "invalid": "Muss eine gültige Zahl sein"
+      },
+      "facilities": "Bitte wählen Sie mindestens eine Einrichtung aus",
+      "adultCount": {
+        "required": "Anzahl der Erwachsenen ist erforderlich",
+        "invalid": "Muss eine gültige Zahl sein"
+      },
+      "childCount": {
+        "required": "Anzahl der Kinder ist erforderlich",
+        "invalid": "Muss eine gültige Zahl sein"
+      }
+    },
+    "createHotelButton": "Hinzufügen",
+    "savingHotelButton": "Speichern...",
+    "saveHotelButton": "Speichern"
+  },
+  "DetailsSection": {
+    "name": {
+      "label": "Name"
+    },
+    "city": {
+      "label": "Stadt",
+      "placeholder": "Stadt eingeben"
+    },
+    "country": {
+      "label": "Land",
+      "placeholder": "Land eingeben"
+    },
+    "description": {
+      "label": "Beschreibung",
+      "placeholder": "Hotelbeschreibung eingeben"
+    },
+    "pricePerNight": {
+      "label": "Preis pro Nacht",
+      "placeholder": "Preis pro Nacht eingeben"
+    },
+    "starRating": {
+      "label": "Sternebewertung",
+      "select": "Als Bewertung auswählen"
+    },
+    "validation": {
+      "required": "Dieses Feld ist erforderlich",
+      "invalidPrice": "Preis muss größer als 0 sein",
+      "invalidRating": "Bitte wählen Sie eine gültige Bewertung"
+    }
+  },
+  "TypeSection": {
+    "name": "Typ",
+    "hotelTypes": {
+      "budget": "Budget",
+      "boutique": "Boutique",
+      "luxury": "Luxus",
+      "skiResort": "Skiresort",
+      "business": "Business",
+      "family": "Familie",
+      "romantic": "Romantisch",
+      "hikingResort": "Wanderresort",
+      "cabin": "Hütte",
+      "beachResort": "Strandresort",
+      "golfResort": "Golfresort",
+      "motel": "Motel",
+      "allInclusive": "All-Inclusive",
+      "petFriendly": "Haustierfreundlich",
+      "selfCatering": "Selbstverpflegung"
+    }
+  },
+  "FacilitiesSection": {
+    "name": "Einrichtungen",
+    "hotelFacilities": {
+      "freeWiFi": "Kostenloses WLAN",
+      "tv": "Fernseher im Zimmer",
+      "parking": "Parkplatz",
+      "familyRooms": "Familienzimmer",
+      "nonsmokingRooms": "Nichtraucherzimmer",
+      "outdoorPool": "Außenpool",
+      "spa": "Wellnessbereich",
+      "fitnessCenter": "Fitnesscenter",
+      "meals": "Mahlzeiten"
+    }
+  },
+  "GuestsSection": {
+    "name": "Gäste",
+    "adults": "Erwachsene",
+    "children": "Kinder"
+  },
+  "ImagesSection": {
+    "name": "Bilder",
+    "label": "Bild"
+  },
+  "BookingPage": {
+    "noUser": "Es gibt keinen aktuellen Benutzer"
+  },
+  "DetailPage": {
+    "noHotel": "Hotel existiert nicht"
+  },
+  "HomePage": {
+    "noHotel": "Wir haben noch keine Hotels",
+    "latestDestinations": "Neueste Reiseziele",
+    "recentDestinations": "Kürzlich von unseren Gastgebern hinzugefügte Reiseziele"
+  },
+  "LoginPage": {
+    "validation": {
+      "email": {
+        "label": "E-Mail",
+        "message": "E-Mail ist erforderlich"
+      },
+      "password": {
+        "label": "Passwort",
+        "min": "Passwort ist erforderlich",
+        "upperCase": "Passwort muss mindestens einen Großbuchstaben enthalten",
+        "number": "Passwort muss mindestens eine Zahl enthalten",
+        "special": "Passwort muss mindestens ein Sonderzeichen enthalten"
+      }
+    },
+    "notRegistered": "Noch nicht registriert?",
+    "createAccount": "Konto erstellen"
+  },
+  "MyBookingPage": {
+    "noBooking": "Keine Buchungen gefunden"
+  },
+  "MyHotelsPage": {
+    "noHotels": "Keine Hotels gefunden",
+    "title": "Meine Hotels",
+    "viewDetails": "Details anzeigen"
+  },
+  "RegisterPage": {
+    "title": "Konto erstellen",
+    "validation": {
+      "firstName": {
+        "label": "Vorname",
+        "message": "Vorname ist erforderlich"
+      },
+      "lastName": {
+        "label": "Nachname",
+        "message": "Nachname ist erforderlich"
+      },
+      "email": {
+        "label": "E-Mail",
+        "message": "Ungültige E-Mail-Adresse"
+      },
+      "password": {
+        "label": "Passwort",
+        "min": "Passwort ist erforderlich",
+        "upperCase": "Passwort muss mindestens einen Großbuchstaben enthalten",
+        "number": "Passwort muss mindestens eine Zahl enthalten",
+        "special": "Passwort muss mindestens ein Sonderzeichen enthalten"
+      },
+      "confirmPassword": {
+        "label": "Passwort bestätigen",
+        "message": "Passwörter stimmen nicht überein"
+      }
+    },
+    "button": "Konto erstellen"
+  },
+  "SearchPage": {
+    "filterBy": "Filtern nach:",
+    "hotelsFound": "Hotels gefunden",
+    "in": "in"
+  }
+}

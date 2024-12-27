@@ -1,5 +1,9 @@
 {
   "BookingApp": {
+    "language": "Polski",
+    "languagePL": "Polski",
+    "languageEN": "Angielski",
+    "languageDE": "Niemiecki",
     "adult": "dorosły",
     "adults": "dorośli",
     "child": "dzieci",
@@ -35,6 +39,7 @@
     "termsOfService": "Warunki Korzystania z Usług"
   },
   "Header": {
+    "mainPage": "Strona Główna",
     "myBookings": "Moje Rezerwacje",
     "myHotels": "Moje Hotele"
   },
@@ -45,6 +50,9 @@
   "PriceFilter": {
     "maxPrice": "Maksymalna Cena",
     "selectMaxPrice": "Wybierz Maksymalną Cenę"
+  },
+  "SearchBar": {
+    "where": "Dokąd się wybierasz?"
   },
   "SearchResultCard": {
     "viewMore": "Zobacz Więcej"
@@ -160,5 +168,75 @@
   "ImagesSection": {
     "name": "Zdjęcia",
     "label": "Zdjęcie"
+  },
+  "BookingPage": {
+    "noUser": "Brak aktualnego użytkownika"
+  },
+  "DetailPage": {
+    "noHotel": "Hotel nie istnieje"
+  },
+  "HomePage": {
+    "noHotel": "Nie mamy jeszcze hoteli",
+    "latestDestinations": "Najnowsze lokalizacje",
+    "recentDestinations": "Hotele dodane przez naszych gospodarzy"
+  },
+  "LoginPage": {
+    "validation": {
+      "email": {
+        "label": "Email",
+        "message": "Email jest wymagany"
+      },
+      "password": {
+        "label": "Hasło",
+        "min": "Hasło jest wymagane",
+        "upperCase": "Hasło musi zawierać co najmniej jedną wielką literę",
+        "number": "Hasło musi zawierać co najmniej jedną cyfrę",
+        "special": "Hasło musi zawierać co najmniej jeden znak specjalny"
+      }
+    },
+    "notRegistered": "Nie masz konta?",
+    "createAccount": "Utwórz konto"
+  },
+  "MyBookingPage": {
+    "noBooking": "Nie znaleziono rezerwacji"
+  },
+  "MyHotelsPage": {
+    "noHotels": "Nie znaleziono hoteli",
+    "title": "Moje Hotele",
+    "viewDetails": "Zobacz szczegóły"
+  },
+  "RegisterPage": {
+    "title": "Utwórz Konto",
+    "validation": {
+      "firstName": {
+        "label": "imię",
+        "message": "Imię jest wymagane"
+      },
+      "lastName": {
+        "label": "nazwisko",
+        "message": "Nazwisko jest wymagane"
+      },
+      "email": {
+        "label": "email",
+        "message": "Nieprawidłowy adres email"
+      },
+      "password": {
+        "label": "hasło",
+        "min": "Hasło jest wymagane",
+        "upperCase": "Hasło musi zawierać co najmniej jedną wielką literę",
+        "number": "Hasło musi zawierać co najmniej jedną cyfrę",
+        "special": "Hasło musi zawierać co najmniej jeden znak specjalny"
+      },
+      "confirmPassword": {
+        "label": "potwierdź hasło",
+        "message": "Hasła nie są zgodne"
+      }
+    },
+    "button": "Utwórz Konto"
+  },
+  "SearchPage": {
+    "filterBy": "Filtruj według:",
+    "hotelsFound": "Znalezione Hotele",
+    "in": "w"
   }
 }

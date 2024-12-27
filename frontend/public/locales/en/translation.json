@@ -1,5 +1,9 @@
 {
   "BookingApp": {
+    "language": "English",
+    "languagePL": "Polish",
+    "languageEN": "English",
+    "languageDE": "German",
     "adult": "adult",
     "adults": "adults",
     "child": "child",
@@ -36,6 +40,7 @@
     "termsOfService": "Terms of Service"
   },
   "Header": {
+    "mainPage": "Main Page",
     "myBookings": "My Bookings",
     "myHotels": "My Hotels"
   },
@@ -46,6 +51,9 @@
   "PriceFilter": {
     "maxPrice": "Max Price",
     "selectMaxPrice": "Select Max Price"
+  },
+  "SearchBar": {
+    "where": "Where are you going?"
   },
   "SearchResultCard": {
     "viewMore": "View More"
