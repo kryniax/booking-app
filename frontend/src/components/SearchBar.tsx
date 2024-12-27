@@ -1,14 +1,20 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useSearchContext } from "../contexts/SearchContext";
 import { MdTravelExplore } from "react-icons/md";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { enGB } from "date-fns/locale/en-GB";
+import { pl } from "date-fns/locale/pl";
+import { de } from "date-fns/locale/de";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../contexts/AppContext";
 registerLocale("en", enGB);
+registerLocale("pl", pl);
+registerLocale("de", de);
 
 const SearchBar = () => {
+  const { currentLanguage } = useAppContext();
   const search = useSearchContext();
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -18,6 +24,8 @@ const SearchBar = () => {
   const [checkOut, setCheckOut] = useState<Date>(search.checkOut);
   const [adultCount, setAdultCount] = useState<number>(search.adultCount);
   const [childCount, setChildCount] = useState<number>(search.childCount);
+  const [calendarLanguage, setCalendarLanguage] =
+    useState<string>(currentLanguage);
 
   const handleSearchSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -32,24 +40,32 @@ const SearchBar = () => {
     navigate("/search");
   };
 
+  useEffect(() => {
+    if (currentLanguage === "gb") {
+      setCalendarLanguage("en");
+    } else {
+      setCalendarLanguage(currentLanguage);
+    }
+  }, [currentLanguage]);
+  console.log(calendarLanguage);
   const minDate = new Date();
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() + 1);
   return (
     <form
       onSubmit={handleSearchSubmit}
-      className="-mt-8 p-3 bg-orange-400 rounded shadow-md grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-5 items-center gap-4"
+      className="-mt-8 p-1 bg-orange-400 rounded-md shadow-md grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-5 items-center gap-1"
     >
-      <div className="flex flex-row items-center flex-1  bg-white p-2">
+      <div className="flex flex-row items-center flex-1  bg-white p-3 rounded-md">
         <MdTravelExplore size={25} className="mr-2" />
         <input
-          placeholder="Where are you going?"
+          placeholder={t("SearchBar.where")}
           className="text-md w-full focus:outline-none"
           value={destination}
           onChange={(event) => setDestination(event.target.value)}
         />
       </div>
-      <div className="flex flex-1 bg-white px-2 py-1 gap-2">
+      <div className="flex flex-1 bg-white p-2 gap-2 rounded-md">
         <label className="flex items-center capitalize">
           {t("BookingApp.adults")}:
           <input
@@ -75,7 +91,7 @@ const SearchBar = () => {
       </div>
       <div className="flex flex-1">
         <DatePicker
-          locale="en"
+          locale={calendarLanguage}
           dateFormat="dd/MM/yyyy"
           selected={checkIn}
           onChange={(date) => setCheckIn(date as Date)}
@@ -84,14 +100,14 @@ const SearchBar = () => {
           endDate={checkOut}
           minDate={minDate}
           maxDate={maxDate}
-          placeholderText={`${t("BookingApp.checkIn")} Date`}
-          className="min-w-full bg-white p-2 focus:outline-none capitalize"
+          placeholderText={`${t("BookingApp.checkIn")}`}
+          className="min-w-full bg-white p-3 rounded-md focus:outline-none capitalize"
           wrapperClassName="min-w-full"
         />
       </div>
       <div className="flex flex-1">
         <DatePicker
-          locale="en"
+          locale={calendarLanguage}
           dateFormat="dd/MM/yyyy"
           selected={checkOut}
           onChange={(date) => setCheckOut(date as Date)}
@@ -100,20 +116,17 @@ const SearchBar = () => {
           endDate={checkOut}
           minDate={minDate}
           maxDate={maxDate}
-          placeholderText={`${t("BookingApp.checkOut")} Date`}
-          className="min-w-full bg-white p-2 focus:outline-none capitalize"
+          placeholderText={`${t("BookingApp.checkOut")}`}
+          className="min-w-full bg-white p-3 rounded-md focus:outline-none capitalize"
           wrapperClassName="min-w-full"
         />
       </div>
       <div className="flex gap-1">
         <button
           type="submit"
-          className="w-2/3 bg-blue-600 text-white capitalize h-full p-2 font-bold text-xl hover:bg-blue-500 transition duration-100"
+          className="w-full bg-blue-600 text-white capitalize h-full p-2 rounded-md font-bold text-xl hover:bg-blue-500 transition duration-100"
         >
           {t("BookingApp.search")}
-        </button>
-        <button className="w-1/3 bg-red-600 text-white capitalize h-full p-2 font-bold text-xl hover:bg-red-500 transition duration-100">
-          {t("BookingApp.clear")}
         </button>
       </div>
     </form>
