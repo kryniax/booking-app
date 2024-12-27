@@ -1,27 +1,30 @@
 import { useAppContext } from "../contexts/AppContext";
+import { GB, PL, DE } from "country-flag-icons/react/1x1";
 
-const LanguageSwitch = () => {
-  const { currentLanguage, changeLanguage } = useAppContext();
+type LanguageSwitchProps = {
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+const LanguageSwitch = ({ onClick }: LanguageSwitchProps) => {
+  const { currentLanguage } = useAppContext();
+
+  const getCurrentFlag = () => {
+    switch (currentLanguage) {
+      case "gb":
+        return <GB title="English" className="rounded-full" />;
+      case "pl":
+        return <PL title="Polski" className="rounded-full" />;
+      case "de":
+        return <DE title="Deutch" className="rounded-full" />;
+      default:
+        return <GB title="English" className="rounded-full" />;
+    }
+  };
 
   return (
-    <div className="flex gap-2">
-      <button
-        className={`px-3 py-1 rounded ${
-          currentLanguage === "en" ? "bg-blue-600 text-white" : "bg-gray-200"
-        }`}
-        onClick={() => changeLanguage("en")}
-      >
-        EN
-      </button>
-      <button
-        className={`px-3 py-1 rounded ${
-          currentLanguage === "pl" ? "bg-blue-600 text-white" : "bg-gray-200"
-        }`}
-        onClick={() => changeLanguage("pl")}
-      >
-        PL
-      </button>
-    </div>
+    <button className="relative size-10 p-1" onClick={onClick}>
+      {getCurrentFlag()}
+    </button>
   );
 };
 
