@@ -8,13 +8,22 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: "en",
-    supportedLngs: ["en", "pl", "de"],
+    fallbackLng: "gb",
+    supportedLngs: ["gb", "pl", "de"],
     interpolation: {
       escapeValue: false,
     },
     backend: {
       loadPath: "/locales/{{lng}}/{{ns}}.json",
+    },
+    detection: {
+      order: ["cookie", "localStorage", "navigator", "htmlTag"],
+      lookupLocalStorage: "i18nextLng",
+      lookupFromPathIndex: 0,
+      lookupFromSubdomainIndex: 0,
+      caches: ["localStorage"],
+      cookieMinutes: 60 * 24 * 30,
+      cookieDomain: "http://localhost:5173/",
     },
   });
 
