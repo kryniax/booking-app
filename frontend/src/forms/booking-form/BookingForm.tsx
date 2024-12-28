@@ -8,6 +8,7 @@ import { StripeCardElement } from "@stripe/stripe-js";
 import { useSearchContext } from "../../contexts/SearchContext";
 import { useParams } from "react-router-dom";
 import { useCreateBooking } from "../../api/BookingApi";
+import { useTranslation } from "react-i18next";
 
 type BookingFormProps = {
   currentUser: UserType;
@@ -35,6 +36,7 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
   const search = useSearchContext();
   const { hotelId } = useParams();
   const { bookHotel, isPending, isSuccess } = useCreateBooking();
+  const { t } = useTranslation();
   const {
     handleSubmit,
     register,
@@ -74,10 +76,10 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
       onSubmit={handleSubmit(onSubmit)}
       className="grid grid-cols-1 gap-5 rounded-lg border border-slate-300 p-5"
     >
-      <span className="text-3xl font-bold">Confirm Your Details</span>
+      <span className="text-3xl font-bold">{t("BookingForm.title")}</span>
       <div className="grid grid-cols-2 gap-6">
         <label className="text-gray-700 text-sm font-bold flex-1">
-          First Name
+          {t("BookingForm.firstName")}
           <input
             className="mt-1 border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 font-normal"
             type="text"
@@ -87,7 +89,7 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
           />
         </label>
         <label className="text-gray-700 text-sm font-bold flex-1">
-          Last Name
+          {t("BookingForm.lastName")}
           <input
             className="mt-1 border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 font-normal"
             type="text"
@@ -97,7 +99,7 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
           />
         </label>
         <label className="text-gray-700 text-sm font-bold flex-1">
-          Email
+          {t("BookingForm.email")}
           <input
             className="mt-1 border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 font-normal"
             type="email"
@@ -108,16 +110,20 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
         </label>
       </div>
       <div className="space-y-2">
-        <h2 className="text-xl font-semibold">Your Price Summary</h2>
+        <h2 className="text-xl font-semibold">
+          {t("BookingForm.yourPriceSummary")}
+        </h2>
         <div className="bg-blue-200 p-4 rounded-md">
           <span className="font-semibold text-lg">
-            Total Cost: {paymentIntent.totalCost.toFixed(2)}$
+            {t("BookingForm.totalCost")}: {paymentIntent.totalCost.toFixed(2)}$
           </span>
-          <p className="text-xs">Includes taxes and charges</p>
+          <p className="text-xs">{t("BookingForm.includesTaxesAndCharges")}</p>
         </div>
       </div>
       <div className="space-y-2">
-        <h3 className="text-xl font-semibold">Payment Details</h3>
+        <h3 className="text-xl font-semibold">
+          {t("BookingForm.paymentDetails")}
+        </h3>
         <CardElement
           id="payment-element"
           className="border rounded-md p-2 text-sm"
@@ -125,14 +131,14 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
       </div>
       <div className="flex justify-end">
         {isSuccess ? (
-          <span>Success Booking</span>
+          <span>{t("BookingForm.successBooking")}</span>
         ) : (
           <button
             disabled={isPending}
             type="submit"
             className="bg-blue-600 text-white p-2 font-bold rounded-md hover:bg-blue-500 transition duration-100 disabled:bg-gray-500"
           >
-            {isPending ? "Saving..." : "Confirm Booking"}
+            {isPending ? "Saving..." : t("BookingForm.confirmBooking")}
           </button>
         )}
       </div>
