@@ -11,6 +11,7 @@ import DetailPage from "./pages/DetailPage";
 import BookingPage from "./pages/BookingPage";
 import MyBookingPage from "./pages/MyBookingPage";
 import HomePage from "./pages/HomePage";
+import MyProfilePage from "./pages/MyProfilePage";
 
 function AppRoutes() {
   const { isLoggedIn } = useAppContext();
@@ -58,6 +59,14 @@ function AppRoutes() {
       />
       {isLoggedIn && (
         <>
+          <Route
+            path="/profile"
+            element={
+              <Layout>
+                <MyProfilePage />
+              </Layout>
+            }
+          />
           <Route
             path="/manage-hotel"
             element={
