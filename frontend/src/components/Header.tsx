@@ -9,21 +9,15 @@ import Menu from "./Menu";
 import Modal from "./Modal";
 import Languages from "./Languages";
 import { PiUserCircleThin } from "react-icons/pi";
-import { useModal } from "../contexts/ModalContext";
 
 const Header = () => {
   const { isLoggedIn } = useAppContext();
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const { openModal } = useModal();
 
   const isOpenHandler = () => {
     setIsOpen((prev) => !prev);
-  };
-
-  const openModalHandel = () => {
-    openModal(<Languages />, "Select a language");
   };
 
   return (
@@ -34,16 +28,33 @@ const Header = () => {
         </span>
         <span className="flex items-center gap-1">
           <div className="hidden lg:flex hover:bg-white/10 rounded-md">
-            <LanguageSwitch onClick={openModalHandel} />
+            <LanguageSwitch onClick={() => setIsModalOpen(true)} />
+            <Modal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              title="Select a language"
+            >
+              <Languages />
+            </Modal>
           </div>
           <div className="flex lg:hidden capitalize">
-            <Link
-              to="/login"
-              title={t("BookingApp.signIn")}
-              className="rounded-md hover:bg-white/10 transition duration-100"
-            >
-              <PiUserCircleThin color="white" size={35} />
-            </Link>
+            {isLoggedIn ? (
+              <Link
+                to="/profile"
+                title={t("BookingApp.signIn")}
+                className="rounded-md hover:bg-white/10 transition duration-100"
+              >
+                <PiUserCircleThin color="white" size={35} />
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                title={t("BookingApp.signIn")}
+                className="rounded-md hover:bg-white/10 transition duration-100"
+              >
+                <PiUserCircleThin color="white" size={35} />
+              </Link>
+            )}
           </div>
           {isLoggedIn ? (
             <div className="hidden lg:flex gap-1">
@@ -58,6 +69,12 @@ const Header = () => {
                 to="/my-hotels"
               >
                 {t("Header.myHotels")}
+              </Link>
+              <Link
+                className="flex items-center text-white px-3 font-bold hover:bg-white/10 rounded-md transition duration-50"
+                to="/profile"
+              >
+                {t("Header.myProfile")}
               </Link>
               <LogoutButton />
             </div>

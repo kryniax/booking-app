@@ -9,6 +9,8 @@ import FacilitiesFilter from "../components/FacilitiesFilter";
 import PriceFilter from "../components/PriceFilter";
 import SortHotelFilter from "../components/SortHotelFilter";
 import { useTranslation } from "react-i18next";
+import { TbArrowsSort, TbFilter } from "react-icons/tb";
+import Modal from "../components/Modal";
 
 const SearchPage = () => {
   const search = useSearchContext();
@@ -24,6 +26,9 @@ const SearchPage = () => {
     string | undefined
   >("");
 
+  const [isModalFilterOpen, setIsModalFilterOpen] = useState(false);
+  const [isModalSortOpen, setIsModalSortOpen] = useState(false);
+
   const searchParams = {
     destination: search.destination,
     checkIn: search.checkIn.toISOString(),
@@ -38,7 +43,7 @@ const SearchPage = () => {
     sortOption: selectedSortOption,
   };
   const { hotelData, isLoading } = useSearchHotel(searchParams);
-  console.log(hotelData?.pagination.total);
+
   const starsChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const starRating = event.target.value;
 
@@ -83,8 +88,61 @@ const SearchPage = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
-      <div className="rounded-lg border border-slate-300 p-5 h-fit sticky top-10">
-        <div className="space-y-5">
+      <div className="rounded-lg border border-slate-300 p-5 h-fit lg:sticky top-10">
+        <div className="flex justify-between px-8 lg:hidden">
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => setIsModalFilterOpen(true)}
+          >
+            <TbFilter size={22} />
+            <span>Filtruj</span>
+            <Modal
+              isOpen={isModalFilterOpen}
+              onClose={() => setIsModalFilterOpen(false)}
+              title="Filtruj"
+              className="overflow-y-scroll"
+            >
+              <div className="flex flex-col">
+                <StarRatingFilter
+                  selectedStars={selectedStars}
+                  onChange={starsChangeHandler}
+                />
+                <HotelTypesFilter
+                  selectedHotel={selectedHotelType}
+                  onChange={hotelTypeChangeHandler}
+                />
+                <FacilitiesFilter
+                  selectedFacilities={selectedHotelFacilities}
+                  onChange={hotelFacilityChangeHandler}
+                />
+                <PriceFilter
+                  selectedPrice={selectedPrice}
+                  onChange={hotelSelectedPriceHandler}
+                />
+              </div>
+            </Modal>
+          </div>
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => setIsModalSortOpen(true)}
+          >
+            <TbArrowsSort size={22} />
+            <span>Sortuj</span>
+            <Modal
+              isOpen={isModalSortOpen}
+              onClose={() => setIsModalSortOpen(false)}
+              title="Sortuj"
+            >
+              <div className="py-4">
+                <SortHotelFilter
+                  selectedSortOption={selectedSortOption}
+                  onChange={hotelSelectedFilterHandler}
+                />
+              </div>
+            </Modal>
+          </div>
+        </div>
+        <div className="hidden lg:block space-y-5">
           <header>
             <h3 className="text-lg font-semibold border-b border-slate-300 pb-5">
               {t("SearchPage.filterBy")}
@@ -118,10 +176,12 @@ const SearchPage = () => {
                 : ""}
             </h2>
           </header>
-          <SortHotelFilter
-            selectedSortOption={selectedSortOption}
-            onChange={hotelSelectedFilterHandler}
-          />
+          <div className="hidden lg:block">
+            <SortHotelFilter
+              selectedSortOption={selectedSortOption}
+              onChange={hotelSelectedFilterHandler}
+            />
+          </div>
         </div>
         {hotelData?.data.map((hotel) => (
           <SearchResultCard key={hotel.name} hotel={hotel} />

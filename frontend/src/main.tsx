@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppContextProvider } from "./contexts/AppContext.tsx";
 import { SearchContextProvider } from "./contexts/SearchContext.tsx";
 import "./config/i18n";
-import { ModalContextProvider } from "./contexts/ModalContext.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,13 +20,11 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AppContextProvider>
-        <ModalContextProvider>
-          <SearchContextProvider>
-            <BrowserRouter>
-              <AppRoutes />
-            </BrowserRouter>
-          </SearchContextProvider>
-        </ModalContextProvider>
+        <SearchContextProvider>
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </SearchContextProvider>
       </AppContextProvider>
     </QueryClientProvider>
   </StrictMode>

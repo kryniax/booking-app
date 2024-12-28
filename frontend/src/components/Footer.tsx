@@ -2,17 +2,12 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import LanguageSwitch from "./LanguageSwitch";
-import { useModal } from "../contexts/ModalContext";
 import Languages from "./Languages";
+import Modal from "./Modal";
 
 const Footer = () => {
   const { t } = useTranslation();
-  const { openModal } = useModal();
-
-  const openModalHandler = () => {
-    openModal(<Languages />, "Select a language");
-  };
-
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   return (
     <footer className="bg-blue-800 py-10">
       <div className="container mx-auto flex flex-col md:flex-row justify-between gap-2 md:gap-5">
@@ -21,13 +16,11 @@ const Footer = () => {
         </span>
         <div className="text-white font-bold tracking-tight flex flex-col items-start md:justify-center md:items-center md:flex-row md:gap-1">
           <div
-            onClick={openModalHandler}
+            onClick={() => setIsModalOpen(true)}
             className="flex items-center gap-1 p-1 pr-2 cursor-pointer hover:bg-white/10 transition duration-100 rounded-md"
           >
             <LanguageSwitch />
-            <span className="font-bold text-white">
-              {t("BookingApp.language")}
-            </span>
+            <span className="font-bold">{t("BookingApp.language")}</span>
           </div>
           <Link
             to="/"
@@ -43,6 +36,13 @@ const Footer = () => {
           </Link>
         </div>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Select a language"
+      >
+        <Languages />
+      </Modal>
     </footer>
   );
 };
