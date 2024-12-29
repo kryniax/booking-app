@@ -12,6 +12,8 @@ import BookingPage from "./pages/BookingPage";
 import MyBookingPage from "./pages/MyBookingPage";
 import HomePage from "./pages/HomePage";
 import MyProfilePage from "./pages/MyProfilePage";
+import PolicyPage from "./pages/PolicyPage";
+import TermsPage from "./pages/TermsPage";
 
 function AppRoutes() {
   const { isLoggedIn } = useAppContext();
@@ -54,6 +56,22 @@ function AppRoutes() {
         element={
           <Layout>
             <LoginPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/privacy"
+        element={
+          <Layout>
+            <PolicyPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/terms-of-service"
+        element={
+          <Layout>
+            <TermsPage />
           </Layout>
         }
       />

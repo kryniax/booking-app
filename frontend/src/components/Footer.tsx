@@ -23,13 +23,13 @@ const Footer = () => {
             <span className="font-bold">{t("BookingApp.language")}</span>
           </div>
           <Link
-            to="/"
+            to="/privacy"
             className="hover:bg-white/10 transition duration-100 rounded-md p-3"
           >
             {t("Footer.privacyPolicy")}
           </Link>
           <Link
-            to="/"
+            to="/terms-of-service"
             className="hover:bg-white/10 transition duration-100 rounded-md p-3"
           >
             {t("Footer.termsOfService")}
@@ -39,7 +39,7 @@ const Footer = () => {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="Select a language"
+        title={t("BookingApp.selectLanguage")}
       >
         <Languages />
       </Modal>
