@@ -64,9 +64,7 @@ const SearchBarForm = () => {
   const [calendarLanguage, setCalendarLanguage] =
     useState<string>(currentLanguage);
 
-  const formSchema = useMemo(() => {
-    return searchBarSchema(t);
-  }, [t]);
+  const formSchema = useMemo(() => zodResolver(searchBarSchema(t)), [t]);
 
   const {
     register,
@@ -76,7 +74,7 @@ const SearchBarForm = () => {
     trigger,
     formState: { errors },
   } = useForm<SearchBarFormData>({
-    resolver: zodResolver(formSchema),
+    resolver: formSchema,
     mode: "onChange",
     defaultValues: {
       destination: search.destination,
@@ -86,6 +84,10 @@ const SearchBarForm = () => {
       childCount: search.childCount,
     },
   });
+
+  useEffect(() => {
+    trigger();
+  }, [formSchema, trigger]);
 
   const checkIn = watch("checkIn");
   const checkOut = watch("checkOut");
@@ -123,7 +125,7 @@ const SearchBarForm = () => {
           <div className="flex items-center">
             <MdTravelExplore size={25} className="mr-1" />
             <input
-              placeholder={t("SearchBar.where")}
+              placeholder={t("SearchBarForm.destinationPlaceholder")}
               className="text-md w-full p-1 focus:outline-none"
               {...register("destination")}
             />
