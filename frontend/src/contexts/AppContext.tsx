@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Toast from "../components/Toast";
 import { useQuery } from "@tanstack/react-query";
 import { useValidateToken } from "../api/UserApi";
@@ -27,9 +27,8 @@ const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
 export const AppContextProvider = (props: { children: React.ReactNode }) => {
   const { children } = props;
   const [toast, setToast] = useState<ToastMessage | undefined>(undefined);
-  const { isError } = useValidateToken();
+  const { authToken, isError, isLoading } = useValidateToken();
   const { i18n } = useTranslation();
-
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
   };
@@ -38,7 +37,7 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
     <AppContext.Provider
       value={{
         showToast: (toastMessage) => setToast(toastMessage),
-        isLoggedIn: !isError,
+        isLoggedIn: !isLoading && !isError && authToken,
         stripePromise,
         currentLanguage: i18n.language,
         changeLanguage,
