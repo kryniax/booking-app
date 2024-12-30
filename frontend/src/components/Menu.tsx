@@ -102,7 +102,7 @@ const Menu = ({ isOpen, onClick }: MenuProps) => {
             ) : (
               <div className="flex flex-col flex-1 items-center gap-4 pt-16">
                 <img src={Logo} className="size-48" />
-                <p>Nie posiadasz jeszcze konta?</p>
+                <p>{t("BookingApp.accountYet")}</p>
                 <Link
                   onClick={toggleMenuHandler}
                   to="/login"

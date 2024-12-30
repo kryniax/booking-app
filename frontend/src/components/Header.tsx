@@ -32,7 +32,7 @@ const Header = () => {
             <Modal
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
-              title="Select a language"
+              title={t("BookingApp.selectLanguage")}
             >
               <Languages />
             </Modal>
