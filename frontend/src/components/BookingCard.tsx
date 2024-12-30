@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { MyBookingType } from "../types";
 import { useTranslation } from "react-i18next";
+import { useDeleteBooking } from "../api/BookingApi";
+import Modal from "./Modal";
+import CancelBookingConfirmation from "./BookingCancelConfirmation";
 
 type BookingCardProps = {
   booking: MyBookingType;
@@ -8,6 +11,17 @@ type BookingCardProps = {
 
 const BookingCard = ({ booking }: BookingCardProps) => {
   const { t } = useTranslation();
+  const { deleteBooking, isPending, isSuccess } = useDeleteBooking();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const cancelBookingHandler = () => {
+    try {
+      deleteBooking(booking._id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-full border border-slate-300 rounded-md p-5 grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-5">
       <div className="w-full h-[250px]">
@@ -38,7 +52,29 @@ const BookingCard = ({ booking }: BookingCardProps) => {
             {t("BookingCard.children")}
           </p>
         </div>
+        <div className="mt-auto">
+          {booking.cancelStatus && (
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+            >
+              {t("BookingCard.cancelBooking")}
+            </button>
+          )}
+        </div>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={t("BookingCard.cancelBooking")}
+      >
+        <CancelBookingConfirmation
+          onConfirm={cancelBookingHandler}
+          onCancel={() => setIsModalOpen(false)}
+          isPending={isPending}
+          isSuccess={isSuccess}
+        />
+      </Modal>
     </div>
   );
 };

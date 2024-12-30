@@ -1,7 +1,7 @@
 import { Request } from "express";
 import Stripe from "stripe";
 import Hotel from "../models/hotel";
-import Booking, { BookingType } from "../models/booking";
+import Booking from "../models/booking";
 
 const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
@@ -105,7 +105,21 @@ const getMyBooking = async (req: Request, res: any) => {
       return res.status(400).json({ message: "Bookings not found" });
     }
 
-    return res.json(bookings);
+    const bookingsWithCancelStatus = bookings.map((booking) => {
+      const checkInDate = new Date(booking.checkIn);
+      const currentDate = new Date();
+      const timeDifference = checkInDate.getTime() - currentDate.getTime();
+      const daysUntilCheckIn = Math.ceil(
+        timeDifference / (1000 * 60 * 60 * 24)
+      );
+
+      return {
+        ...booking.toObject(),
+        cancelStatus: daysUntilCheckIn > 2,
+      };
+    });
+
+    return res.json(bookingsWithCancelStatus);
   } catch (error) {
     console.log(error);
     return res
@@ -114,4 +128,49 @@ const getMyBooking = async (req: Request, res: any) => {
   }
 };
 
-export default { createPayment, processPayment, getMyBooking };
+const deleteBooking = async (req: Request, res: any) => {
+  const { bookingId } = req.params;
+
+  try {
+    const booking = await Booking.findOne({
+      _id: bookingId,
+      userId: req.userId,
+    });
+
+    if (!booking) {
+      return res.status(404).json({
+        message: "Booking not found or unauthorized",
+      });
+    }
+
+    const checkInDate = new Date(booking.checkIn);
+    const currentDate = new Date();
+
+    const timeDifference = checkInDate.getTime() - currentDate.getTime();
+    const daysUntilCheckIn = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+    if (daysUntilCheckIn <= 2) {
+      return res.status(400).json({
+        message:
+          "Booking can only be cancelled at least 2 days before check-in date",
+      });
+    }
+
+    await Hotel.findByIdAndUpdate(booking.hotelId, {
+      $pull: { bookings: bookingId },
+    });
+
+    await Booking.findByIdAndDelete(bookingId);
+
+    return res.status(200).json({
+      message: "Booking cancelled successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Something went wrong while cancelling the booking",
+    });
+  }
+};
+
+export default { createPayment, processPayment, getMyBooking, deleteBooking };

@@ -18,4 +18,10 @@ router.post(
 
 router.get("/my-bookings", verifyToken, BookingController.getMyBooking);
 
+router.delete(
+  "/delete/:bookingId",
+  verifyToken,
+  BookingController.deleteBooking
+);
+
 export default router;

@@ -1,5 +1,5 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { BookingType, MyBookingType, PaymentIntentResponse } from "../types";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { MyBookingType, PaymentIntentResponse } from "../types";
 import { BookingFormData } from "../forms/booking-form/BookingForm";
 import { useAppContext } from "../contexts/AppContext";
 
@@ -94,4 +94,42 @@ export const useGetMyBooking = () => {
   });
 
   return { bookings, isLoading };
+};
+
+export const useDeleteBooking = () => {
+  const queryClient = useQueryClient();
+  const { showToast } = useAppContext();
+
+  const deleteBookingRequest = async (bookingId: string): Promise<void> => {
+    const response = await fetch(
+      `${API_BASE_URL}/api/booking/delete/${bookingId}`,
+      {
+        method: "DELETE",
+        credentials: "include",
+      }
+    );
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || "Failed to cancel booking");
+    }
+  };
+
+  const {
+    mutate: deleteBooking,
+    isPending,
+    isSuccess,
+    error,
+  } = useMutation({
+    mutationFn: deleteBookingRequest,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["getMyBookings"] });
+      showToast({ message: "Booking Canceled", type: "SUCCESS" });
+    },
+    onError: () => {
+      showToast({ message: "Error cancelling booking", type: "ERROR" });
+    },
+  });
+
+  return { deleteBooking, isPending, isSuccess, error };
 };
