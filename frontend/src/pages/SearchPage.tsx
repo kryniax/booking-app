@@ -11,6 +11,7 @@ import SortHotelFilter from "../components/SortHotelFilter";
 import { useTranslation } from "react-i18next";
 import { TbArrowsSort, TbFilter } from "react-icons/tb";
 import Modal from "../components/Modal";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const SearchPage = () => {
   const search = useSearchContext();
@@ -85,6 +86,14 @@ const SearchPage = () => {
   const hotelSelectedFilterHandler = (value: string) => {
     setSelectedSortOption(value);
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-1 items-center justify-center py-10">
+        <PulseLoader color="#1e40af" size={25} />
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">

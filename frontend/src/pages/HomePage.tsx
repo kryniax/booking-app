@@ -2,13 +2,30 @@ import React from "react";
 import { useGetMainPageHotels } from "../api/HotelApi";
 import LatestDestionationCard from "../components/LatestDestionationCard";
 import { useTranslation } from "react-i18next";
+import PulseLoader from "react-spinners/PulseLoader";
+import { TfiFaceSad } from "react-icons/tfi";
 
 const HomePage = () => {
   const { mainPageHotels, isLoading } = useGetMainPageHotels();
   const { t } = useTranslation();
 
+  if (isLoading) {
+    return (
+      <div className="flex flex-1 items-center justify-center py-10">
+        <PulseLoader color="#1e40af" size={25} />
+      </div>
+    );
+  }
+
   if (!mainPageHotels) {
-    return <span>{t("HomePage.noHotel")}</span>;
+    return (
+      <div className="flex flex-col flex-1 gap-5 items-center justify-center py-10">
+        <TfiFaceSad size={90} className="text-black/80" />
+        <span className="font-bold text-2xl text-black/80">
+          {t("HomePage.noHotel")}
+        </span>
+      </div>
+    );
   }
 
   const topRowHotels = mainPageHotels.slice(0, 2);
@@ -25,12 +42,12 @@ const HomePage = () => {
       <div className="grid gap-4">
         <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
           {topRowHotels.map((hotel) => (
-            <LatestDestionationCard hotel={hotel} />
+            <LatestDestionationCard key={hotel.name} hotel={hotel} />
           ))}
         </div>
         <div className="grid md:grid-cols-3 gap-4">
           {bottomRowHotels.map((hotel) => (
-            <LatestDestionationCard hotel={hotel} />
+            <LatestDestionationCard key={hotel.name} hotel={hotel} />
           ))}
         </div>
       </div>
