@@ -27,7 +27,7 @@ const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
 export const AppContextProvider = (props: { children: React.ReactNode }) => {
   const { children } = props;
   const [toast, setToast] = useState<ToastMessage | undefined>(undefined);
-  const { authToken, isError, isLoading } = useValidateToken();
+  const { isError } = useValidateToken();
   const { i18n } = useTranslation();
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
@@ -37,7 +37,7 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
     <AppContext.Provider
       value={{
         showToast: (toastMessage) => setToast(toastMessage),
-        isLoggedIn: !isLoading && !isError && authToken,
+        isLoggedIn: !isError,
         stripePromise,
         currentLanguage: i18n.language,
         changeLanguage,

@@ -127,7 +127,11 @@ export const useValidateToken = () => {
     return response.json();
   };
 
-  const { data: authToken, isError } = useQuery({
+  const {
+    data: authToken,
+    isError,
+    isLoading,
+  } = useQuery({
     queryKey: ["validateToken"],
     queryFn: validateToken,
     retry: false,
@@ -136,6 +140,7 @@ export const useValidateToken = () => {
   return {
     authToken,
     isError,
+    isLoading,
   };
 };
 
