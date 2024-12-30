@@ -86,7 +86,7 @@ function AppRoutes() {
             }
           />
           <Route
-            path="/manage-hotel"
+            path="/add-hotel"
             element={
               <Layout>
                 <AddHotel />

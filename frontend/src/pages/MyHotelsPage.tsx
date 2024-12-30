@@ -18,7 +18,7 @@ const MyHotelsPage = () => {
           <h1 className="text-3xl font-bold">{t("MyHotelsPage.title")}</h1>
         </header>
         <Link
-          to="/manage-hotel"
+          to="/add-hotel"
           className="flex bg-blue-600 text-white text-xl font-bold p-2 rounded-md hover:bg-blue-500"
         >
           {t("ManageHotelForm.title")}
