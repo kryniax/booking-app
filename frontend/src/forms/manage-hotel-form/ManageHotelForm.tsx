@@ -10,29 +10,41 @@ import { HotelType } from "../../types";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TFunction } from "i18next";
+import { hotelTypeKeys } from "../../config/hotel-options-config";
 
 const createFormSchema = (t: TFunction) =>
   z.object({
-    name: z.string().min(3, { message: t("ManageHotelForm.validation.name") }),
-    city: z.string().min(3, { message: t("ManageHotelForm.validation.city") }),
+    name: z.string().min(2, { message: t("ManageHotelForm.validation.name") }),
+    city: z.string().min(2, { message: t("ManageHotelForm.validation.city") }),
     country: z
       .string()
       .min(3, { message: t("ManageHotelForm.validation.country") }),
     description: z
       .string()
       .min(3, { message: t("ManageHotelForm.validation.description") }),
-    type: z.string().min(3, { message: t("ManageHotelForm.validation.type") }),
-    pricePerNight: z.coerce.number({
-      required_error: t("ManageHotelForm.validation.pricePerNight.required"),
-      invalid_type_error: t("ManageHotelForm.validation.pricePerNight.invalid"),
+    type: z.enum(hotelTypeKeys as unknown as [string, ...string[]], {
+      required_error: t("ManageHotelForm.validation.type.required"),
+      invalid_type_error: t("ManageHotelForm.validation.type.invalid"),
     }),
-    starRating: z.coerce.number({
-      required_error: t("ManageHotelForm.validation.starRating.required"),
-      invalid_type_error: t("ManageHotelForm.validation.starRating.invalid"),
-    }),
+    pricePerNight: z.coerce
+      .number({
+        required_error: t("ManageHotelForm.validation.pricePerNight.required"),
+        invalid_type_error: t(
+          "ManageHotelForm.validation.pricePerNight.invalid"
+        ),
+      })
+      .min(1, t("ManageHotelForm.validation.pricePerNight.min")),
+    starRating: z.coerce
+      .number({
+        required_error: t("ManageHotelForm.validation.pricePerNight.required"),
+        invalid_type_error: t(
+          "ManageHotelForm.validation.pricePerNight.invalid"
+        ),
+      })
+      .min(1, t("ManageHotelForm.validation.pricePerNight.min")),
     facilities: z
       .array(z.string())
-      .nonempty({ message: t("ManageHotelForm.validation.facilities") }),
+      .min(1, t("ManageHotelForm.validation.facilities")),
     adultCount: z.coerce.number({
       required_error: t("ManageHotelForm.validation.adultCount.required"),
       invalid_type_error: t("ManageHotelForm.validation.adultCount.invalid"),
@@ -64,6 +76,9 @@ const ManageHotelForm = (props: ManageHotelFormProps) => {
 
   const form = useForm<HotelFormData>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      facilities: [],
+    },
   });
   const { handleSubmit, reset } = form;
 
@@ -76,7 +91,6 @@ const ManageHotelForm = (props: ManageHotelFormProps) => {
     reset(hotel);
   }, [hotel, t, reset]);
   const onSubmit = handleSubmit((formDataJson: HotelFormData) => {
-    console.log(formDataJson.name);
     const formData = new FormData();
     if (hotel) {
       formData.append("hotelId", hotel._id);

@@ -54,12 +54,12 @@ const DetailsSection = (props: DetailsSectionProps) => {
         type="number"
         min={1}
         error={errors.pricePerNight}
-        {...register("pricePerNight")}
+        {...register("pricePerNight", { valueAsNumber: true })}
       />
       <label className="text-gray-700 text-sm font-bold max-w-[50%]">
         {t("DetailsSection.starRating.label")}
         <select
-          {...register("starRating")}
+          {...register("starRating", { valueAsNumber: true })}
           className="border rouded w-full text-gray-700 font-normal"
         >
           <option value="0" className="text-sm font-bold">

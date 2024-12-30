@@ -19,7 +19,7 @@ const GuestSection = () => {
           type="number"
           min={1}
           error={errors.adultCount}
-          {...register("adultCount")}
+          {...register("adultCount", { valueAsNumber: true })}
         />
         <Input
           label={t("GuestsSection.children")}
@@ -27,7 +27,7 @@ const GuestSection = () => {
           type="number"
           min={0}
           error={errors.childCount}
-          {...register("childCount")}
+          {...register("childCount", { valueAsNumber: true })}
         />
       </div>
     </div>
