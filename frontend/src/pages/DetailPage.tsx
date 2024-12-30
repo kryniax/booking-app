@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import GuestInfoForm from "../forms/guest-info-form/GuestInfoForm";
 import { useTranslation } from "react-i18next";
+import ImageSlider from "../components/ImageSlider";
 
 const DetailPage = () => {
   const { hotelId } = useParams();
@@ -23,21 +24,13 @@ const DetailPage = () => {
         </span>
         <h1 className="text-3xl font-bold">{hotelDataById.name}</h1>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {hotelDataById.imageUrls.map((url) => (
-          <div className="h-[300px]">
-            <img
-              src={url}
-              alt={hotelDataById.name}
-              className="rounded-md w-full h-full object-cover object-center"
-            />
-          </div>
-        ))}
+      <div className="grid grid-cols-1">
+        <ImageSlider images={hotelDataById.imageUrls} />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-2">
         {hotelDataById.facilities.map((facility) => (
           <span className="border border-slate-300 rounded-sm p-3">
-            {facility}
+            {t(`FacilitiesSection.hotelFacilities.${facility}`)}
           </span>
         ))}
       </div>
