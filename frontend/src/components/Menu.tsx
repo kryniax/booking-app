@@ -29,7 +29,7 @@ const Menu = ({ isOpen, onClick }: MenuProps) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed size-full top-0 left-0 z-30 bg-white lg:hidden"
+          className="fixed inset-0 z-30 bg-blue-600 lg:hidden"
           initial={{
             opacity: 0,
           }}
@@ -46,39 +46,37 @@ const Menu = ({ isOpen, onClick }: MenuProps) => {
           aria-modal="true"
         >
           <div className="w-full h-full flex flex-col">
-            <div className="container flex justify-between items-center py-6 px-3">
-              <header>
-                <span className="text-2xl font-bold text-black/80 tracking-tight">
-                  Niceplace.com
-                </span>
+            <div className="container flex justify-between items-center py-6 px-2 sm:px-4 md:px-8">
+              <header className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+                Niceplace.com
               </header>
               <AnimateButton
                 onClick={toggleMenuHandler}
                 isOpen={isOpen}
-                color="bg-black/80"
-                className="mr-1"
+                color="bg-white"
+                className="rounded-md hover:bg-white/10 transition duration-100"
               />
             </div>
             {isLoggedIn === true ? (
               <>
-                <div className="flex flex-col flex-1 gap-16 justify-center items-center border-b border-t p-3 border-black/70">
+                <div className="flex flex-col flex-1 gap-10 justify-center items-center border-b border-t border-white/40">
                   <Link
                     onClick={toggleMenuHandler}
-                    className="flex items-center text-black text-3xl font-black hover:text-black/80 transition duration-50"
+                    className="text-white text-2xl font-semibold transition p-4 rounded-lg hover:bg-white/10"
                     to="/"
                   >
                     {t("Header.mainPage")}
                   </Link>
                   <Link
                     onClick={toggleMenuHandler}
-                    className="flex items-center text-black text-3xl font-black hover:text-black/80 transition duration-50"
+                    className="text-white text-2xl font-semibold transition p-4 rounded-lg hover:bg-white/10"
                     to="/my-bookings"
                   >
                     {t("Header.myBookings")}
                   </Link>
                   <Link
                     onClick={toggleMenuHandler}
-                    className="flex items-center text-black text-3xl font-black hover:text-black/80 transition duration-50"
+                    className="text-white text-2xl font-semibold transition p-4 rounded-lg hover:bg-white/10"
                     to="/my-hotels"
                   >
                     {t("Header.myHotels")}
@@ -88,13 +86,13 @@ const Menu = ({ isOpen, onClick }: MenuProps) => {
                   className="container w-full flex items-center justify-between p-3"
                   onClick={logoutHandler}
                 >
-                  <div className="flex items-center gap-4 cursor-pointer">
-                    <IoLogOutOutline size={30} />
-                    <span className="text-md font-bold capitalize">
+                  <div className="flex items-center gap-2 cursor-pointer rounded-md hover:bg-white/10 transition duration-100 p-2">
+                    <IoLogOutOutline size={24} color="white" />
+                    <span className="font-semibold text-white">
                       {t("BookingApp.signOut")}
                     </span>
                   </div>
-                  <span className="font-bold text-sm">
+                  <span className="text-white/80 text-sm">
                     {currentUser?.email}
                   </span>
                 </div>
@@ -102,11 +100,11 @@ const Menu = ({ isOpen, onClick }: MenuProps) => {
             ) : (
               <div className="flex flex-col flex-1 items-center gap-4 pt-16">
                 <img src={Logo} className="size-48" />
-                <p>{t("BookingApp.accountYet")}</p>
+                <p className="text-white mt-16">{t("BookingApp.accountYet")}</p>
                 <Link
                   onClick={toggleMenuHandler}
                   to="/login"
-                  className="bg-blue-600 flex py-2 items-center justify-center text-white capitalize px-3 font-bold  hover:bg-blue-500 transition duration-50 rounded-md"
+                  className="text-white text-2xl font-semibold transition p-4 rounded-lg bg-white/20 hover:bg-white/40"
                 >
                   {t("BookingApp.signIn")}
                 </Link>
