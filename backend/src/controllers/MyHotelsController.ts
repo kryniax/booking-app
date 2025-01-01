@@ -92,7 +92,12 @@ const uploadImage = async (files: Express.Multer.File[]) => {
     const image = file;
     const base64Image = Buffer.from(image.buffer).toString("base64");
     const dataURI = `data:${image.mimetype};base64,${base64Image}`;
-    const uploadResponse = await cloudinary.v2.uploader.upload(dataURI);
+    const uploadResponse = await cloudinary.v2.uploader.upload(dataURI, {
+      transformation: [
+        { width: 1200, crop: "scale" },
+        { quality: "auto:eco", fetch_format: "auto" },
+      ],
+    });
     return uploadResponse.url;
   });
   const imageUrls = await Promise.all(uploadPromises);
