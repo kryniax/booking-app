@@ -4,9 +4,10 @@
     "languagePL": "Polski",
     "languageEN": "Angielski",
     "languageDE": "Niemiecki",
+    "selectLanguage": "Wybierz język",
     "adult": "dorosły",
     "adults": "dorośli",
-    "child": "dzieci",
+    "child": "dziecko",
     "children": "dzieci",
     "guests": "goście",
     "checkIn": "zameldowanie",
@@ -17,12 +18,13 @@
     "signOut": "wyloguj się",
     "search": "szukaj",
     "clear": "wyczyść",
-    "perNight": "za noc",
+    "perNight": "noc",
     "starRating": "gwiazdki",
-    "sortBy": "sortuj według"
+    "sortBy": "sortuj według",
+    "noHotel": "Nie ma takiego hotelu"
   },
   "BookingCard": {
-    "dates": "Terminy: ",
+    "dates": "Daty: ",
     "guests": "Goście: ",
     "adults": "dorośli ",
     "children": "dzieci "
@@ -36,23 +38,21 @@
   },
   "Footer": {
     "privacyPolicy": "Polityka Prywatności",
-    "termsOfService": "Warunki Korzystania z Usług"
+    "termsOfService": "Warunki Użytkowania"
   },
   "Header": {
     "mainPage": "Strona Główna",
     "myBookings": "Moje Rezerwacje",
-    "myHotels": "Moje Hotele"
+    "myHotels": "Moje Hotele",
+    "myProfile": "Mój Profil"
   },
   "Hero": {
     "header": "Znajdź swój następny pobyt",
-    "description": "Szukaj niskich cen w hotelach na wymarzony urlop."
+    "description": "Szukaj niskich cen w hotelach na swoje wymażone wakacje."
   },
   "PriceFilter": {
     "maxPrice": "Maksymalna Cena",
     "selectMaxPrice": "Wybierz Maksymalną Cenę"
-  },
-  "SearchBar": {
-    "where": "Dokąd się wybierasz?"
   },
   "SearchResultCard": {
     "viewMore": "Zobacz Więcej"
@@ -63,7 +63,79 @@
   },
   "StarRatingFilter": {
     "propertyRating": "Ocena Obiektu",
-    "stars": "Gwiazdki"
+    "stars": {
+      "1": "gwiazdka",
+      "2": "gwiazdki",
+      "3": "gwiazdki",
+      "4": "gwiazdki",
+      "5": "gwiazdek"
+    }
+  },
+  "SearchBarForm": {
+    "destinationPlaceholder": "Dokąd się wybierasz?",
+    "validation": {
+      "destination": {
+        "required": "Miejsce docelowe jest wymagane",
+        "numbers": "Miejsce docelowe nie może zawierać cyfr",
+        "specialChars": "Miejsce docelowe nie może zawierać znaków specjalnych"
+      },
+      "adult": {
+        "required": "Liczba dorosłych jest wymagana",
+        "invalid": "Liczba dorosłych musi być liczbą",
+        "min": "Musi być co najmniej jeden dorosły",
+        "max": "Maksymalnie 12 dorosłych"
+      },
+      "child": {
+        "min": "Liczba dzieci nie może być ujemna",
+        "max": "Maksymalnie 12 dzieci"
+      },
+      "checkIn": {
+        "required": "Data zameldowania jest wymagana",
+        "invalid": "Nieprawidłowa data zameldowania"
+      },
+      "checkOut": {
+        "required": "Data wymeldowania jest wymagana",
+        "invalid": "Nieprawidłowa data wymeldowania",
+        "after": "Data wymeldowania musi być późniejsza niż data zameldowania"
+      }
+    }
+  },
+  "BookingForm": {
+    "title": "Potwierdź Swoje Dane",
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "email": "Email",
+    "yourPriceSummary": "Podsumowanie Ceny",
+    "totalCost": "Całkowity Koszt",
+    "includesTaxesAndCharges": "zawiera podatki i opłaty",
+    "paymentDetails": "Szczegóły Płatności",
+    "confirmBooking": "Potwierdź Rezerwację",
+    "successBooking": "Rezerwacja Udana"
+  },
+  "GuestInfoForm": {
+    "bookNow": "Zarezerwuj Teraz",
+    "signInToBook": "Zaloguj się, aby Zarezerwować",
+    "validation": {
+      "checkIn": {
+        "required": "Data zameldowania jest wymagana",
+        "invalid": "Nieprawidłowa data zameldowania"
+      },
+      "checkOut": {
+        "required": "Data wymeldowania jest wymagana",
+        "invalid": "Nieprawidłowa data wymeldowania",
+        "after": "Data wymeldowania musi być późniejsza niż data zameldowania"
+      },
+      "adult": {
+        "required": "Liczba dorosłych jest wymagana",
+        "invalid": "Liczba dorosłych musi być liczbą",
+        "min": "Musi być co najmniej jeden dorosły",
+        "max": "Maksymalnie 12 dorosłych"
+      },
+      "child": {
+        "min": "Liczba dzieci nie może być ujemna",
+        "max": "Maksymalnie 12 dzieci"
+      }
+    }
   },
   "ManageHotelForm": {
     "title": "Dodaj Hotel",
@@ -79,7 +151,7 @@
         "invalid": "Musi być prawidłową liczbą"
       },
       "starRating": {
-        "required": "Liczba gwiazdek jest wymagana",
+        "required": "Ocena gwiazdkowa jest wymagana",
         "invalid": "Musi być prawidłową liczbą"
       },
       "facilities": "Wybierz co najmniej jedno udogodnienie",
@@ -113,12 +185,12 @@
       "placeholder": "Wprowadź opis hotelu"
     },
     "pricePerNight": {
-      "label": "Cena za noc",
+      "label": "Cena za Noc",
       "placeholder": "Wprowadź cenę za noc"
     },
     "starRating": {
-      "label": "Liczba gwiazdek",
-      "select": "Wybierz ocenę"
+      "label": "Ocena Gwiazdkowa",
+      "select": "Wybierz Ocenę"
     },
     "validation": {
       "required": "To pole jest wymagane",
@@ -132,31 +204,31 @@
       "budget": "Ekonomiczny",
       "boutique": "Butikowy",
       "luxury": "Luksusowy",
-      "skiResort": "Ośrodek narciarski",
+      "skiResort": "Ośrodek Narciarski",
       "business": "Biznesowy",
       "family": "Rodzinny",
       "romantic": "Romantyczny",
-      "hikingResort": "Ośrodek turystyczny",
+      "hikingResort": "Ośrodek Turystyczny",
       "cabin": "Domek",
-      "beachResort": "Kurort nadmorski",
-      "golfResort": "Pole golfowe",
+      "beachResort": "Kurort Nadmorski",
+      "golfResort": "Pole Golfowe",
       "motel": "Motel",
       "allInclusive": "All Inclusive",
-      "petFriendly": "Przyjazny zwierzętom",
-      "selfCatering": "Z własnym wyżywieniem"
+      "petFriendly": "Przyjazny Zwierzętom",
+      "selfCatering": "Z Własnym Wyżywieniem"
     }
   },
   "FacilitiesSection": {
     "name": "Udogodnienia",
     "hotelFacilities": {
       "freeWiFi": "Darmowe WiFi",
-      "tv": "Telewizor w pokojach",
+      "tv": "Telewizor w Pokojach",
       "parking": "Parking",
-      "familyRooms": "Pokoje rodzinne",
-      "nonsmokingRooms": "Pokoje dla niepalących",
-      "outdoorPool": "Basen zewnętrzny",
+      "familyRooms": "Pokoje Rodzinne",
+      "nonsmokingRooms": "Pokoje dla Niepalących",
+      "outdoorPool": "Basen Zewnętrzny",
       "spa": "SPA",
-      "fitnessCenter": "Centrum fitness",
+      "fitnessCenter": "Centrum Fitness",
       "meals": "Posiłki"
     }
   },
@@ -177,8 +249,8 @@
   },
   "HomePage": {
     "noHotel": "Nie mamy jeszcze hoteli",
-    "latestDestinations": "Najnowsze lokalizacje",
-    "recentDestinations": "Hotele dodane przez naszych gospodarzy"
+    "latestDestinations": "Najnowsze Destynacje",
+    "recentDestinations": "Najnowsze destynacje dodane przez naszych gospodarzy"
   },
   "LoginPage": {
     "validation": {
@@ -203,7 +275,7 @@
   "MyHotelsPage": {
     "noHotels": "Nie znaleziono hoteli",
     "title": "Moje Hotele",
-    "viewDetails": "Zobacz szczegóły"
+    "viewDetails": "Zobacz Szczegóły"
   },
   "RegisterPage": {
     "title": "Utwórz Konto",
@@ -229,7 +301,7 @@
       },
       "confirmPassword": {
         "label": "potwierdź hasło",
-        "message": "Hasła nie są zgodne"
+        "message": "Hasła nie są takie same"
       }
     },
     "button": "Utwórz Konto"
@@ -238,5 +310,202 @@
     "filterBy": "Filtruj według:",
     "hotelsFound": "Znalezione Hotele",
     "in": "w"
+  },
+  "PrivacyPage": {
+    "title": "Polityka Prywatności",
+    "introduction": {
+      "title": "Wprowadzenie",
+      "content": "Niniejsza Polityka Prywatności określa zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników w związku z korzystaniem z aplikacji do rezerwacji hoteli."
+    },
+    "administrator": {
+      "title": "Administrator Danych",
+      "content": "Administratorem danych osobowych jest [Nazwa Firmy] z siedzibą w [Adres], wpisana do rejestru przedsiębiorców pod numerem KRS: [numer], NIP: [numer], REGON: [numer]."
+    },
+    "dataScope": {
+      "title": "Zakres Zbieranych Danych",
+      "description": "W ramach korzystania z aplikacji zbieramy następujące dane osobowe:",
+      "items": {
+        "name": "Imię i nazwisko",
+        "email": "Adres e-mail",
+        "phone": "Numer telefonu",
+        "address": "Adres zamieszkania",
+        "payment": "Dane płatności",
+        "bookingHistory": "Historia rezerwacji",
+        "preferences": "Preferencje pobytowe"
+      }
+    },
+    "processingPurpose": {
+      "title": "Cel Przetwarzania Danych",
+      "description": "Zebrane dane są przetwarzane w następujących celach:",
+      "items": {
+        "booking": "Realizacja procesu rezerwacji hotelu",
+        "account": "Zarządzanie kontem użytkownika",
+        "payment": "Obsługa płatności",
+        "communication": "Komunikacja związana z rezerwacją",
+        "marketing": "Marketing bezpośredni naszych usług (za zgodą użytkownika)",
+        "legal": "Realizacja obowiązków prawnych i podatkowych",
+        "analysis": "Analiza i poprawa jakości usług"
+      }
+    },
+    "legalBasis": {
+      "title": "Podstawa Prawna Przetwarzania",
+      "items": {
+        "contract": "Art. 6 ust. 1 lit. b) RODO - przetwarzanie jest niezbędne do wykonania umowy",
+        "legal": "Art. 6 ust. 1 lit. c) RODO - przetwarzanie jest niezbędne do wypełnienia obowiązku prawnego",
+        "legitimate": "Art. 6 ust. 1 lit. f) RODO - przetwarzanie jest niezbędne do celów wynikających z prawnie uzasadnionych interesów",
+        "consent": "Art. 6 ust. 1 lit. a) RODO - zgoda użytkownika na przetwarzanie danych"
+      }
+    },
+    "retentionPeriod": {
+      "title": "Okres Przechowywania Danych",
+      "items": {
+        "account": "Okres aktywności konta użytkownika",
+        "legal": "Wymagany przez prawo (dokumentacja księgowa - 5 lat)",
+        "claims": "Do czasu przedawnienia roszczeń",
+        "consent": "Do momentu wycofania zgody (dla danych przetwarzanych na podstawie zgody)"
+      }
+    },
+    "userRights": {
+      "title": "Prawa Użytkownika",
+      "items": {
+        "access": "Prawo dostępu do swoich danych",
+        "rectification": "Prawo do sprostowania danych",
+        "deletion": "Prawo do usunięcia danych",
+        "restriction": "Prawo do ograniczenia przetwarzania",
+        "portability": "Prawo do przenoszenia danych",
+        "objection": "Prawo do sprzeciwu",
+        "withdrawal": "Prawo do wycofania zgody",
+        "complaint": "Prawo do złożenia skargi do organu nadzorczego"
+      }
+    },
+    "dataRecipients": {
+      "title": "Odbiorcy Danych",
+      "items": {
+        "hotels": "Hotele, w których dokonywane są rezerwacje",
+        "payment": "Dostawcy usług płatniczych",
+        "hosting": "Dostawcy usług hostingowych",
+        "support": "Dostawcy usług wsparcia technicznego",
+        "authorities": "Organy państwowe, gdy wymaga tego prawo"
+      }
+    },
+    "security": {
+      "title": "Bezpieczeństwo Danych",
+      "items": {
+        "encryption": "Szyfrowanie danych",
+        "access": "Kontrola dostępu",
+        "backup": "Regularne kopie zapasowe",
+        "procedures": "Procedury bezpieczeństwa",
+        "training": "Szkolenia personelu"
+      }
+    },
+    "cookies": {
+      "title": "Pliki Cookie",
+      "items": {
+        "functionality": "Zapewnienie prawidłowego działania",
+        "preferences": "Zapamiętywanie preferencji",
+        "statistics": "Cele statystyczne",
+        "personalization": "Personalizacja treści"
+      }
+    },
+    "changes": {
+      "title": "Zmiany w Polityce Prywatności",
+      "content": "Zastrzegamy sobie prawo do wprowadzania zmian w Polityce Prywatności. Użytkownicy będą informowani o wszelkich zmianach za pośrednictwem aplikacji lub poprzez e-mail."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "items": {
+        "email": "E-mail: [adres email]",
+        "phone": "Telefon: [numer telefonu]",
+        "address": "Adres korespondencyjny: [adres]"
+      }
+    },
+    "lastUpdate": "Ostatnia aktualizacja: 29 grudnia 2024"
+  },
+  "TermsPage": {
+    "title": "Warunki Użytkowania",
+    "introduction": {
+      "title": "Wprowadzenie",
+      "content": "Niniejsze Warunki Użytkowania określają zasady korzystania z aplikacji do rezerwacji hoteli oraz prawa i obowiązki użytkowników i administratora systemu."
+    },
+    "definitions": {
+      "title": "Definicje",
+      "items": {
+        "service": "Usługa - aplikacja do rezerwacji hoteli dostępna pod adresem [adres]",
+        "user": "Użytkownik - osoba fizyczna korzystająca z Usługi",
+        "host": "Gospodarz - podmiot oferujący zakwaterowanie poprzez Usługę",
+        "booking": "Rezerwacja - umowa zawarta między Użytkownikiem a Gospodarzem",
+        "content": "Treść - wszelkie materiały zamieszczane w Usłudze przez Użytkowników"
+      }
+    },
+    "accountRules": {
+      "title": "Zasady Korzystania z Konta",
+      "items": {
+        "accuracy": "Obowiązek podania prawdziwych danych osobowych",
+        "security": "Odpowiedzialność za bezpieczeństwo loginu i hasła",
+        "age": "Wymóg ukończenia 18 lat lub zgody opiekuna prawnego",
+        "oneAccount": "Zakaz tworzenia wielu kont przez jednego użytkownika",
+        "termination": "Możliwość usunięcia konta przez administratora w przypadku naruszenia regulaminu"
+      }
+    },
+    "bookingRules": {
+      "title": "Zasady Dokonywania Rezerwacji",
+      "items": {
+        "binding": "Rezerwacja jest wiążąca po otrzymaniu potwierdzenia",
+        "payment": "Obowiązek terminowej płatności za rezerwację",
+        "cancellation": "Zasady anulowania rezerwacji zgodnie z polityką hotelu",
+        "changes": "Możliwość wprowadzania zmian w rezerwacji",
+        "refunds": "Warunki zwrotu płatności za anulowane rezerwacje"
+      }
+    },
+    "userObligations": {
+      "title": "Obowiązki Użytkownika",
+      "items": {
+        "rules": "Przestrzeganie regulaminu hotelu i zasad rezerwacji",
+        "behavior": "Zachowanie zgodne z zasadami współżycia społecznego",
+        "content": "Zakaz publikowania treści niedozwolonych",
+        "damage": "Odpowiedzialność za wyrządzone szkody",
+        "laws": "Przestrzeganie obowiązującego prawa"
+      }
+    },
+    "intellectualProperty": {
+      "title": "Prawa Własności Intelektualnej",
+      "items": {
+        "ownership": "Prawa autorskie do treści serwisu",
+        "license": "Zakres licencji udzielanej użytkownikom",
+        "restrictions": "Ograniczenia w wykorzystaniu treści",
+        "userContent": "Prawa do treści dodawanych przez użytkowników"
+      }
+    },
+    "liability": {
+      "title": "Odpowiedzialność",
+      "items": {
+        "limitation": "Ograniczenie odpowiedzialności usługodawcy",
+        "indemnification": "Zobowiązanie do naprawienia szkód",
+        "force": "Siła wyższa i jej skutki",
+        "thirdParty": "Odpowiedzialność za usługi podmiotów trzecich"
+      }
+    },
+    "disputes": {
+      "title": "Rozwiązywanie Sporów",
+      "items": {
+        "law": "Prawo właściwe dla umowy",
+        "jurisdiction": "Właściwość sądów",
+        "resolution": "Procedura rozwiązywania sporów",
+        "timeLimit": "Terminy dochodzenia roszczeń"
+      }
+    },
+    "modification": {
+      "title": "Zmiany w Warunkach Użytkowania",
+      "content": "Zastrzegamy sobie prawo do wprowadzania zmian w Warunkach Użytkowania. Użytkownicy będą informowani o wszelkich zmianach za pośrednictwem aplikacji lub poprzez e-mail."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "items": {
+        "email": "E-mail: [adres email]",
+        "phone": "Telefon: [numer telefonu]",
+        "address": "Adres korespondencyjny: [adres]"
+      }
+    },
+    "lastUpdate": "Ostatnia aktualizacja: 29 grudnia 2024"
   }
 }

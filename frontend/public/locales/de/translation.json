@@ -4,6 +4,7 @@
     "languagePL": "Polnisch",
     "languageEN": "Englisch",
     "languageDE": "Deutsch",
+    "selectLanguage": "Sprache auswählen",
     "adult": "Erwachsener",
     "adults": "Erwachsene",
     "child": "Kind",
@@ -17,7 +18,7 @@
     "signOut": "Abmelden",
     "search": "Suchen",
     "clear": "Löschen",
-    "perNight": "pro Nacht",
+    "perNight": "Nacht",
     "starRating": "Sternebewertung",
     "sortBy": "Sortieren nach",
     "noHotel": "Kein Hotel verfügbar"
@@ -42,7 +43,8 @@
   "Header": {
     "mainPage": "Hauptseite",
     "myBookings": "Meine Buchungen",
-    "myHotels": "Meine Hotels"
+    "myHotels": "Meine Hotels",
+    "myProfile": "Mein Profil"
   },
   "Hero": {
     "header": "Finden Sie Ihren nächsten Aufenthalt",
@@ -64,7 +66,13 @@
   },
   "StarRatingFilter": {
     "propertyRating": "Hotelbewertung",
-    "stars": "Sterne"
+    "stars": {
+      "1": "stern",
+      "2": "sterne",
+      "3": "sterne",
+      "4": "sterne",
+      "5": "sterne"
+    }
   },
   "ManageHotelForm": {
     "title": "Hotel hinzufügen",
@@ -239,5 +247,202 @@
     "filterBy": "Filtern nach:",
     "hotelsFound": "Hotels gefunden",
     "in": "in"
+  },
+  "PrivacyPage": {
+    "title": "Datenschutzerklärung",
+    "introduction": {
+      "title": "Einführung",
+      "content": "Diese Datenschutzerklärung legt die Regeln für die Verarbeitung und den Schutz personenbezogener Daten fest, die von Nutzern im Zusammenhang mit der Nutzung der Hotelbuchungs-Anwendung bereitgestellt werden."
+    },
+    "administrator": {
+      "title": "Datenverwalter",
+      "content": "Der Verwalter der personenbezogenen Daten ist [Firmenname] mit Sitz in [Adresse], eingetragen im Handelsregister unter der KRS-Nummer: [Nummer], NIP: [Nummer], REGON: [Nummer]."
+    },
+    "dataScope": {
+      "title": "Umfang der erhobenen Daten",
+      "description": "Im Rahmen der Nutzung der Anwendung erheben wir folgende personenbezogene Daten:",
+      "items": {
+        "name": "Vor- und Nachname",
+        "email": "E-Mail-Adresse",
+        "phone": "Telefonnummer",
+        "address": "Wohnadresse",
+        "payment": "Zahlungsdaten",
+        "bookingHistory": "Buchungsverlauf",
+        "preferences": "Aufenthaltsvorlieben"
+      }
+    },
+    "processingPurpose": {
+      "title": "Zweck der Datenverarbeitung",
+      "description": "Die erhobenen Daten werden für folgende Zwecke verarbeitet:",
+      "items": {
+        "booking": "Durchführung des Hotelbuchungsprozesses",
+        "account": "Verwaltung des Benutzerkontos",
+        "payment": "Zahlungsabwicklung",
+        "communication": "Buchungsbezogene Kommunikation",
+        "marketing": "Direktmarketing unserer Dienstleistungen (mit Einwilligung des Nutzers)",
+        "legal": "Erfüllung rechtlicher und steuerlicher Verpflichtungen",
+        "analysis": "Analyse und Verbesserung der Servicequalität"
+      }
+    },
+    "legalBasis": {
+      "title": "Rechtsgrundlage der Verarbeitung",
+      "items": {
+        "contract": "Art. 6 Abs. 1 lit. b) DSGVO - Verarbeitung ist für die Vertragserfüllung erforderlich",
+        "legal": "Art. 6 Abs. 1 lit. c) DSGVO - Verarbeitung ist zur Erfüllung einer rechtlichen Verpflichtung erforderlich",
+        "legitimate": "Art. 6 Abs. 1 lit. f) DSGVO - Verarbeitung ist zur Wahrung berechtigter Interessen erforderlich",
+        "consent": "Art. 6 Abs. 1 lit. a) DSGVO - Einwilligung des Nutzers zur Datenverarbeitung"
+      }
+    },
+    "retentionPeriod": {
+      "title": "Aufbewahrungsfrist",
+      "items": {
+        "account": "Zeitraum der Benutzerkonto-Aktivität",
+        "legal": "Gesetzlich vorgeschrieben (Buchhaltungsunterlagen - 5 Jahre)",
+        "claims": "Bis zum Ablauf der Ansprüche",
+        "consent": "Bis zum Widerruf der Einwilligung (für auf Einwilligung basierende Daten)"
+      }
+    },
+    "userRights": {
+      "title": "Nutzerrechte",
+      "items": {
+        "access": "Recht auf Auskunft",
+        "rectification": "Recht auf Berichtigung",
+        "deletion": "Recht auf Löschung",
+        "restriction": "Recht auf Einschränkung der Verarbeitung",
+        "portability": "Recht auf Datenübertragbarkeit",
+        "objection": "Recht auf Widerspruch",
+        "withdrawal": "Recht auf Widerruf der Einwilligung",
+        "complaint": "Recht auf Beschwerde bei der Aufsichtsbehörde"
+      }
+    },
+    "dataRecipients": {
+      "title": "Datenempfänger",
+      "items": {
+        "hotels": "Hotels, bei denen Buchungen vorgenommen werden",
+        "payment": "Zahlungsdienstleister",
+        "hosting": "Hosting-Dienstleister",
+        "support": "Technische Support-Dienstleister",
+        "authorities": "Staatliche Behörden, wenn gesetzlich erforderlich"
+      }
+    },
+    "security": {
+      "title": "Datensicherheit",
+      "items": {
+        "encryption": "Datenverschlüsselung",
+        "access": "Zugangskontrolle",
+        "backup": "Regelmäßige Sicherungskopien",
+        "procedures": "Sicherheitsverfahren",
+        "training": "Mitarbeiterschulung"
+      }
+    },
+    "cookies": {
+      "title": "Cookies",
+      "items": {
+        "functionality": "Gewährleistung der ordnungsgemäßen Funktionalität",
+        "preferences": "Speicherung von Präferenzen",
+        "statistics": "Statistische Zwecke",
+        "personalization": "Personalisierung von Inhalten"
+      }
+    },
+    "changes": {
+      "title": "Änderungen der Datenschutzerklärung",
+      "content": "Wir behalten uns das Recht vor, Änderungen an der Datenschutzerklärung vorzunehmen. Nutzer werden über alle Änderungen über die Anwendung oder per E-Mail informiert."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "items": {
+        "email": "E-Mail: [E-Mail-Adresse]",
+        "phone": "Telefon: [Telefonnummer]",
+        "address": "Postanschrift: [Adresse]"
+      }
+    },
+    "lastUpdate": "Zuletzt aktualisiert: 29. Dezember 2024"
+  },
+  "TermsPage": {
+    "title": "Nutzungsbedingungen",
+    "introduction": {
+      "title": "Einführung",
+      "content": "Diese Nutzungsbedingungen legen die Regeln für die Nutzung der Hotelbuchungs-Anwendung sowie die Rechte und Pflichten der Nutzer und Systemadministratoren fest."
+    },
+    "definitions": {
+      "title": "Definitionen",
+      "items": {
+        "service": "Dienst - Hotelbuchungs-Anwendung verfügbar unter [Adresse]",
+        "user": "Nutzer - eine natürliche Person, die den Dienst nutzt",
+        "host": "Gastgeber - eine Einrichtung, die Unterkünfte über den Dienst anbietet",
+        "booking": "Buchung - eine Vereinbarung zwischen Nutzer und Gastgeber",
+        "content": "Inhalt - alle von Nutzern im Dienst veröffentlichten Materialien"
+      }
+    },
+    "accountRules": {
+      "title": "Kontonutzungsregeln",
+      "items": {
+        "accuracy": "Verpflichtung zur Angabe korrekter persönlicher Daten",
+        "security": "Verantwortung für die Sicherheit von Login und Passwort",
+        "age": "Mindestalter von 18 Jahren oder Zustimmung des gesetzlichen Vertreters erforderlich",
+        "oneAccount": "Verbot der Erstellung mehrerer Konten durch einen Nutzer",
+        "termination": "Möglichkeit der Kontokündigung durch den Administrator bei Regelverstößen"
+      }
+    },
+    "bookingRules": {
+      "title": "Buchungsregeln",
+      "items": {
+        "binding": "Buchung ist nach Erhalt der Bestätigung verbindlich",
+        "payment": "Verpflichtung zur fristgerechten Zahlung der Reservierung",
+        "cancellation": "Stornierungsregeln gemäß Hotelrichtlinien",
+        "changes": "Möglichkeit zur Änderung der Reservierung",
+        "refunds": "Bedingungen für Rückerstattungen bei stornierten Reservierungen"
+      }
+    },
+    "userObligations": {
+      "title": "Nutzerpflichten",
+      "items": {
+        "rules": "Einhaltung der Hotelregeln und Buchungsrichtlinien",
+        "behavior": "Verhalten im Einklang mit den Grundsätzen des sozialen Zusammenlebens",
+        "content": "Verbot der Veröffentlichung nicht autorisierter Inhalte",
+        "damage": "Haftung für verursachte Schäden",
+        "laws": "Einhaltung der geltenden Gesetze"
+      }
+    },
+    "intellectualProperty": {
+      "title": "Rechte an geistigem Eigentum",
+      "items": {
+        "ownership": "Urheberrecht am Dienst-Inhalt",
+        "license": "Umfang der den Nutzern gewährten Lizenz",
+        "restrictions": "Einschränkungen bei der Nutzung von Inhalten",
+        "userContent": "Rechte an nutzergenerierten Inhalten"
+      }
+    },
+    "liability": {
+      "title": "Haftung",
+      "items": {
+        "limitation": "Haftungsbeschränkung des Diensteanbieters",
+        "indemnification": "Verpflichtung zum Schadensersatz",
+        "force": "Höhere Gewalt und ihre Auswirkungen",
+        "thirdParty": "Haftung für Dienste Dritter"
+      }
+    },
+    "disputes": {
+      "title": "Streitbeilegung",
+      "items": {
+        "law": "Anwendbares Recht für die Vereinbarung",
+        "jurisdiction": "Gerichtsstand",
+        "resolution": "Streitbeilegungsverfahren",
+        "timeLimit": "Fristen für die Geltendmachung von Ansprüchen"
+      }
+    },
+    "modification": {
+      "title": "Änderungen der Nutzungsbedingungen",
+      "content": "Wir behalten uns das Recht vor, Änderungen an den Nutzungsbedingungen vorzunehmen. Nutzer werden über alle Änderungen über die Anwendung oder per E-Mail informiert."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "items": {
+        "email": "E-Mail: [E-Mail-Adresse]",
+        "phone": "Telefon: [Telefonnummer]",
+        "address": "Postanschrift: [Adresse]"
+      }
+    },
+    "lastUpdate": "Letzte Aktualisierung: 29. Dezember 2024"
   }
 }

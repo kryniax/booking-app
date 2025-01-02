@@ -1,0 +1,531 @@
+{
+  "BookingApp": {
+    "language": "English",
+    "languagePL": "Polish",
+    "languageEN": "English",
+    "languageDE": "German",
+    "selectLanguage": "Select a language",
+    "selectCurrency": "Select a currency",
+    "currencyPLN": "Polish zloty",
+    "currencyUSD": "Dollar",
+    "currencyEUR": "Euro",
+    "currencyGBP": "British Pound",
+    "adult": "adult",
+    "adults": "adults",
+    "child": "child",
+    "children": "children",
+    "guests": "guests",
+    "checkIn": "check-in",
+    "checkOut": "check-out",
+    "facilities": "facilities",
+    "hotelType": "hotel type",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "search": "search",
+    "clear": "clear",
+    "total": "Total",
+    "starRating": "star rating",
+    "sortBy": "sort by",
+    "noHotel": "There is no hotel",
+    "yes": "Yes",
+    "no": "No",
+    "accountYet": "Don't have an account yet?",
+    "perNight": "night"
+  },
+  "BookingCard": {
+    "dates": "Dates: ",
+    "guests": "Guests: ",
+    "adults": "adults ",
+    "children": "children ",
+    "cancelBooking": "Cancel reservation"
+  },
+  "BookingCancelConfirmation": {
+    "title": "Are you sure to cancel the reservation?",
+    "cancelling": "Cancelling..."
+  },
+  "BookingDetailSummary": {
+    "yourBookingDetails": "Your Booking Details",
+    "location": "Location: ",
+    "totalStay": "Total stay: ",
+    "checkIn": "check-in",
+    "checkOut": "check-out"
+  },
+  "Footer": {
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "Header": {
+    "mainPage": "Main Page",
+    "myBookings": "My Bookings",
+    "myHotels": "My Hotels",
+    "myProfile": "My Profile"
+  },
+  "Hero": {
+    "header": "Find your next stay",
+    "description": "Search low prices on hotels for your dream holidays."
+  },
+  "PriceFilter": {
+    "maxPrice": "Max Price",
+    "selectMaxPrice": "Select Max Price"
+  },
+  "SearchResultCard": {
+    "viewMore": "View More"
+  },
+  "SortHotelFilter": {
+    "pricePerNightAsc": "Price Per Night (low to high)",
+    "pricePerNightDesc": "Price Per Night (high to low)"
+  },
+  "StarRatingFilter": {
+    "propertyRating": "Property Rating",
+    "stars": {
+      "1": "star",
+      "2": "stars",
+      "3": "stars",
+      "4": "stars",
+      "5": "stars"
+    }
+  },
+  "SearchBarForm": {
+    "destinationPlaceholder": "Where are you going?",
+    "validation": {
+      "destination": {
+        "required": "Destination is required",
+        "numbers": "Destination cannot contain numbers",
+        "specialChars": "Destination cannot contain special chars"
+      },
+      "adult": {
+        "required": "Adult count is required",
+        "invalid": "Adult count must be a number",
+        "min": "There must be at least one adult",
+        "max": "Maximum 12 adults allowed"
+      },
+      "child": {
+        "min": "Child count cannot be negative",
+        "max": "Maximum 12 children allowed"
+      },
+      "checkIn": {
+        "required": "Check-in date is required",
+        "invalid": "Invalid check-in date"
+      },
+      "checkOut": {
+        "required": "Check-out date is required",
+        "invalid": "Invalid check-out date",
+        "after": "Check-out date must be after check-in date"
+      }
+    }
+  },
+  "BookingForm": {
+    "title": "Confirm Your Details",
+    "firstName": "FirstName",
+    "lastName": "LastName",
+    "email": "Email",
+    "yourPriceSummary": "Your Price Summary",
+    "totalCost": "Total Cost",
+    "includesTaxesAndCharges": "includes taxes and charges",
+    "paymentDetails": "Payment Details",
+    "confirmBooking": "Confirm Booking",
+    "successBooking": "Success Booking"
+  },
+  "GuestInfoForm": {
+    "bookNow": "Book Now",
+    "signInToBook": "Sign in to Book",
+    "validation": {
+      "checkIn": {
+        "required": "Check-in date is required",
+        "invalid": "Invalid check-in date"
+      },
+      "checkOut": {
+        "required": "Check-out date is required",
+        "invalid": "Invalid check-out date",
+        "after": "Check-out date must be after check-in date"
+      },
+      "adult": {
+        "required": "Adult count is required",
+        "invalid": "Adult count must be a number",
+        "min": "There must be at least one adult",
+        "max": "Maximum 12 adults allowed"
+      },
+      "child": {
+        "min": "Child count cannot be negative",
+        "max": "Maximum 12 children allowed"
+      }
+    }
+  },
+  "ManageHotelForm": {
+    "title": "Add Hotel",
+    "titleUpdate": "Update Hotel",
+    "validation": {
+      "name": "Name is required",
+      "city": "City is required",
+      "country": "Country is required",
+      "description": "Description is required",
+      "type": {
+        "required": "Type is required",
+        "invalid": "Invalid hotel type"
+      },
+      "pricePerNight": {
+        "required": "Price per night is required",
+        "invalid": "Must be a valid number",
+        "min": "Price must be higher than 0"
+      },
+      "starRating": {
+        "required": "Star rating is required",
+        "invalid": "Must be a valid number",
+        "min": "Please choose a rating"
+      },
+      "facilities": "Please select at least one facility",
+      "adultCount": {
+        "required": "Adult count is required",
+        "invalid": "Must be a valid number"
+      },
+      "childCount": {
+        "required": "Child count is required",
+        "invalid": "Must be a valid number"
+      }
+    },
+    "createHotelButton": "Add",
+    "savingHotelButton": "Save...",
+    "saveHotelButton": "Save"
+  },
+  "DetailsSection": {
+    "name": {
+      "label": "Name"
+    },
+    "city": {
+      "label": "City",
+      "placeholder": "Enter city"
+    },
+    "country": {
+      "label": "Country",
+      "placeholder": "Enter country"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Enter hotel description"
+    },
+    "pricePerNight": {
+      "label": "Price Per Night",
+      "placeholder": "Enter price per night"
+    },
+    "starRating": {
+      "label": "Star Rating",
+      "select": "Select as Rating"
+    },
+    "validation": {
+      "required": "This field is required",
+      "invalidPrice": "Price must be greater than 0",
+      "invalidRating": "Please select a valid rating"
+    }
+  },
+  "TypeSection": {
+    "name": "Type",
+    "hotelTypes": {
+      "budget": "Budget",
+      "boutique": "Boutique",
+      "luxury": "Luxury",
+      "skiResort": "Ski Resort",
+      "business": "Business",
+      "family": "Family",
+      "romantic": "Romantic",
+      "hikingResort": "Hiking Resort",
+      "cabin": "Cabin",
+      "beachResort": "Beach Resort",
+      "golfResort": "Golf Resort",
+      "motel": "Motel",
+      "allInclusive": "All Inclusive",
+      "petFriendly": "Pet Friendly",
+      "selfCatering": "Self Catering"
+    }
+  },
+  "FacilitiesSection": {
+    "name": "Facilities",
+    "hotelFacilities": {
+      "freeWiFi": "Free WiFi",
+      "tv": "Television in Rooms",
+      "parking": "Parking",
+      "familyRooms": "Family Rooms",
+      "nonsmokingRooms": "Non-Smoking Rooms",
+      "outdoorPool": "Outdoor Pool",
+      "spa": "SPA",
+      "fitnessCenter": "Fitness Center",
+      "meals": "Meals"
+    }
+  },
+  "GuestsSection": {
+    "name": "Guests",
+    "adults": "Adults",
+    "children": "Children"
+  },
+  "ImagesSection": {
+    "name": "Images",
+    "label": "Image"
+  },
+  "BookingPage": {
+    "noUser": "There is no current user"
+  },
+  "DetailPage": {
+    "noHotel": "Hotel doesn't exist"
+  },
+  "HomePage": {
+    "noHotel": "We haven't hotels yet",
+    "latestDestinations": "Latest Destinations",
+    "recentDestinations": "Most recent destinations addes by our hosts"
+  },
+  "LoginPage": {
+    "validation": {
+      "email": {
+        "label": "Email",
+        "message": "Email is required"
+      },
+      "password": {
+        "label": "Password",
+        "min": "Password is required",
+        "upperCase": "Password must contain at least one uppercase letter",
+        "number": "Password must contain at least one number",
+        "special": "Password must contain at least one special character"
+      }
+    },
+    "notRegistered": "Not registered?",
+    "createAccount": "Create an account"
+  },
+  "MyBookingPage": {
+    "noBooking": "Bookings not found"
+  },
+  "MyHotelsPage": {
+    "noHotels": "You haven't hotels",
+    "title": "My Hotels",
+    "viewDetails": "View Details"
+  },
+  "RegisterPage": {
+    "title": "Create an Account",
+    "validation": {
+      "firstName": {
+        "label": "first name",
+        "message": "Firstname is required"
+      },
+      "lastName": {
+        "label": "last name",
+        "message": "Lastname is required"
+      },
+      "email": {
+        "label": "email",
+        "message": "Invalid email address"
+      },
+      "password": {
+        "label": "password",
+        "min": "Password is required",
+        "upperCase": "Password must contain at least one uppercase letter",
+        "number": "Password must contain at least one number",
+        "special": "Password must contain at least one special character"
+      },
+      "confirmPassword": {
+        "label": "confirm password",
+        "message": "Passwords don't match"
+      }
+    },
+    "alreadyAccount": "Already have an account?",
+    "button": "Create Account"
+  },
+  "SearchPage": {
+    "filterBy": "Filter by:",
+    "hotelsFound": "Hotels Found",
+    "in": "in"
+  },
+  "PrivacyPage": {
+    "title": "Privacy Policy",
+    "introduction": {
+      "title": "Introduction",
+      "content": "This Privacy Policy defines the rules for processing and protecting personal data provided by Users in connection with using the hotel booking application."
+    },
+    "administrator": {
+      "title": "Data Administrator",
+      "content": "The administrator of personal data is [Company Name] with headquarters in [Address], registered in the business register under KRS number: [number], NIP: [number], REGON: [number]."
+    },
+    "dataScope": {
+      "title": "Scope of Collected Data",
+      "description": "As part of using the application, we collect the following personal data:",
+      "items": {
+        "name": "First and last name",
+        "email": "Email address",
+        "phone": "Phone number",
+        "address": "Residential address",
+        "payment": "Payment details",
+        "bookingHistory": "Booking history",
+        "preferences": "Stay preferences"
+      }
+    },
+    "processingPurpose": {
+      "title": "Purpose of Data Processing",
+      "description": "The collected data is processed for the following purposes:",
+      "items": {
+        "booking": "Hotel booking process execution",
+        "account": "User account management",
+        "payment": "Payment processing",
+        "communication": "Booking-related communication",
+        "marketing": "Direct marketing of our services (with user consent)",
+        "legal": "Fulfillment of legal and tax obligations",
+        "analysis": "Analysis and improvement of service quality"
+      }
+    },
+    "legalBasis": {
+      "title": "Legal Basis for Processing",
+      "items": {
+        "contract": "Article 6(1)(b) GDPR - processing is necessary for contract performance",
+        "legal": "Article 6(1)(c) GDPR - processing is necessary for compliance with legal obligation",
+        "legitimate": "Article 6(1)(f) GDPR - processing is necessary for purposes of legitimate interests",
+        "consent": "Article 6(1)(a) GDPR - user's consent to data processing"
+      }
+    },
+    "retentionPeriod": {
+      "title": "Data Retention Period",
+      "items": {
+        "account": "User account activity period",
+        "legal": "Required by law (accounting documentation - 5 years)",
+        "claims": "Until the expiration of claims",
+        "consent": "Until consent withdrawal (for data processed based on consent)"
+      }
+    },
+    "userRights": {
+      "title": "User Rights",
+      "items": {
+        "access": "Right to access your data",
+        "rectification": "Right to rectification",
+        "deletion": "Right to deletion",
+        "restriction": "Right to restrict processing",
+        "portability": "Right to data portability",
+        "objection": "Right to object",
+        "withdrawal": "Right to withdraw consent",
+        "complaint": "Right to file a complaint with the supervisory authority"
+      }
+    },
+    "dataRecipients": {
+      "title": "Data Recipients",
+      "items": {
+        "hotels": "Hotels where reservations are made",
+        "payment": "Payment service providers",
+        "hosting": "Hosting service providers",
+        "support": "Technical support service providers",
+        "authorities": "State authorities when required by law"
+      }
+    },
+    "security": {
+      "title": "Data Security",
+      "items": {
+        "encryption": "Data encryption",
+        "access": "Access control",
+        "backup": "Regular backups",
+        "procedures": "Security procedures",
+        "training": "Staff training"
+      }
+    },
+    "cookies": {
+      "title": "Cookies",
+      "items": {
+        "functionality": "Ensuring proper functionality",
+        "preferences": "Remembering preferences",
+        "statistics": "Statistical purposes",
+        "personalization": "Content personalization"
+      }
+    },
+    "changes": {
+      "title": "Changes to Privacy Policy",
+      "content": "We reserve the right to make changes to the Privacy Policy. Users will be informed of any changes through the application or via email."
+    },
+    "contact": {
+      "title": "Contact",
+      "items": {
+        "email": "Email: [email address]",
+        "phone": "Phone: [phone number]",
+        "address": "Correspondence address: [address]"
+      }
+    },
+    "lastUpdate": "Last updated: December 29, 2024"
+  },
+  "TermsPage": {
+    "title": "Terms of Use",
+    "introduction": {
+      "title": "Introduction",
+      "content": "These Terms of Use establish the rules for using the hotel booking application and define the rights and obligations of users and system administrators."
+    },
+    "definitions": {
+      "title": "Definitions",
+      "items": {
+        "service": "Service - hotel booking application available at [address]",
+        "user": "User - a natural person using the Service",
+        "host": "Host - an entity offering accommodation through the Service",
+        "booking": "Booking - an agreement between the User and the Host",
+        "content": "Content - any materials posted in the Service by Users"
+      }
+    },
+    "accountRules": {
+      "title": "Account Usage Rules",
+      "items": {
+        "accuracy": "Obligation to provide accurate personal data",
+        "security": "Responsibility for login and password security",
+        "age": "Requirement to be 18 years or older or have legal guardian consent",
+        "oneAccount": "Prohibition of creating multiple accounts by one user",
+        "termination": "Possibility of account termination by administrator in case of terms violation"
+      }
+    },
+    "bookingRules": {
+      "title": "Booking Rules",
+      "items": {
+        "binding": "Booking is binding upon confirmation receipt",
+        "payment": "Obligation for timely payment for reservation",
+        "cancellation": "Cancellation rules according to hotel policy",
+        "changes": "Possibility to make changes to the reservation",
+        "refunds": "Conditions for refunds on cancelled reservations"
+      }
+    },
+    "userObligations": {
+      "title": "User Obligations",
+      "items": {
+        "rules": "Compliance with hotel rules and booking policies",
+        "behavior": "Behavior in accordance with social coexistence principles",
+        "content": "Prohibition of posting unauthorized content",
+        "damage": "Responsibility for caused damages",
+        "laws": "Compliance with applicable law"
+      }
+    },
+    "intellectualProperty": {
+      "title": "Intellectual Property Rights",
+      "items": {
+        "ownership": "Copyright of service content",
+        "license": "Scope of license granted to users",
+        "restrictions": "Restrictions on content usage",
+        "userContent": "Rights to user-generated content"
+      }
+    },
+    "liability": {
+      "title": "Liability",
+      "items": {
+        "limitation": "Service provider liability limitation",
+        "indemnification": "Obligation to compensate damages",
+        "force": "Force majeure and its effects",
+        "thirdParty": "Liability for third-party services"
+      }
+    },
+    "disputes": {
+      "title": "Dispute Resolution",
+      "items": {
+        "law": "Applicable law for the agreement",
+        "jurisdiction": "Court jurisdiction",
+        "resolution": "Dispute resolution procedure",
+        "timeLimit": "Claim filing deadlines"
+      }
+    },
+    "modification": {
+      "title": "Changes to Terms of Use",
+      "content": "We reserve the right to make changes to the Terms of Use. Users will be notified of any changes via the application or by email."
+    },
+    "contact": {
+      "title": "Contact",
+      "items": {
+        "email": "Email: [email address]",
+        "phone": "Phone: [phone number]",
+        "address": "Correspondence address: [address]"
+      }
+    },
+    "lastUpdate": "Last update: December 29, 2024"
+  }
+}
