@@ -3,7 +3,7 @@ import { useAppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
 import { HotelType } from "../types";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 export const useCreateMyHotel = () => {
   const { showToast } = useAppContext();
