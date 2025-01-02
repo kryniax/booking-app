@@ -1,15 +1,23 @@
 import { GB, PL, DE } from "country-flag-icons/react/1x1";
 import { useAppContext } from "../contexts/AppContext";
 import { useTranslation } from "react-i18next";
+import { useCurrencyContext } from "../contexts/CurrencyContext";
 
 const Languages = () => {
-  const { currentLanguage, changeLanguage } = useAppContext();
+  const { changeLanguage } = useAppContext();
+  const { changeLanguageCurrency } = useCurrencyContext();
   const { t } = useTranslation();
+
+  const languageHandler = (lang: string) => {
+    changeLanguage(lang);
+    changeLanguageCurrency(lang);
+  };
+
   return (
     <ul className="w-full h-full flex flex-col items-start gap-5 p-4">
       <li
         className="w-full p-2 flex items-center gap-5 cursor-pointer hover:bg-black/10 transition duration-100 rounded-md"
-        onClick={() => changeLanguage("gb")}
+        onClick={() => languageHandler("gb")}
       >
         <GB
           title="English"
@@ -21,7 +29,7 @@ const Languages = () => {
       </li>
       <li
         className="w-full p-2 flex items-center gap-5 cursor-pointer hover:bg-black/10 transition duration-100 rounded-md"
-        onClick={() => changeLanguage("pl")}
+        onClick={() => languageHandler("pl")}
       >
         <PL
           title="Polski"
@@ -33,7 +41,7 @@ const Languages = () => {
       </li>
       <li
         className="w-full p-2 flex items-center gap-5 cursor-pointer hover:bg-black/10 transition duration-100 rounded-md"
-        onClick={() => changeLanguage("de")}
+        onClick={() => languageHandler("de")}
       >
         <DE
           title="Deutsch"

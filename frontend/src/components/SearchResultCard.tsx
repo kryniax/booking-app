@@ -3,6 +3,7 @@ import { HotelType } from "../types";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useCurrencyContext } from "../contexts/CurrencyContext";
 
 type SearchResultsCardProps = {
   hotel: HotelType;
@@ -10,6 +11,9 @@ type SearchResultsCardProps = {
 
 const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
   const { t } = useTranslation();
+
+  const { formatPrice } = useCurrencyContext();
+
   return (
     <div className="grid grid-cols-1 xl:grid-cols-[2fr_3fr] border border-slate-300 rounded-lg p-8 gap-8">
       <div className="w-full h-[250px]">
@@ -24,10 +28,15 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
           <div className="flex items-center">
             <span className="flex">
               {Array.from({ length: hotel.starRating }).map(() => (
-                <AiFillStar className="fill-yellow-500" />
+                <AiFillStar
+                  key={hotel.adultCount}
+                  className="fill-yellow-500"
+                />
               ))}
             </span>
-            <span className="ml-1 text-sm">{hotel.type}</span>
+            <span className="ml-1 text-sm">
+              {t(`TypeSection.hotelTypes.${hotel.type}`)}
+            </span>
           </div>
           <header>
             <Link
@@ -41,10 +50,13 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
         <div>
           <article className="line-clamp-4">{hotel.description}</article>
         </div>
-        <div className="grid grid-cols-2 items-end whitespace-nowrap">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-end whitespace-nowrap">
           <div className="flex gap-1 items-center">
             {hotel.facilities.slice(0, 3).map((facility) => (
-              <span className="bg-slate-300 p-2 rounded-lg font-semibold text-xs whitespace-nowrap">
+              <span
+                key={facility}
+                className="bg-slate-300 p-2 rounded-lg font-semibold text-xs whitespace-nowrap"
+              >
                 {t(`FacilitiesSection.hotelFacilities.${facility}`)}
               </span>
             ))}
@@ -54,9 +66,10 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
             </span>
           </div>
           <div className="flex flex-col items-end gap-1">
-            <span className="font-bold">
-              {hotel.pricePerNight}$ {t("BookingApp.perNight")}
-            </span>
+            <div className="font-bold">
+              <span className="font-normal">{t("BookingApp.total")}:</span>{" "}
+              {formatPrice(hotel.pricePerNight)}
+            </div>
             <Link
               to={`/detail/${hotel._id}`}
               className="bg-blue-600 text-white h-full p-2 font-bold text-xl max-w-fit rounded-md"
