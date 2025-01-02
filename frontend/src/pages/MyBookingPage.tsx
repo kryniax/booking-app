@@ -1,4 +1,3 @@
-import React from "react";
 import { useGetMyBooking } from "../api/BookingApi";
 import BookingCard from "../components/BookingCard";
 import { useTranslation } from "react-i18next";
@@ -6,7 +5,7 @@ import { TfiFaceSad } from "react-icons/tfi";
 import { Link } from "react-router-dom";
 
 const MyBookingPage = () => {
-  const { bookings, isLoading } = useGetMyBooking();
+  const { bookings } = useGetMyBooking();
   const { t } = useTranslation();
 
   if (bookings?.length === 0) {

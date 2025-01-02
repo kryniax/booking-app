@@ -1,4 +1,3 @@
-import React from "react";
 import { useGetHotelById } from "../api/HotelApi";
 import { useParams } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";

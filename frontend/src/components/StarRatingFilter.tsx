@@ -1,6 +1,5 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useAppContext } from "../contexts/AppContext";
 
 type StarRatingFilterProps = {
   selectedStars: string[];

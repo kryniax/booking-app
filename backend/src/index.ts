@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { Request } from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
@@ -8,6 +8,7 @@ import hotelRoute from "./routes/HotelRoute";
 import bookingRoute from "./routes/BookingRoute";
 import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from "cloudinary";
+import path from "path";
 
 mongoose
   .connect(process.env.MONGODB_CONNECTION_STRING as string)
@@ -30,10 +31,16 @@ app.use(
   })
 );
 
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+
 app.use("/api/user", userRoute);
 app.use("/api/my/hotel", myHotelRoute);
 app.use("/api/hotel", hotelRoute);
 app.use("/api/booking", bookingRoute);
+
+app.get("*", (req: Request, res: any) => {
+  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+});
 
 app.listen(8000, () => {
   console.log("server running on localhost:8000");

@@ -1,6 +1,5 @@
 import { useFormContext } from "react-hook-form";
 import { hotelFacilitiesKeys } from "../../../config/hotel-options-config";
-import React from "react";
 import { HotelFormData } from "../ManageHotelForm";
 import { useTranslation } from "react-i18next";
 

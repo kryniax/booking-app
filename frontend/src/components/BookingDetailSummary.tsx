@@ -1,4 +1,3 @@
-import React from "react";
 import { HotelType } from "../types";
 import { useTranslation } from "react-i18next";
 

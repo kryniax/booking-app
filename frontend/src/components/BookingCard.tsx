@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { MyBookingType } from "../types";
 import { useTranslation } from "react-i18next";
 import { useDeleteBooking } from "../api/BookingApi";

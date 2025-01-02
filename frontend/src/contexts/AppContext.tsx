@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Toast from "../components/Toast";
-import { useQuery } from "@tanstack/react-query";
 import { useValidateToken } from "../api/UserApi";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 import { useTranslation } from "react-i18next";

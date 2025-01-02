@@ -28,10 +28,7 @@ const BookingPage = () => {
   const { currentUser } = useGetCurrentUser();
 
   const [numberOfNights, setNumberofNights] = useState<number>(0);
-  const { paymentIntentData, isLoading } = useCreatePaymentIntent(
-    hotelId,
-    numberOfNights
-  );
+  const { paymentIntentData } = useCreatePaymentIntent(hotelId, numberOfNights);
 
   useEffect(() => {
     if (search.checkIn && search.checkOut) {

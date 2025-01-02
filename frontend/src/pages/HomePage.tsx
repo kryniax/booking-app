@@ -1,4 +1,3 @@
-import React from "react";
 import { useGetMainPageHotels } from "../api/HotelApi";
 import LatestDestionationCard from "../components/LatestDestionationCard";
 import { useTranslation } from "react-i18next";

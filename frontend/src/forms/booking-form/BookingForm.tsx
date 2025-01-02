@@ -1,4 +1,3 @@
-import React from "react";
 import { PaymentIntentResponse, UserType } from "../../types";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -37,11 +36,7 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
   const { hotelId } = useParams();
   const { bookHotel, isPending, isSuccess } = useCreateBooking();
   const { t } = useTranslation();
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm<BookingFormData>({
+  const { handleSubmit, register } = useForm<BookingFormData>({
     resolver: zodResolver(bookingFormSchema),
     defaultValues: {
       firstName: currentUser.firstName,
