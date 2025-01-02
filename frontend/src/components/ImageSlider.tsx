@@ -10,17 +10,12 @@ type ImageSliderProps = {
 };
 
 const ImageSlider = ({ images }: ImageSliderProps) => {
-  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const handleImageClick = (url: string) => {
-    setSelectedImage(url);
+  const handleImageClick = (index: number) => {
+    setSelectedIndex(index);
     setIsFullscreen(true);
-  };
-
-  const closeFullscreen = () => {
-    setIsFullscreen(false);
-    setSelectedImage(null);
   };
 
   return (
@@ -32,15 +27,9 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
         navigation
         pagination={{ clickable: true }}
         breakpoints={{
-          768: {
-            slidesPerView: 1,
-          },
-          1024: {
-            slidesPerView: 2,
-          },
-          1280: {
-            slidesPerView: 3,
-          },
+          768: { slidesPerView: 1 },
+          1024: { slidesPerView: 2 },
+          1280: { slidesPerView: 3 },
         }}
         className="w-full"
       >
@@ -50,30 +39,42 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
               src={url}
               alt={`Image ${index + 1}`}
               className="w-full h-[300px] object-cover cursor-pointer"
-              onClick={() => handleImageClick(url)}
+              onClick={() => handleImageClick(index)}
             />
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {isFullscreen && selectedImage && (
-        <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
-          onClick={closeFullscreen}
-        >
+      {isFullscreen && (
+        <div className="fixed inset-0 bg-black/90 z-50">
           <button
-            className="absolute top-4 right-4 text-white text-2xl"
-            onClick={closeFullscreen}
+            className="absolute top-4 right-4 text-white text-2xl z-50"
+            onClick={() => setIsFullscreen(false)}
           >
             &#x2715;
           </button>
-          <div className="relative h-full flex items-center">
-            <img
-              src={selectedImage}
-              alt="Fullscreen view"
-              className="max-h-[90%] w-auto object-contain"
-            />
-          </div>
+          <Swiper
+            modules={[Navigation, Pagination]}
+            spaceBetween={0}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            initialSlide={selectedIndex}
+            className="w-full h-full [&_.swiper-button-next]:!text-white [&_.swiper-button-prev]:!text-white [&_.swiper-button-next]:!right-4 [&_.swiper-button-prev]:!left-4 lg:[&_.swiper-button-next]:!right-8 lg:[&_.swiper-button-prev]:!left-8"
+          >
+            {images.map((url, index) => (
+              <SwiperSlide
+                key={index}
+                className="!flex justify-center items-center"
+              >
+                <img
+                  src={url}
+                  alt={`Fullscreen ${index + 1}`}
+                  className="max-h-[90%] p-2 lg:p-4 w-auto"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       )}
     </div>
