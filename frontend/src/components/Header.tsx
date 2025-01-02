@@ -23,9 +23,9 @@ const Header = () => {
   return (
     <div className="bg-blue-800 py-6 px-1 md:px-0">
       <div className="container mx-auto flex items-center justify-between">
-        <span className="text-2xl md:text-3xl text-white font-bold tracking-tight">
+        <header className="text-2xl md:text-3xl text-white font-bold tracking-tight">
           <Link to="/">Niceplace.com</Link>
-        </span>
+        </header>
         <span className="flex items-center gap-1">
           <div className="hidden lg:flex hover:bg-white/10 rounded-md">
             <LanguageSwitch onClick={() => setIsModalOpen(true)} />

@@ -15,7 +15,9 @@ const Layout = ({ children, showSearchBar = false }: LayoutProps) => {
       <Header />
       <Hero />
       <div className="container">{showSearchBar && <SearchBarForm />}</div>
-      <div className="container mx-auto py-10 flex-1">{children}</div>
+      <div className="container mx-auto py-10 flex flex-col flex-1">
+        {children}
+      </div>
       <Footer />
     </div>
   );

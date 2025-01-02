@@ -5,6 +5,7 @@ import { useCreateUser } from "../api/UserApi";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
+import { Link } from "react-router-dom";
 
 const registerFormSchema = (t: TFunction) =>
   z
@@ -123,7 +124,16 @@ const RegisterPage = () => {
           <span className="text-red-500">{errors.confirmPassword.message}</span>
         )}
       </label>
-      <span>
+      <span className="flex items-center justify-between">
+        <span className="text-sm">
+          {t("RegisterPage.alreadyAccount")}{" "}
+          <Link
+            className="underline hover:text-black/80 transition duration-100"
+            to="/login"
+          >
+            {t("BookingApp.signIn")}
+          </Link>
+        </span>
         <button
           type="submit"
           className="bg-blue-600 text-white text-xl p-2 font-bold rounded-md hover:bg-blue-500 transition duration-100"

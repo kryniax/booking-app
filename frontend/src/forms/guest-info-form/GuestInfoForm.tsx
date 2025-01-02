@@ -11,6 +11,7 @@ import { de } from "date-fns/locale/de";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TFunction } from "i18next";
+import { useCurrencyContext } from "../../contexts/CurrencyContext";
 registerLocale("en", enGB);
 registerLocale("pl", pl);
 registerLocale("de", de);
@@ -56,6 +57,7 @@ type GuestInfoFormData = z.infer<ReturnType<typeof guestInfoSchema>>;
 const GuestInfoForm = ({ hotelId, pricePerNight }: GuestInfoFormProps) => {
   const { isLoggedIn, currentLanguage } = useAppContext();
   const { t } = useTranslation();
+  const { formatPrice } = useCurrencyContext();
   const search = useSearchContext();
   const navigate = useNavigate();
   const location = useLocation();
@@ -71,9 +73,11 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: GuestInfoFormProps) => {
     register,
     handleSubmit,
     setValue,
+    trigger,
     formState: { errors },
   } = useForm<GuestInfoFormData>({
     resolver: zodResolver(formSchema),
+    mode: "onChange",
     defaultValues: {
       checkIn: search.checkIn,
       checkOut: search.checkOut,
@@ -120,94 +124,106 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: GuestInfoFormProps) => {
   }, [currentLanguage]);
 
   return (
-    <div className="flex flex-col p-4 bg-blue-200 gap-4">
-      <h3 className="text-md font-bold">
-        {pricePerNight}$ {t("BookingApp.perNight")}
+    <div className="flex flex-col p-3 bg-blue-200 gap-4 rounded-md">
+      <h3 className="text-2xl font-bold">
+        {formatPrice(pricePerNight)} {t("BookingApp.perNight")}
       </h3>
       <form onSubmit={isLoggedIn ? onSubmit : onSignInClick}>
-        <div className="grid grid-cols-1 gap-4 items-center">
-          <div>
-            <DatePicker
-              required
-              locale={calendarLanguage}
-              dateFormat="dd/MM/yyyy"
-              selected={checkIn}
-              onChange={(date) => setValue("checkIn", date as Date)}
-              selectsStart
-              startDate={checkIn}
-              endDate={checkOut}
-              minDate={minDate}
-              maxDate={maxDate}
-              placeholderText={t("BookingApp.checkIn")}
-              className="min-w-full bg-white p-2 focus:outline-none capitalize"
-              wrapperClassName="min-w-full"
-            />
+        <div className="grid grid-cols-1 gap-3 items-center">
+          <div className="flex flex-col h-full bg-white rounded-md p-3">
+            <div className="flex flex-1">
+              <DatePicker
+                locale={calendarLanguage}
+                dateFormat="dd/MM/yyyy"
+                selected={checkIn}
+                onChange={(date) => {
+                  setValue("checkIn", date as Date);
+                  trigger("checkIn");
+                }}
+                selectsStart
+                startDate={checkIn}
+                endDate={checkOut}
+                minDate={minDate}
+                maxDate={maxDate}
+                placeholderText={`${t("BookingApp.checkIn")}`}
+                className="min-w-full pl-1 bg-white rounded-md focus:outline-none capitalize"
+                wrapperClassName="min-w-full"
+              />
+            </div>
             {errors.checkIn && (
-              <span className="text-red-500 font-semibold text-sm">
+              <span className="text-red-500 text-xs font-semibold pl-1">
                 {errors.checkIn.message}
               </span>
             )}
           </div>
-          <div>
-            <DatePicker
-              required
-              locale={calendarLanguage}
-              dateFormat="dd/MM/yyyy"
-              selected={checkOut}
-              onChange={(date) => setValue("checkOut", date as Date)}
-              selectsStart
-              startDate={checkIn}
-              endDate={checkOut}
-              minDate={minDate}
-              maxDate={maxDate}
-              placeholderText={t("BookingApp.checkOut")}
-              className="min-w-full bg-white p-2 focus:outline-none capitalize"
-              wrapperClassName="min-w-full"
-            />
+          <div className="flex flex-col h-full bg-white rounded-md p-3">
+            <div className="flex flex-1">
+              <DatePicker
+                locale={calendarLanguage}
+                dateFormat="dd/MM/yyyy"
+                selected={checkOut}
+                onChange={(date) => {
+                  setValue("checkOut", date as Date);
+                  trigger("checkOut");
+                }}
+                selectsStart
+                startDate={checkIn}
+                endDate={checkOut}
+                minDate={minDate}
+                maxDate={maxDate}
+                placeholderText={`${t("BookingApp.checkOut")}`}
+                className="min-w-full pt-1 pl-1 bg-white rounded-md focus:outline-none capitalize"
+                wrapperClassName="min-w-full"
+              />
+            </div>
             {errors.checkOut && (
-              <span className="text-red-500 font-semibold text-sm">
+              <span className="text-red-500 text-xs font-semibold pl-1">
                 {errors.checkOut.message}
               </span>
             )}
           </div>
-          <div className="flex bg-white px-2 py-1 gap-2">
-            <label className="flex items-center capitalize">
-              {t("BookingApp.adults")}:
-              <input
-                type="number"
-                className="w-full p-1 focus:outline-none font-bold"
-                min={1}
-                max={12}
-                {...register("adultCount")}
-              />
-            </label>
-            <label className="flex items-center capitalize">
-              {t("BookingApp.children")}:
-              <input
-                type="number"
-                className="w-full p-1 focus:outline-none font-bold"
-                min={0}
-                max={12}
-                {...register("childCount")}
-              />
-            </label>
+          <div className="flex flex-col flex-1 bg-white p-3 gap-2 rounded-md">
+            <div className="flex p-1 flex-1">
+              <label className="flex items-start capitalize">
+                {t("BookingApp.adults")}:
+                <input
+                  type="number"
+                  className="w-full pl-1 focus:outline-none font-bold"
+                  min={1}
+                  max={12}
+                  {...register("adultCount")}
+                />
+              </label>
+              {search.childCount > 0 && (
+                <label className="flex items-start capitalize">
+                  {t("BookingApp.children")}:
+                  <input
+                    type="number"
+                    className="w-full pl-1 focus:outline-none font-bold"
+                    min={0}
+                    max={12}
+                    {...register("childCount")}
+                  />
+                </label>
+              )}
+            </div>
+            {errors.adultCount && (
+              <span className="text-red-500 text-xs font-semibold pl-1">
+                {errors.adultCount.message}
+              </span>
+            )}
+            {errors.childCount && (
+              <span className="text-red-500 text-xs font-semibold pl-1">
+                {errors.childCount.message}
+              </span>
+            )}
           </div>
-          {errors.adultCount && (
-            <span className="text-red-500 font-semibold text-sm">
-              {errors.adultCount.message}
-            </span>
-          )}
-          {errors.childCount && (
-            <span className="text-red-500 font-semibold text-sm">
-              {errors.childCount.message}
-            </span>
-          )}
           {isLoggedIn ? (
-            <button className="bg-blue-600 text-white text-xl h-full p-2 font-bold hover:bg-blue-500 transition duration-100">
+            <button className="bg-blue-600 text-white text-xl h-full p-3 font-bold rounded-md hover:bg-blue-500 transition duration-100">
               {t("GuestInfoForm.bookNow")}
             </button>
           ) : (
-            <button className="bg-blue-600 text-white text-xl h-full p-2 font-bold hover:bg-blue-500 transition duration-100">
+            <button className="bg-blue-600 text-white text-xl h-full p-3 font-bold rounded-md hover:bg-blue-500 transition duration-100">
               {t("GuestInfoForm.signInToBook")}
             </button>
           )}

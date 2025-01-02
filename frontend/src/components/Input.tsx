@@ -20,7 +20,9 @@ const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
         ref={ref}
         className="border rounded w-full py-1 px-2 font-normal"
       />
-      {error && <span className="text-red-500">{error.message}</span>}
+      {error && (
+        <span className="text-red-500 text-sm font-bold">{error.message}</span>
+      )}
     </label>
   );
 });
