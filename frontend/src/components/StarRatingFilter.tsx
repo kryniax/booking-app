@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../contexts/AppContext";
 
 type StarRatingFilterProps = {
   selectedStars: string[];
@@ -10,6 +11,10 @@ const StarRatingFilter = ({
   selectedStars,
   onChange,
 }: StarRatingFilterProps) => {
+  const getStarText = (count: string): string => {
+    return t(`StarRatingFilter.stars.${count}`);
+  };
+
   const { t } = useTranslation();
   return (
     <div className="border-b border-slate-300 pb-5">
@@ -29,7 +34,7 @@ const StarRatingFilter = ({
             onChange={onChange}
           />
           <span>
-            {star} {t("StarRatingFilter.stars")}
+            {star} {getStarText(star)}
           </span>
         </label>
       ))}

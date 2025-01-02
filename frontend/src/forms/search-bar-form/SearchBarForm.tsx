@@ -75,7 +75,7 @@ const SearchBarForm = () => {
     formState: { errors },
   } = useForm<SearchBarFormData>({
     resolver: formSchema,
-    mode: "onChange",
+    mode: "onSubmit",
     defaultValues: {
       destination: search.destination,
       checkIn: search.checkIn,
@@ -86,13 +86,13 @@ const SearchBarForm = () => {
   });
 
   useEffect(() => {
-    trigger();
-  }, [formSchema, trigger]);
+    //trigger();
+  }, [t, trigger]);
 
   const checkIn = watch("checkIn");
   const checkOut = watch("checkOut");
 
-  const onSubmit = (data: SearchBarFormData) => {
+  const onSubmit = async (data: SearchBarFormData) => {
     search.saveSearchValues(
       data.destination,
       data.checkIn,
@@ -100,6 +100,7 @@ const SearchBarForm = () => {
       data.adultCount,
       data.childCount
     );
+
     navigate("/search");
   };
 
@@ -150,7 +151,7 @@ const SearchBarForm = () => {
             />
           </label>
           <label className="flex items-start capitalize">
-            {t("BookingApp.child")}:
+            {t("BookingApp.children")}:
             <input
               type="number"
               className="w-full pl-1 focus:outline-none font-bold"
