@@ -17,13 +17,16 @@ i18n
       loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
     detection: {
-      order: ["cookie", "localStorage", "navigator", "htmlTag"],
-      lookupLocalStorage: "i18nextLng",
-      lookupFromPathIndex: 0,
-      lookupFromSubdomainIndex: 0,
-      caches: ["localStorage"],
+      order: ["cookie", "navigator", "htmlTag"],
+      lookupCookie: "lang",
+      caches: ["cookie"],
       cookieMinutes: 60 * 24 * 30,
-      cookieDomain: "http://localhost:5173/",
+      cookieDomain: "localhost",
+      cookieOptions: {
+        path: "/",
+        sameSite: "strict",
+        secure: false,
+      },
     },
   });
 
