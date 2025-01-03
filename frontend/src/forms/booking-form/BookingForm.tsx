@@ -8,7 +8,6 @@ import { useSearchContext } from "../../contexts/SearchContext";
 import { useParams } from "react-router-dom";
 import { useCreateBooking } from "../../api/BookingApi";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
 import { useAppContext } from "../../contexts/AppContext";
 import { useCurrencyContext } from "../../contexts/CurrencyContext";
 
