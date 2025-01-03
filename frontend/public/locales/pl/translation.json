@@ -14,8 +14,8 @@
     "checkOut": "wymeldowanie",
     "facilities": "udogodnienia",
     "hotelType": "typ hotelu",
-    "signIn": "zaloguj się",
-    "signOut": "wyloguj się",
+    "signIn": "Zaloguj się",
+    "signOut": "Wyloguj się",
     "search": "szukaj",
     "clear": "wyczyść",
     "perNight": "noc",
@@ -34,11 +34,17 @@
     "location": "Lokalizacja: ",
     "totalStay": "Całkowity pobyt: ",
     "checkIn": "zameldowanie",
-    "checkOut": "wymeldowanie"
+    "checkOut": "wymeldowanie",
+    "nights": {
+      "1": "noc",
+      "2": "noce",
+      "5": "nocy"
+    }
   },
   "Footer": {
     "privacyPolicy": "Polityka Prywatności",
-    "termsOfService": "Warunki Użytkowania"
+    "termsOfService": "Warunki Użytkowania",
+    "currency": "Waluta:"
   },
   "Header": {
     "mainPage": "Strona Główna",
@@ -48,14 +54,14 @@
   },
   "Hero": {
     "header": "Znajdź swój następny pobyt",
-    "description": "Szukaj niskich cen w hotelach na swoje wymażone wakacje."
+    "description": "Szukaj niskich cen w hotelach na swoje wymarzone wakacje."
   },
   "PriceFilter": {
     "maxPrice": "Maksymalna Cena",
     "selectMaxPrice": "Wybierz Maksymalną Cenę"
   },
   "SearchResultCard": {
-    "viewMore": "Zobacz Więcej"
+    "viewMore": "Sprawdź"
   },
   "SortHotelFilter": {
     "pricePerNightAsc": "Cena za noc (od najniższej)",
@@ -309,7 +315,9 @@
   "SearchPage": {
     "filterBy": "Filtruj według:",
     "hotelsFound": "Znalezione Hotele",
-    "in": "w"
+    "in": "w",
+    "filter": "Filtruj",
+    "sort": "Sortuj"
   },
   "PrivacyPage": {
     "title": "Polityka Prywatności",

@@ -48,11 +48,16 @@
     "location": "Location: ",
     "totalStay": "Total stay: ",
     "checkIn": "check-in",
-    "checkOut": "check-out"
+    "checkOut": "check-out",
+    "nights": {
+      "1": "night",
+      "2": "nights"
+    }
   },
   "Footer": {
     "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service"
+    "termsOfService": "Terms of Service",
+    "currency": "Currency:"
   },
   "Header": {
     "mainPage": "Main Page",
@@ -329,7 +334,9 @@
   "SearchPage": {
     "filterBy": "Filter by:",
     "hotelsFound": "Hotels Found",
-    "in": "in"
+    "in": "in",
+    "filter": "Filter",
+    "sort": "Sort"
   },
   "PrivacyPage": {
     "title": "Privacy Policy",
