@@ -11,7 +11,7 @@ type LayoutProps = {
 
 const Layout = ({ children, showSearchBar = false }: LayoutProps) => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen dark:bg-zinc-900">
       <Header />
       <Hero />
       <div className="container">{showSearchBar && <SearchBarForm />}</div>

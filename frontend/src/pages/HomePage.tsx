@@ -19,7 +19,7 @@ const HomePage = () => {
   if (!mainPageHotels) {
     return (
       <div className="flex flex-col flex-1 gap-5 items-center justify-center py-10">
-        <TfiFaceSad size={90} className="text-black/80" />
+        <TfiFaceSad size={90} className="text-black/80 " />
         <span className="font-bold text-2xl text-black/80">
           {t("HomePage.noHotel")}
         </span>
@@ -33,11 +33,11 @@ const HomePage = () => {
   return (
     <div className="space-y-3">
       <header>
-        <h2 className="text-3xl font-bold">
+        <h2 className="text-3xl font-bold dark:text-zinc-200">
           {t("HomePage.latestDestinations")}
         </h2>
       </header>
-      <p>{t("HomePage.recentDestinations")}</p>
+      <p className="dark:text-zinc-200">{t("HomePage.recentDestinations")}</p>
       <div className="grid gap-4">
         <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
           {topRowHotels.map((hotel) => (

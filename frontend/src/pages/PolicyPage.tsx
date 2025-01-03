@@ -4,14 +4,14 @@ const PrivacyPolicy = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white">
+    <div className="max-w-4xl mx-auto p-6 dark:text-zinc-100">
       <h1 className="text-3xl font-bold mb-8">{t("PrivacyPage.title")}</h1>
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">
           {t("PrivacyPage.introduction.title")}
         </h2>
-        <p className="text-gray-700 mb-4">
+        <p className="text-zinc-700 dark:text-zinc-300 mb-4">
           {t("PrivacyPage.introduction.content")}
         </p>
       </section>
@@ -20,7 +20,7 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("PrivacyPage.administrator.title")}
         </h2>
-        <p className="text-gray-700 mb-4">
+        <p className="text-zinc-700 dark:text-zinc-400  mb-4">
           {t("PrivacyPage.administrator.content")}
         </p>
       </section>
@@ -29,10 +29,10 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("PrivacyPage.dataScope.title")}
         </h2>
-        <p className="text-gray-700 mb-2">
+        <p className="text-zinc-700 dark:text-zinc-400  mb-2">
           {t("PrivacyPage.dataScope.description")}
         </p>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">{t("PrivacyPage.dataScope.items.name")}</li>
           <li className="mb-2">{t("PrivacyPage.dataScope.items.email")}</li>
           <li className="mb-2">{t("PrivacyPage.dataScope.items.phone")}</li>
@@ -51,10 +51,10 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("PrivacyPage.processingPurpose.title")}
         </h2>
-        <p className="text-gray-700 mb-2">
+        <p className="text-zinc-700 dark:text-zinc-400  mb-2">
           {t("PrivacyPage.processingPurpose.description")}
         </p>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">
             {t("PrivacyPage.processingPurpose.items.booking")}
           </li>
@@ -83,7 +83,7 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("PrivacyPage.legalBasis.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">{t("PrivacyPage.legalBasis.items.contract")}</li>
           <li className="mb-2">{t("PrivacyPage.legalBasis.items.legal")}</li>
           <li className="mb-2">
@@ -97,7 +97,7 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("PrivacyPage.retentionPeriod.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">
             {t("PrivacyPage.retentionPeriod.items.account")}
           </li>
@@ -117,7 +117,7 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("PrivacyPage.userRights.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">{t("PrivacyPage.userRights.items.access")}</li>
           <li className="mb-2">
             {t("PrivacyPage.userRights.items.rectification")}
@@ -145,7 +145,7 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("PrivacyPage.dataRecipients.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">
             {t("PrivacyPage.dataRecipients.items.hotels")}
           </li>
@@ -168,7 +168,7 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("PrivacyPage.security.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">{t("PrivacyPage.security.items.encryption")}</li>
           <li className="mb-2">{t("PrivacyPage.security.items.access")}</li>
           <li className="mb-2">{t("PrivacyPage.security.items.backup")}</li>
@@ -181,7 +181,7 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("PrivacyPage.cookies.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">
             {t("PrivacyPage.cookies.items.functionality")}
           </li>
@@ -197,22 +197,24 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("PrivacyPage.changes.title")}
         </h2>
-        <p className="text-gray-700 mb-4">{t("PrivacyPage.changes.content")}</p>
+        <p className="text-zinc-700 dark:text-zinc-400  mb-4">
+          {t("PrivacyPage.changes.content")}
+        </p>
       </section>
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">
           {t("PrivacyPage.contact.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">{t("PrivacyPage.contact.items.email")}</li>
           <li className="mb-2">{t("PrivacyPage.contact.items.phone")}</li>
           <li className="mb-2">{t("PrivacyPage.contact.items.address")}</li>
         </ul>
       </section>
 
-      <footer className="mt-8 pt-4 border-t border-gray-200">
-        <p className="text-gray-600 text-sm">{t("PrivacyPage.lastUpdate")}</p>
+      <footer className="mt-8 pt-4 border-t border-slate-300">
+        <p className="text-zinc-300 text-sm">{t("PrivacyPage.lastUpdate")}</p>
       </footer>
     </div>
   );

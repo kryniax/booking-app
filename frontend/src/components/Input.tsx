@@ -9,16 +9,22 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
 }
 
 const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
-  const { label, labelClass, error, ...inputProps } = props;
+  const { label, labelClass, error, className, ...inputProps } = props;
   return (
     <label
-      className={twMerge(`text-gray-700 text-sm font-bold flex-1`, labelClass)}
+      className={twMerge(
+        `text-gray-700 text-sm font-bold flex-1 dark:text-zinc-100`,
+        labelClass
+      )}
     >
       <span className="capitalize">{label}</span>
       <input
         {...inputProps}
         ref={ref}
-        className="border rounded w-full py-1 px-2 font-normal"
+        className={twMerge(
+          `border rounded w-full py-1 px-2 font-normal dark:bg-zinc-800 dark:border-zinc-700`,
+          className
+        )}
       />
       {error && (
         <span className="text-red-500 text-sm font-bold">{error.message}</span>

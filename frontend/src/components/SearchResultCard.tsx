@@ -14,7 +14,7 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
   const { formatPrice } = useCurrencyContext();
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-[2fr_3fr] border border-slate-300 rounded-lg p-8 gap-8">
+    <div className="grid grid-cols-1 xl:grid-cols-[2fr_3fr] border border-slate-300 dark:border-zinc-700 dark:bg-zinc-800 rounded-lg p-8 gap-8">
       <div className="w-full h-[250px]">
         <img
           src={hotel.imageUrls[0]}
@@ -30,28 +30,30 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
                 <AiFillStar key={`star-${index}`} className="fill-yellow-500" />
               ))}
             </span>
-            <span className="ml-1 text-sm">
+            <span className="ml-1 text-sm dark:text-zinc-100">
               {t(`TypeSection.hotelTypes.${hotel.type}`)}
             </span>
           </div>
           <header>
             <Link
               to={`/detail/${hotel._id}`}
-              className="text-2xl font-bold cursor-pointer"
+              className="text-2xl font-bold cursor-pointer dark:text-zinc-100"
             >
               {hotel.name}
             </Link>
           </header>
         </div>
         <div>
-          <article className="line-clamp-4">{hotel.description}</article>
+          <article className="line-clamp-4 dark:text-zinc-100">
+            {hotel.description}
+          </article>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 items-end whitespace-nowrap">
           <div className="flex gap-1 items-center">
             {hotel.facilities.slice(0, 3).map((facility) => (
               <span
                 key={facility}
-                className="bg-slate-300 p-2 rounded-lg font-semibold text-xs whitespace-nowrap"
+                className="bg-slate-300 dark:bg-zinc-500 p-2 rounded-lg font-semibold text-xs whitespace-nowrap"
               >
                 {t(`FacilitiesSection.hotelFacilities.${facility}`)}
               </span>
@@ -62,13 +64,13 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
             </span>
           </div>
           <div className="flex flex-col items-end gap-1">
-            <div className="font-bold">
+            <div className="font-bold dark:text-zinc-100">
               <span className="font-normal">{t("BookingApp.total")}:</span>{" "}
               {formatPrice(hotel.pricePerNight)}
             </div>
             <Link
               to={`/detail/${hotel._id}`}
-              className="bg-blue-600 text-white h-full p-2 font-bold text-xl max-w-fit rounded-md"
+              className="bg-blue-600 hover:bg-blue-500 dark:bg-blue-900 dark:hover:bg-blue-800 text-white h-full p-3 font-bold text-xl max-w-fit rounded-md transition duration:100"
             >
               {t("SearchResultCard.viewMore")}
             </Link>

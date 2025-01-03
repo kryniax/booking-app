@@ -119,15 +119,15 @@ const SearchBarForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="-mt-8 p-1 bg-orange-400 rounded-md shadow-md grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-5 items-stretch gap-1"
+      className="-mt-8 p-1 bg-orange-400 dark:bg-zinc-950 rounded-md shadow-md grid grid-cols-1 lg:grid-cols-3 2xl:grid-cols-5 items-stretch gap-1"
     >
-      <div className="flex flex-col flex-1 bg-white p-2 rounded-md">
+      <div className="flex flex-col flex-1 bg-white dark:bg-zinc-800 p-2 rounded-md">
         <div className="flex flex-col justify-between flex-1">
           <div className="flex items-center">
-            <MdTravelExplore size={25} className="mr-1" />
+            <MdTravelExplore size={25} className="mr-1 dark:text-zinc-300" />
             <input
               placeholder={t("SearchBarForm.destinationPlaceholder")}
-              className="text-md w-full p-1 focus:outline-none"
+              className="text-md w-full p-1 focus:outline-none dark:bg-zinc-800 dark:text-zinc-300"
               {...register("destination")}
             />
           </div>
@@ -138,23 +138,23 @@ const SearchBarForm = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-col flex-1 bg-white p-2 gap-2 rounded-md">
+      <div className="flex flex-col flex-1 bg-white dark:bg-zinc-800 p-2 gap-2 rounded-md">
         <div className="flex p-1 flex-1">
-          <label className="flex items-start capitalize">
+          <label className="flex items-start capitalize dark:text-zinc-300">
             {t("BookingApp.adults")}:
             <input
               type="number"
-              className="w-full pl-1 focus:outline-none font-bold"
+              className="w-full pl-1 focus:outline-none font-bold dark:bg-zinc-800 dark:text-zinc-300"
               min={1}
               max={12}
               {...register("adultCount")}
             />
           </label>
-          <label className="flex items-start capitalize">
+          <label className="flex items-start capitalize dark:text-zinc-300">
             {t("BookingApp.children")}:
             <input
               type="number"
-              className="w-full pl-1 focus:outline-none font-bold"
+              className="w-full pl-1 focus:outline-none font-bold dark:bg-zinc-800 dark:text-zinc-300"
               min={0}
               max={12}
               {...register("childCount")}
@@ -172,7 +172,7 @@ const SearchBarForm = () => {
           </span>
         )}
       </div>
-      <div className="flex flex-col h-full bg-white rounded-md p-2">
+      <div className="flex flex-col h-full bg-white dark:bg-zinc-800 rounded-md p-2">
         <div className="flex flex-1">
           <DatePicker
             locale={calendarLanguage}
@@ -188,8 +188,9 @@ const SearchBarForm = () => {
             minDate={minDate}
             maxDate={maxDate}
             placeholderText={`${t("BookingApp.checkIn")}`}
-            className="min-w-full pt-1 pl-1 bg-white rounded-md focus:outline-none capitalize"
+            className="min-w-full pt-1 pl-1 bg-white dark:bg-zinc-800 dark:text-zinc-300 rounded-md focus:outline-none capitalize"
             wrapperClassName="min-w-full"
+            portalId="root"
           />
         </div>
         {errors.checkIn && (
@@ -198,7 +199,7 @@ const SearchBarForm = () => {
           </span>
         )}
       </div>
-      <div className="flex flex-col h-full bg-white rounded-md p-2">
+      <div className="flex flex-col h-full bg-white dark:bg-zinc-800 rounded-md p-2">
         <div className="flex flex-1">
           <DatePicker
             locale={calendarLanguage}
@@ -214,8 +215,9 @@ const SearchBarForm = () => {
             minDate={minDate}
             maxDate={maxDate}
             placeholderText={`${t("BookingApp.checkOut")}`}
-            className="min-w-full pt-1 pl-1 bg-white rounded-md focus:outline-none capitalize"
+            className="min-w-full pt-1 pl-1 bg-white dark:bg-zinc-800 dark:text-zinc-300 rounded-md focus:outline-none capitalize"
             wrapperClassName="min-w-full"
+            portalId="root"
           />
         </div>
         {errors.checkOut && (
@@ -228,7 +230,7 @@ const SearchBarForm = () => {
       <div className="flex gap-1">
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white capitalize h-full p-2 rounded-md font-bold text-xl hover:bg-blue-500 transition duration-100"
+          className="w-full bg-blue-600 dark:bg-blue-900 text-white capitalize h-full p-2 rounded-md font-bold text-xl hover:bg-blue-500 hover:dark:bg-blue-800 transition duration-100"
         >
           {t("BookingApp.search")}
         </button>

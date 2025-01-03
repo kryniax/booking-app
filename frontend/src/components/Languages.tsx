@@ -14,9 +14,9 @@ const Languages = () => {
   };
 
   return (
-    <ul className="w-full h-full flex flex-col items-start gap-5 p-4">
+    <ul className="w-full h-full flex flex-col items-start gap-5 p-4 dark:text-zinc-100">
       <li
-        className="w-full p-2 flex items-center gap-5 cursor-pointer hover:bg-black/10 transition duration-100 rounded-md"
+        className="w-full p-2 flex items-center gap-5 cursor-pointer hover:bg-black/10 dark:hover:bg-black/30 transition duration-100 rounded-md"
         onClick={() => languageHandler("gb")}
       >
         <GB
@@ -28,7 +28,7 @@ const Languages = () => {
         </span>
       </li>
       <li
-        className="w-full p-2 flex items-center gap-5 cursor-pointer hover:bg-black/10 transition duration-100 rounded-md"
+        className="w-full p-2 flex items-center gap-5 cursor-pointer hover:bg-black/10 dark:hover:bg-black/30 transition duration-100 rounded-md"
         onClick={() => languageHandler("pl")}
       >
         <PL
@@ -40,7 +40,7 @@ const Languages = () => {
         </span>
       </li>
       <li
-        className="w-full p-2 flex items-center gap-5 cursor-pointer hover:bg-black/10 transition duration-100 rounded-md"
+        className="w-full p-2 flex items-center gap-5 cursor-pointer hover:bg-black/10 dark:hover:bg-black/30 transition duration-100 rounded-md"
         onClick={() => languageHandler("de")}
       >
         <DE

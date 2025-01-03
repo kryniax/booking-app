@@ -4,7 +4,11 @@ import Input from "../../../components/Input";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-const ImagesSection = () => {
+type ImagesSectionProps = {
+  isLoading: boolean;
+};
+
+const ImagesSection = ({ isLoading }: ImagesSectionProps) => {
   const { t } = useTranslation();
   const {
     register,
@@ -27,8 +31,10 @@ const ImagesSection = () => {
   };
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-3">{t("ImagesSection.name")}</h2>
-      <div className="border rounded p-4 flex flex-col gap-4">
+      <h2 className="text-2xl font-bold mb-3 dark:text-zinc-100">
+        {t("ImagesSection.name")}
+      </h2>
+      <div className="border rounded p-4 flex flex-col gap-4 dark:border-zinc-700 dark:bg-zinc-800">
         {existingImageUrls && (
           <div className="grid grid-cols-6 gap-4">
             {existingImageUrls.map((imageUrl, index) => (
@@ -59,7 +65,9 @@ const ImagesSection = () => {
           multiple
           accept="image/*"
           labelClass="sm:max-w-[80%] lg:max-w-[40%]"
+          className="border-zinc-700"
           error={errors.imageFiles}
+          disabled={isLoading}
           {...register("imageFiles")}
         />
       </div>

@@ -18,6 +18,10 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
     setIsFullscreen(true);
   };
 
+  const imageOnClick = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+  };
+
   return (
     <div className="relative">
       <Swiper
@@ -46,7 +50,10 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
       </Swiper>
 
       {isFullscreen && (
-        <div className="fixed inset-0 bg-black/90 z-50">
+        <div
+          className="fixed inset-0 bg-black/90 z-50"
+          onClick={() => setIsFullscreen(false)}
+        >
           <button
             className="absolute top-4 right-4 text-white text-2xl z-50"
             onClick={() => setIsFullscreen(false)}
@@ -71,6 +78,7 @@ const ImageSlider = ({ images }: ImageSliderProps) => {
                   src={url}
                   alt={`Fullscreen ${index + 1}`}
                   className="max-h-[90%] p-2 lg:p-4 w-auto"
+                  onClick={imageOnClick}
                 />
               </SwiperSlide>
             ))}

@@ -6,6 +6,7 @@ import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import Input from "../components/Input";
 
 const registerFormSchema = (t: TFunction) =>
   z
@@ -68,64 +69,43 @@ const RegisterPage = () => {
 
   return (
     <form className="flex flex-col gap-5" onSubmit={onSubmit}>
-      <h2 className="text-3xl font-bold">{t("RegisterPage.title")}</h2>
+      <h2 className="text-3xl font-bold dark:text-zinc-100">
+        {t("RegisterPage.title")}
+      </h2>
       <div className="flex flex-col md:flex-row gap-5">
-        <label className="text-gray-700 text-sm capitalize font-bold flex-1">
-          {t("RegisterPage.validation.firstName.label")}
-          <input
-            className="border rounded w-full py-1 px-2 font-normal"
-            {...register("firstName")}
-          />
-          {errors.firstName && (
-            <span className="text-red-500">{errors.firstName.message}</span>
-          )}
-        </label>
-        <label className="text-gray-700 text-sm capitalize font-bold flex-1">
-          {t("RegisterPage.validation.lastName.label")}
-          <input
-            className="border rounded w-full py-1 px-2 font-normal"
-            {...register("lastName")}
-          />
-          {errors.lastName && (
-            <span className="text-red-500">{errors.lastName.message}</span>
-          )}
-        </label>
+        <Input
+          label={t("RegisterPage.validation.firstName.label")}
+          type="text"
+          error={errors.firstName}
+          {...register("firstName")}
+        />
+        <Input
+          label={t("RegisterPage.validation.lastName.label")}
+          type="text"
+          error={errors.lastName}
+          {...register("lastName")}
+        />
       </div>
-      <label className="text-gray-700 text-sm capitalize font-bold flex-1">
-        {t("RegisterPage.validation.email.label")}
-        <input
-          type="email"
-          className="border rounded w-full py-1 px-2 font-normal"
-          {...register("email")}
-        />
-        {errors.email && (
-          <span className="text-red-500">{errors.email.message}</span>
-        )}
-      </label>
-      <label className="text-gray-700 text-sm capitalize font-bold flex-1">
-        {t("RegisterPage.validation.password.label")}
-        <input
-          type="password"
-          className="border rounded w-full py-1 px-2 font-normal"
-          {...register("password")}
-        />
-        {errors.password && (
-          <span className="text-red-500">{errors.password.message}</span>
-        )}
-      </label>
-      <label className="text-gray-700 text-sm capitalize font-bold flex-1">
-        {t("RegisterPage.validation.confirmPassword.label")}
-        <input
-          type="password"
-          className="border rounded w-full py-1 px-2 font-normal"
-          {...register("confirmPassword")}
-        />
-        {errors.confirmPassword && (
-          <span className="text-red-500">{errors.confirmPassword.message}</span>
-        )}
-      </label>
-      <span className="flex items-center justify-between">
-        <span className="text-sm">
+      <Input
+        label={t("RegisterPage.validation.email.label")}
+        type="email"
+        error={errors.email}
+        {...register("email")}
+      />
+      <Input
+        label={t("RegisterPage.validation.password.label")}
+        type="password"
+        error={errors.password}
+        {...register("password")}
+      />
+      <Input
+        label={t("RegisterPage.validation.confirmPassword.label")}
+        type="password"
+        error={errors.confirmPassword}
+        {...register("confirmPassword")}
+      />
+      <div className="flex items-center justify-between">
+        <span className="text-sm dark:text-zinc-100">
           {t("RegisterPage.alreadyAccount")}{" "}
           <Link
             className="underline hover:text-black/80 transition duration-100"
@@ -136,11 +116,11 @@ const RegisterPage = () => {
         </span>
         <button
           type="submit"
-          className="bg-blue-600 text-white text-xl p-2 font-bold rounded-md hover:bg-blue-500 transition duration-100"
+          className="bg-blue-600 dark:bg-blue-900 text-white text-xl p-2 font-bold rounded-md hover:bg-blue-500 dark:hover:bg-blue-800 transition duration-100"
         >
           {t("RegisterPage.button")}
         </button>
-      </span>
+      </div>
     </form>
   );
 };

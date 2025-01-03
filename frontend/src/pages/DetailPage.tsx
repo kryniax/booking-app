@@ -21,20 +21,22 @@ const DetailPage = () => {
             <AiFillStar className="fill-yellow-500" />
           ))}
         </span>
-        <h1 className="text-3xl font-bold">{hotelDataById.name}</h1>
+        <h1 className="text-3xl font-bold dark:text-zinc-100">
+          {hotelDataById.name}
+        </h1>
       </div>
       <div className="grid grid-cols-1">
         <ImageSlider images={hotelDataById.imageUrls} />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-2">
         {hotelDataById.facilities.map((facility) => (
-          <span className="border border-slate-300 rounded-sm p-3">
+          <span className="border border-slate-300 rounded-md p-3 dark:border-zinc-700 dark:bg-zinc-700 dark:text-zinc-100">
             {t(`FacilitiesSection.hotelFacilities.${facility}`)}
           </span>
         ))}
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-5">
-        <span className="whitespace-pre-line text-justify">
+        <span className="whitespace-pre-line text-justify dark:text-zinc-100">
           {hotelDataById.description}
         </span>
         <div className="h-fit">

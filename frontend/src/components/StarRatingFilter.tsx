@@ -16,14 +16,14 @@ const StarRatingFilter = ({
 
   const { t } = useTranslation();
   return (
-    <div className="border-b border-slate-300 pb-5">
-      <h4 className="text-md font-semibold mb-2">
+    <div className="border-b border-slate-300 dark:border-zinc-200 pb-5">
+      <h4 className="text-md font-semibold mb-2 dark:text-zinc-100">
         {t("StarRatingFilter.propertyRating")}
       </h4>
       {["5", "4", "3", "2", "1"].map((star) => (
         <label
           key={`starRating-${star}`}
-          className="flex items-center space-x-2"
+          className="flex items-center space-x-2 dark:text-zinc-100"
         >
           <input
             type="checkbox"

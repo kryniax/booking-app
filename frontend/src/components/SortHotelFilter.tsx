@@ -14,7 +14,7 @@ const SortHotelFilter = ({
     <select
       value={selectedSortOption}
       onChange={(event) => onChange(event.target.value)}
-      className="p-2 border rounded-md capitalize"
+      className="p-2 dark:bg-zinc-800 border border-slate-300 dark:border-zinc-700 dark:text-zinc-100 rounded-md capitalize"
     >
       <option className="capitalize" value="">
         {t("BookingApp.sortBy")}

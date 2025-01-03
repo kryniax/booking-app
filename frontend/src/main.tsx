@@ -8,6 +8,7 @@ import { AppContextProvider } from "./contexts/AppContext.tsx";
 import { SearchContextProvider } from "./contexts/SearchContext.tsx";
 import "./config/i18n";
 import { CurrencyProvider } from "./contexts/CurrencyContext.tsx";
+import ScrollToTop from "./components/ScrollToTop.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,6 +25,7 @@ createRoot(document.getElementById("root")!).render(
         <CurrencyProvider>
           <SearchContextProvider>
             <BrowserRouter>
+              <ScrollToTop />
               <AppRoutes />
             </BrowserRouter>
           </SearchContextProvider>

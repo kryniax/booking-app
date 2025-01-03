@@ -13,8 +13,8 @@ const FacilitiesFilter = ({
 }: FacilitiesFilterProps) => {
   const { t } = useTranslation();
   return (
-    <div className="border-b border-slate-300 pb-5">
-      <h4 className="text-md font-semibold mb-2 capitalize">
+    <div className="border-b border-slate-300 dark:border-zinc-200 pb-5">
+      <h4 className="text-md dark:text-zinc-100 font-semibold mb-2 capitalize">
         {t("BookingApp.facilities")}
       </h4>
       {hotelFacilitiesKeys.map((facility) => (
@@ -26,7 +26,9 @@ const FacilitiesFilter = ({
             checked={selectedFacilities.includes(facility)}
             onChange={onChange}
           />
-          <span>{t(`FacilitiesSection.hotelFacilities.${facility}`)}</span>
+          <span className="dark:text-zinc-100">
+            {t(`FacilitiesSection.hotelFacilities.${facility}`)}
+          </span>
         </label>
       ))}
     </div>

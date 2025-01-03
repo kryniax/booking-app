@@ -8,12 +8,12 @@ type PriceFilterProps = {
 const PriceFilter = ({ selectedPrice, onChange }: PriceFilterProps) => {
   const { t } = useTranslation();
   return (
-    <div className="border-b border-slate-300 pb-5">
-      <h4 className="text-md font-semibold mb-2">
+    <div className="border-b border-slate-300 dark:border-zinc-200 pb-5">
+      <h4 className="text-md font-semibold mb-2 dark:text-zinc-100">
         {t("PriceFilter.maxPrice")}
       </h4>
       <select
-        className="p-2 border rounded-md w-full"
+        className="p-2 border rounded-md w-full dark:bg-zinc-700 dark:border-zinc-700 dark:text-zinc-100"
         value={selectedPrice}
         onChange={(event) =>
           onChange(

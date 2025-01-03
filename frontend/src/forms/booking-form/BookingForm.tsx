@@ -8,6 +8,9 @@ import { useSearchContext } from "../../contexts/SearchContext";
 import { useParams } from "react-router-dom";
 import { useCreateBooking } from "../../api/BookingApi";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
+import { useAppContext } from "../../contexts/AppContext";
+import { useCurrencyContext } from "../../contexts/CurrencyContext";
 
 type BookingFormProps = {
   currentUser: UserType;
@@ -36,6 +39,8 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
   const { hotelId } = useParams();
   const { bookHotel, isPending, isSuccess } = useCreateBooking();
   const { t } = useTranslation();
+  const { theme } = useAppContext();
+  const { formatPrice } = useCurrencyContext();
   const { handleSubmit, register } = useForm<BookingFormData>({
     resolver: zodResolver(bookingFormSchema),
     defaultValues: {
@@ -66,37 +71,51 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
       bookHotel({ ...formData, paymentIntentId: result.paymentIntent.id });
     }
   };
+
+  const cardElementOptions = {
+    style: {
+      base: {
+        color: theme ? "#f4f4f5" : "#18181b",
+        "::placeholder": {
+          color: theme ? "#71717a" : "#a1a1aa",
+        },
+      },
+    },
+  };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="grid grid-cols-1 gap-5 rounded-lg border border-slate-300 p-5"
+      className="grid grid-cols-1 gap-5 rounded-lg border border-slate-300 dark:bg-zinc-800 dark:border-zinc-700 p-5"
     >
-      <span className="text-3xl font-bold">{t("BookingForm.title")}</span>
+      <span className="text-3xl font-bold dark:text-zinc-100">
+        {t("BookingForm.title")}
+      </span>
       <div className="grid grid-cols-2 gap-6">
-        <label className="text-gray-700 text-sm font-bold flex-1">
+        <label className="text-zinc-700 text-sm font-bold flex-1 dark:text-zinc-100">
           {t("BookingForm.firstName")}
           <input
-            className="mt-1 border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 font-normal"
+            className="mt-1 border rounded w-full py-2 px-3 text-zinc-700 bg-gray-200 dark:bg-zinc-700 dark:text-zinc-100 dark:border-zinc-600 font-normal"
             type="text"
             readOnly
             disabled
             {...register("firstName")}
           />
         </label>
-        <label className="text-gray-700 text-sm font-bold flex-1">
+        <label className="text-zinc-700 text-sm font-bold flex-1 dark:text-zinc-100">
           {t("BookingForm.lastName")}
           <input
-            className="mt-1 border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 font-normal"
+            className="mt-1 border rounded w-full py-2 px-3 text-zinc-700 bg-gray-200 dark:bg-zinc-700 dark:text-zinc-100 dark:border-zinc-600 font-normal"
             type="text"
             readOnly
             disabled
             {...register("lastName")}
           />
         </label>
-        <label className="text-gray-700 text-sm font-bold flex-1">
+        <label className="text-zinc-700 text-sm font-bold flex-1 dark:text-zinc-100">
           {t("BookingForm.email")}
           <input
-            className="mt-1 border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 font-normal"
+            className="mt-1 border rounded w-full py-2 px-3 text-zinc-700 bg-gray-200 dark:bg-zinc-700 dark:text-zinc-100 dark:border-zinc-600 font-normal"
             type="email"
             readOnly
             disabled
@@ -105,23 +124,27 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
         </label>
       </div>
       <div className="space-y-2">
-        <h2 className="text-xl font-semibold">
+        <h2 className="text-xl font-semibold dark:text-zinc-100">
           {t("BookingForm.yourPriceSummary")}
         </h2>
-        <div className="bg-blue-200 p-4 rounded-md">
-          <span className="font-semibold text-lg">
-            {t("BookingForm.totalCost")}: {paymentIntent.totalCost.toFixed(2)}$
+        <div className="bg-blue-200 dark:bg-zinc-600 p-4 rounded-md">
+          <span className="font-semibold text-lg dark:text-zinc-100">
+            {t("BookingForm.totalCost")}:{" "}
+            {formatPrice(Number(paymentIntent.totalCost.toFixed(2)))}
           </span>
-          <p className="text-xs">{t("BookingForm.includesTaxesAndCharges")}</p>
+          <p className="text-xs dark:text-zinc-200">
+            {t("BookingForm.includesTaxesAndCharges")}
+          </p>
         </div>
       </div>
       <div className="space-y-2">
-        <h3 className="text-xl font-semibold">
+        <h3 className="text-xl font-semibold dark:text-zinc-100">
           {t("BookingForm.paymentDetails")}
         </h3>
         <CardElement
           id="payment-element"
-          className="border rounded-md p-2 text-sm"
+          className="border dark:border-zinc-100 rounded-md p-3 text-sm"
+          options={cardElementOptions}
         />
       </div>
       <div className="flex justify-end">
@@ -131,7 +154,7 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
           <button
             disabled={isPending}
             type="submit"
-            className="bg-blue-600 text-white p-2 font-bold rounded-md hover:bg-blue-500 transition duration-100 disabled:bg-gray-500"
+            className="bg-blue-600 dark:bg-blue-900 text-white p-2 font-bold rounded-md hover:bg-blue-500 dark:hover:bg-blue-800 transition duration-100 disabled:bg-zinc-500"
           >
             {isPending ? "Saving..." : t("BookingForm.confirmBooking")}
           </button>

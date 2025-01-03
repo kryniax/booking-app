@@ -29,7 +29,7 @@ export const CurrencyProvider = (props: { children: React.ReactNode }) => {
     const stored = Cookies.get(CURRENCY_COOKIE_NAME);
     return stored || getLanguageCurrency();
   });
-  console.log(currency);
+
   const handleSetCurrency = (newCurrency: string) => {
     setCurrency(newCurrency);
     Cookies.set(CURRENCY_COOKIE_NAME, newCurrency, {

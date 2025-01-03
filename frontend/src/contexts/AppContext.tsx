@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Toast from "../components/Toast";
 import { useValidateToken } from "../api/UserApi";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
@@ -17,6 +17,8 @@ type AppContext = {
   stripePromise: Promise<Stripe | null>;
   currentLanguage: string;
   changeLanguage: (lang: string) => void;
+  theme: boolean;
+  setTheme: (theme: boolean) => void;
 };
 
 const AppContext = React.createContext<AppContext | undefined>(undefined);
@@ -32,6 +34,21 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
     i18n.changeLanguage(lang);
   };
 
+  const getInitialDarkMode = () => {
+    const localTheme = localStorage.getItem("theme");
+    if (localTheme !== null) {
+      return localTheme === "true";
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  };
+
+  const [theme, setTheme] = useState<boolean>(getInitialDarkMode);
+
+  useEffect(() => {
+    localStorage.setItem("theme", String(theme));
+    document.documentElement.classList.toggle("dark", theme);
+  }, [theme]);
+
   return (
     <AppContext.Provider
       value={{
@@ -40,6 +57,8 @@ export const AppContextProvider = (props: { children: React.ReactNode }) => {
         stripePromise,
         currentLanguage: i18n.language,
         changeLanguage,
+        theme,
+        setTheme,
       }}
     >
       {toast && (

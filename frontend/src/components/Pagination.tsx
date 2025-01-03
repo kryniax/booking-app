@@ -13,16 +13,21 @@ const Pagination = ({ page, pages, onPageChange }: PaginationProps) => {
   }
   return (
     <div className="flex justify-center">
-      <ul className="flex border border-slate-300">
+      <ul className="flex">
         {pageNumbers.map((number) => (
           <li
             key={`page-${number}`}
             className={twMerge(
-              `px-2 py-1`,
+              `px-2 py-1 rounded-md border border-slate-300 dark:bg-zinc-800 dark:border-zinc-700`,
               page === number ? "bg-gray-200" : ""
             )}
           >
-            <button onClick={() => onPageChange(number)}>{number}</button>
+            <button
+              className="dark:text-zinc-100"
+              onClick={() => onPageChange(number)}
+            >
+              {number}
+            </button>
           </li>
         ))}
       </ul>

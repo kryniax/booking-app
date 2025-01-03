@@ -57,7 +57,7 @@ const LoginPage = () => {
   });
   return (
     <form className="flex flex-col gap-5" onSubmit={onSubmit}>
-      <h2 className="text-3xl font-bold capitalize">
+      <h2 className="text-3xl font-bold capitalize dark:text-zinc-100">
         {t("BookingApp.signIn")}
       </h2>
       <Input
@@ -72,8 +72,8 @@ const LoginPage = () => {
         error={errors.password}
         {...register("password")}
       />
-      <span className="flex items-center justify-between">
-        <span className="text-sm">
+      <div className="flex items-center justify-between">
+        <span className="text-sm dark:text-zinc-100">
           {t("LoginPage.notRegistered")}{" "}
           <Link
             className="underline hover:text-black/80 transition duration-100"
@@ -84,11 +84,11 @@ const LoginPage = () => {
         </span>
         <button
           type="submit"
-          className="bg-blue-600 text-white text-xl capitalize p-2 font-bold rounded-md hover:bg-blue-500 transition duration-100"
+          className="bg-blue-600 dark:bg-blue-900 text-white text-xl capitalize p-2 font-bold rounded-md hover:bg-blue-500 hover:dark:bg-blue-800 transition duration-100"
         >
           {t("BookingApp.signIn")}
         </button>
-      </span>
+      </div>
     </form>
   );
 };

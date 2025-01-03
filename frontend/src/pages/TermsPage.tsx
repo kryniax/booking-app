@@ -4,14 +4,14 @@ const TermsPage = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white">
+    <div className="max-w-4xl mx-auto p-6 dark:text-zinc-100">
       <h1 className="text-3xl font-bold mb-8">{t("TermsPage.title")}</h1>
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">
           {t("TermsPage.introduction.title")}
         </h2>
-        <p className="text-gray-700 mb-4">
+        <p className="text-zinc-700 dark:text-zinc-400  mb-4">
           {t("TermsPage.introduction.content")}
         </p>
       </section>
@@ -20,7 +20,7 @@ const TermsPage = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("TermsPage.definitions.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">{t("TermsPage.definitions.items.service")}</li>
           <li className="mb-2">{t("TermsPage.definitions.items.user")}</li>
           <li className="mb-2">{t("TermsPage.definitions.items.host")}</li>
@@ -33,7 +33,7 @@ const TermsPage = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("TermsPage.accountRules.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">{t("TermsPage.accountRules.items.accuracy")}</li>
           <li className="mb-2">{t("TermsPage.accountRules.items.security")}</li>
           <li className="mb-2">{t("TermsPage.accountRules.items.age")}</li>
@@ -50,7 +50,7 @@ const TermsPage = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("TermsPage.bookingRules.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">{t("TermsPage.bookingRules.items.binding")}</li>
           <li className="mb-2">{t("TermsPage.bookingRules.items.payment")}</li>
           <li className="mb-2">
@@ -65,7 +65,7 @@ const TermsPage = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("TermsPage.userObligations.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">{t("TermsPage.userObligations.items.rules")}</li>
           <li className="mb-2">
             {t("TermsPage.userObligations.items.behavior")}
@@ -84,7 +84,7 @@ const TermsPage = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("TermsPage.intellectualProperty.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">
             {t("TermsPage.intellectualProperty.items.ownership")}
           </li>
@@ -104,7 +104,7 @@ const TermsPage = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("TermsPage.liability.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">{t("TermsPage.liability.items.limitation")}</li>
           <li className="mb-2">
             {t("TermsPage.liability.items.indemnification")}
@@ -118,7 +118,7 @@ const TermsPage = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("TermsPage.disputes.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">{t("TermsPage.disputes.items.law")}</li>
           <li className="mb-2">{t("TermsPage.disputes.items.jurisdiction")}</li>
           <li className="mb-2">{t("TermsPage.disputes.items.resolution")}</li>
@@ -130,7 +130,7 @@ const TermsPage = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("TermsPage.modification.title")}
         </h2>
-        <p className="text-gray-700 mb-4">
+        <p className="text-zinc-700 dark:text-zinc-400  mb-4">
           {t("TermsPage.modification.content")}
         </p>
       </section>
@@ -139,7 +139,7 @@ const TermsPage = () => {
         <h2 className="text-2xl font-semibold mb-4">
           {t("TermsPage.contact.title")}
         </h2>
-        <ul className="list-disc pl-6 text-gray-700">
+        <ul className="list-disc pl-6 text-zinc-700 dark:text-zinc-400 ">
           <li className="mb-2">{t("TermsPage.contact.items.email")}</li>
           <li className="mb-2">{t("TermsPage.contact.items.phone")}</li>
           <li className="mb-2">{t("TermsPage.contact.items.address")}</li>
@@ -147,7 +147,7 @@ const TermsPage = () => {
       </section>
 
       <footer className="mt-8 pt-4 border-t border-gray-200">
-        <p className="text-gray-600 text-sm">{t("TermsPage.lastUpdate")}</p>
+        <p className="text-zinc-300 text-sm">{t("TermsPage.lastUpdate")}</p>
       </footer>
     </div>
   );

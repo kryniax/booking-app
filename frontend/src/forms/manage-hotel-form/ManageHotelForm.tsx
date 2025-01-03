@@ -127,11 +127,11 @@ const ManageHotelForm = (props: ManageHotelFormProps) => {
   return (
     <FormProvider {...form}>
       <form onSubmit={onSubmit} className="flex flex-col gap-10">
-        <DetailsSection title={title} />
-        <TypeSection />
-        <FacilitiesSection />
-        <GuestSection />
-        <ImagesSection />
+        <DetailsSection isLoading={isLoading} title={title} />
+        <TypeSection isLoading={isLoading} />
+        <FacilitiesSection isLoading={isLoading} />
+        <GuestSection isLoading={isLoading} />
+        <ImagesSection isLoading={isLoading} />
         <span className="flex justify-end">
           <button
             disabled={isLoading}

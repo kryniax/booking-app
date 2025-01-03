@@ -87,28 +87,20 @@ const SearchPage = () => {
     setSelectedSortOption(value);
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex flex-1 items-center justify-center py-10">
-        <PulseLoader color="#1e40af" size={25} />
-      </div>
-    );
-  }
-
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
-      <div className="rounded-lg border border-slate-300 p-5 h-fit lg:sticky top-10">
+      <div className="rounded-lg border border-slate-300 dark:border-zinc-700 dark:bg-zinc-800 p-5 h-fit lg:block top-10">
         <div className="flex justify-between px-8 lg:hidden">
           <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => setIsModalFilterOpen(true)}
           >
-            <TbFilter size={22} />
-            <span>Filtruj</span>
+            <TbFilter size={22} className="dark:text-zinc-100" />
+            <span className="dark:text-zinc-100">{t("SearchPage.filter")}</span>
             <Modal
               isOpen={isModalFilterOpen}
               onClose={() => setIsModalFilterOpen(false)}
-              title="Filtruj"
+              title={t("SearchPage.filter")}
               className="overflow-y-scroll"
             >
               <div className="flex flex-col">
@@ -135,12 +127,12 @@ const SearchPage = () => {
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => setIsModalSortOpen(true)}
           >
-            <TbArrowsSort size={22} />
-            <span>Sortuj</span>
+            <TbArrowsSort size={22} className="dark:text-zinc-100" />
+            <span className="dark:text-zinc-100">{t("SearchPage.sort")}</span>
             <Modal
               isOpen={isModalSortOpen}
               onClose={() => setIsModalSortOpen(false)}
-              title="Sortuj"
+              title={t("SearchPage.sort")}
             >
               <div className="py-4">
                 <SortHotelFilter
@@ -153,7 +145,7 @@ const SearchPage = () => {
         </div>
         <div className="hidden lg:block space-y-5">
           <header>
-            <h3 className="text-lg font-semibold border-b border-slate-300 pb-5">
+            <h3 className="text-lg dark:text-zinc-100 font-semibold border-b border-slate-300 dark:border-slate-200 pb-5">
               {t("SearchPage.filterBy")}
             </h3>
           </header>
@@ -178,7 +170,7 @@ const SearchPage = () => {
       <div className="flex flex-col gap-5">
         <div className="flex justify-between items-center">
           <header>
-            <h2 className="text-xl font-bold">
+            <h2 className="text-xl font-bold dark:text-zinc-100">
               {`${hotelData?.pagination.total} ${t("SearchPage.hotelsFound")}`}
               {search.destination
                 ? ` ${t("SearchPage.in")} ${search.destination}`
@@ -192,9 +184,17 @@ const SearchPage = () => {
             />
           </div>
         </div>
-        {hotelData?.data.map((hotel) => (
-          <SearchResultCard key={hotel.name} hotel={hotel} />
-        ))}
+        {isLoading ? (
+          <div className="flex flex-1 items-center justify-center py-10">
+            <PulseLoader color="#1e40af" size={25} />
+          </div>
+        ) : (
+          <>
+            {hotelData?.data.map((hotel) => (
+              <SearchResultCard key={hotel.name} hotel={hotel} />
+            ))}
+          </>
+        )}
         <div>
           <Pagination
             page={hotelData?.pagination.page || 1}

@@ -13,12 +13,12 @@ const Footer = () => {
   const [isModalCurrencyOpen, setIsModalCurrencyOpen] =
     useState<boolean>(false);
   return (
-    <footer className="bg-blue-800 py-10">
+    <footer className="bg-blue-800 dark:bg-zinc-800 py-10">
       <div className="container mx-auto flex flex-col md:flex-row justify-between gap-2 md:gap-5">
-        <span className="text-2xl md:text-3xl text-white font-bold tracking-tight">
+        <span className="text-2xl md:text-3xl text-white dark:text-zinc-300 font-bold tracking-tight">
           Niceplace.com
         </span>
-        <div className="text-white font-bold tracking-tight flex flex-col items-start md:justify-center md:items-center md:flex-row md:gap-1">
+        <div className="text-white dark:text-zinc-300 font-bold tracking-tight flex flex-col items-start md:justify-center md:items-center md:flex-row md:gap-1">
           <div
             onClick={() => setIsModalOpen(true)}
             className="flex items-center gap-1 p-1 pr-2 cursor-pointer hover:bg-white/10 transition duration-100 rounded-md"
@@ -28,9 +28,9 @@ const Footer = () => {
           </div>
           <div
             onClick={() => setIsModalCurrencyOpen(true)}
-            className="flex items-center gap-1 p-1 pr-2 cursor-pointer hover:bg-white/10 transition duration-100 rounded-md"
+            className="flex items-center p-1 pr-2 cursor-pointer hover:bg-white/10 transition duration-100 rounded-md"
           >
-            <span className="block md:hidden pl-2">Waluta:</span>
+            <span className="block md:hidden pl-2">{t("Footer.currency")}</span>
             <CurrencySwitch />
           </div>
           <Link

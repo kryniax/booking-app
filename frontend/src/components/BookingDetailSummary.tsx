@@ -15,11 +15,11 @@ const BookingDetailSummary = (props: BookingDetailSummaryProps) => {
   const { checkIn, checkOut, adultCount, childCount, numberOfNights, hotel } =
     props;
   return (
-    <div className="grid gap-4 rounded-lg border border-slate-300 p-5 h-fit">
+    <div className="grid gap-4 rounded-lg border border-slate-300 dark:border-zinc-600 dark:bg-zinc-700 dark:text-zinc-100 p-5 h-fit">
       <h2 className="text-xl font-bold">
         {t("BookingDetailSummary.yourBookingDetails")}
       </h2>
-      <div className="border-b py-2">
+      <div className="border-b py-2 dark:border-zinc-200">
         {t("BookingDetailSummary.location")}
         <p className="font-bold">{`${hotel.name}, ${hotel.city}, ${hotel.country}`}</p>
       </div>
@@ -49,7 +49,7 @@ const BookingDetailSummary = (props: BookingDetailSummaryProps) => {
           </p>
         </div>
       </div>
-      <div className="border-t border-b py-2">
+      <div className="border-t border-b py-2 dark:border-zinc-200">
         <span>{t("BookingDetailSummary.totalStay")}</span>
         <p className="font-bold">
           {numberOfNights} {numberOfNights > 1 ? "nights" : "night"}

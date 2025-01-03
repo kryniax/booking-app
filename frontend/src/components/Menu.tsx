@@ -29,7 +29,7 @@ const Menu = ({ isOpen, onClick }: MenuProps) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-30 bg-blue-600 lg:hidden"
+          className="fixed inset-0 z-30 bg-blue-600 dark:bg-blue-950 lg:hidden"
           initial={{
             opacity: 0,
           }}
@@ -46,7 +46,7 @@ const Menu = ({ isOpen, onClick }: MenuProps) => {
           aria-modal="true"
         >
           <div className="w-full h-full flex flex-col">
-            <div className="container flex justify-between items-center py-6 px-2 sm:px-4 md:px-8">
+            <div className="container flex justify-between items-center py-5 md:py-[22px] px-2 sm:px-4 md:px-8">
               <header className="text-2xl md:text-3xl font-bold text-white tracking-tight">
                 Niceplace.com
               </header>

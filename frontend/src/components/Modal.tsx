@@ -20,7 +20,7 @@ const Modal = ({ isOpen, onClose, title, children, className }: ModalProps) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed flex justify-center items-center size-full top-0 left-0 z-30 bg-black/30"
+          className="fixed flex justify-center items-center size-full top-0 left-0 z-30 bg-black/30 dark:bg-black/50"
           initial={{
             opacity: 0,
           }}
@@ -39,17 +39,19 @@ const Modal = ({ isOpen, onClose, title, children, className }: ModalProps) => {
         >
           <div
             className={twMerge(
-              "relative md:w-1/2 w-3/4 max-w-[350px] max-h-[80%] inset-0 bg-white rounded-md flex flex-col gap-2",
+              "relative md:w-1/2 w-3/4 max-w-[350px] max-h-[80%] inset-0 bg-white dark:bg-zinc-800 dark:border dark:border-zinc-700 rounded-md flex flex-col gap-2",
               className
             )}
             onClick={modalOnClick}
           >
             <div className="flex justify-between p-4">
               <header>
-                <h3 className="text-xl font-bold">{title}</h3>
+                <h3 className="text-xl font-bold dark:text-zinc-100">
+                  {title}
+                </h3>
               </header>
               <button onClick={onClose}>
-                <IoMdClose size={28} />
+                <IoMdClose size={28} className="dark:text-zinc-100" />
               </button>
             </div>
 
