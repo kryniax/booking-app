@@ -1,12 +1,19 @@
 import { useTranslation } from "react-i18next";
 import { useGetCurrentUser } from "../api/UserApi";
 import { Link } from "react-router-dom";
+import HelmetSEO from "../components/HelmetSEO";
 
 const MyProfilePage = () => {
   const { t } = useTranslation();
   const { currentUser } = useGetCurrentUser();
   return (
     <section className="container flex flex-col gap-5">
+      <HelmetSEO
+        title="My Profile | Account Informations"
+        description="Check your account information."
+        keywords="user profile, personal information"
+        pathName="/profile"
+      />
       <div>
         <header>
           <h2 className="font-bold text-2xl dark:text-zinc-100">

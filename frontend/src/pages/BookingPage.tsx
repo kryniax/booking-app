@@ -9,6 +9,7 @@ import BookingDetailSummary from "../components/BookingDetailSummary";
 import { useCreatePaymentIntent } from "../api/BookingApi";
 import { useAppContext } from "../contexts/AppContext";
 import { useTranslation } from "react-i18next";
+import HelmetSEO from "../components/HelmetSEO";
 
 const BookingPage = () => {
   const search = useSearchContext();
@@ -46,6 +47,12 @@ const BookingPage = () => {
 
   return (
     <div className="grid md:grid-cols-[1fr_2fr] gap-2">
+      <HelmetSEO
+        title="Secure Hotel Booking - Easy Reservation Process"
+        description="Book your hotel stay with our secure and easy-to-use booking system. Get instant confirmation and the best rate guarantee."
+        keywords="hotel reservation, book hotel online, secure booking, hotel deals, instant confirmation"
+        pathName={`/detail/${hotelDataById._id}/booking`}
+      />
       <BookingDetailSummary
         checkIn={search.checkIn}
         checkOut={search.checkOut}

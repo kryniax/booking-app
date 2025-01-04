@@ -3,6 +3,7 @@ import BookingCard from "../components/BookingCard";
 import { useTranslation } from "react-i18next";
 import { TfiFaceSad } from "react-icons/tfi";
 import { Link } from "react-router-dom";
+import HelmetSEO from "../components/HelmetSEO";
 
 const MyBookingPage = () => {
   const { bookings } = useGetMyBooking();
@@ -27,6 +28,12 @@ const MyBookingPage = () => {
 
   return (
     <div className="space-y-2">
+      <HelmetSEO
+        title="Manage Your Hotel Reservations | My Booking"
+        description="View and manage all your hotel bookings in one place. Check booking details, make modifications, or cancel reservations easily."
+        keywords="manage booking, hotel reservation management, view bookings, modify hotel booking"
+        pathName="/my-bookings"
+      />
       {bookings?.map((booking) => (
         <BookingCard key={booking._id} booking={booking} />
       ))}

@@ -3,6 +3,7 @@ import LatestDestionationCard from "../components/LatestDestionationCard";
 import { useTranslation } from "react-i18next";
 import PulseLoader from "react-spinners/PulseLoader";
 import { TfiFaceSad } from "react-icons/tfi";
+import HelmetSEO from "../components/HelmetSEO";
 
 const HomePage = () => {
   const { mainPageHotels, isLoading } = useGetMainPageHotels();
@@ -32,6 +33,12 @@ const HomePage = () => {
 
   return (
     <div className="space-y-3">
+      <HelmetSEO
+        title="Niceplace.com | Find Best Hotel Deals"
+        description="Find and book your ideal hotel stay. Compare prices, read reviews, and get the best deals on hotels worldwide. Easy booking process and 24/7 customer support."
+        keywords="niceplace, hotel booking, hotel reservations, best hotel deals, hotel comparison, accommodation booking"
+        pathName="/"
+      />
       <header>
         <h2 className="text-3xl font-bold dark:text-zinc-200">
           {t("HomePage.latestDestinations")}

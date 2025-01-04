@@ -5,6 +5,7 @@ import { BsBuilding } from "react-icons/bs";
 import { BiMoney, BiHotel, BiStar } from "react-icons/bi";
 import { useTranslation } from "react-i18next";
 import { TfiFaceSad } from "react-icons/tfi";
+import HelmetSEO from "../components/HelmetSEO";
 
 const MyHotelsPage = () => {
   const { myHotels } = useGetMyHotels();
@@ -12,6 +13,12 @@ const MyHotelsPage = () => {
 
   return (
     <div className="space-y-5 flex flex-col flex-1">
+      <HelmetSEO
+        title="Your Hotels"
+        description="Access your hotels. Add, update or delete hotels."
+        keywords="hotels, your hotels, hotel, update, add, delete"
+        pathName="/my-hotels"
+      />
       <span className="flex justify-between">
         <header>
           <h1 className="text-3xl font-bold dark:text-zinc-100">

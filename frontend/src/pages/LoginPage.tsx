@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
 import { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
+import HelmetSEO from "../components/HelmetSEO";
 
 const loginFormSchema = (t: TFunction) =>
   z.object({
@@ -57,6 +58,12 @@ const LoginPage = () => {
   });
   return (
     <form className="flex flex-col gap-5" onSubmit={onSubmit}>
+      <HelmetSEO
+        title="Hotel Account Login | Access Your Dashboard"
+        description="Sign in to your hotel booking account. Manage your reservations, view saved hotels, and access exclusive deals."
+        keywords="hotel login, account access, user dashboard, booking account"
+        pathName="/login"
+      />
       <h2 className="text-3xl font-bold capitalize dark:text-zinc-100">
         {t("BookingApp.signIn")}
       </h2>

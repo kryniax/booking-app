@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { TbArrowsSort, TbFilter } from "react-icons/tb";
 import Modal from "../components/Modal";
 import PulseLoader from "react-spinners/PulseLoader";
+import HelmetSEO from "../components/HelmetSEO";
 
 const SearchPage = () => {
   const search = useSearchContext();
@@ -89,6 +90,12 @@ const SearchPage = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
+      <HelmetSEO
+        title="Search Hotels - Find Your Perfect Accommodation at Niceplace"
+        description="Search through thousands of hotels worldwide. Filter by price, location, amenities, and more to find your perfect accommodation."
+        keywords="search hotels, hotel finder, hotel search engine, find accommodation, compare hotels"
+        pathName="/search"
+      />
       <div className="rounded-lg border border-slate-300 dark:border-zinc-700 dark:bg-zinc-800 p-5 h-fit lg:block top-10">
         <div className="flex justify-between px-8 lg:hidden">
           <div

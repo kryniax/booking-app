@@ -1,10 +1,17 @@
 import { useTranslation } from "react-i18next";
+import HelmetSEO from "../components/HelmetSEO";
 
 const TermsPage = () => {
   const { t } = useTranslation();
 
   return (
     <div className="max-w-4xl mx-auto p-6 dark:text-zinc-100">
+      <HelmetSEO
+        title="Terms of Service | Niceplace Platform"
+        description="Review our terms of service and user agreement for using our hotel booking platform. Understanding your rights and responsibilities."
+        keywords="terms of service, user agreement, legal terms, booking conditions, service terms"
+        pathName="/terms-of-service"
+      />
       <h1 className="text-3xl font-bold mb-8">{t("TermsPage.title")}</h1>
 
       <section className="mb-8">

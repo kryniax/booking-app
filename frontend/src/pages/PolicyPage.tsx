@@ -1,10 +1,17 @@
 import { useTranslation } from "react-i18next";
+import HelmetSEO from "../components/HelmetSEO";
 
 const PrivacyPolicy = () => {
   const { t } = useTranslation();
 
   return (
     <div className="max-w-4xl mx-auto p-6 dark:text-zinc-100">
+      <HelmetSEO
+        title="Niceplace Policy"
+        description="Read our comprehensive booking policies and cancellation rules for hotel reservations."
+        keywords="policy"
+        pathName="/privacy"
+      />
       <h1 className="text-3xl font-bold mb-8">{t("PrivacyPage.title")}</h1>
 
       <section className="mb-8">

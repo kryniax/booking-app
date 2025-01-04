@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import Input from "../components/Input";
+import HelmetSEO from "../components/HelmetSEO";
 
 const registerFormSchema = (t: TFunction) =>
   z
@@ -69,6 +70,12 @@ const RegisterPage = () => {
 
   return (
     <form className="flex flex-col gap-5" onSubmit={onSubmit}>
+      <HelmetSEO
+        title="Create Hotel Booking Account | Free Registration"
+        description="Sign up for a free account to manage bookings and get access to exclusive hotel deals and promotions."
+        keywords="hotel registration, create account, sign up, booking account, free registration"
+        pathName="/register"
+      />
       <h2 className="text-3xl font-bold dark:text-zinc-100">
         {t("RegisterPage.title")}
       </h2>
