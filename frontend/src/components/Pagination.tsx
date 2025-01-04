@@ -17,17 +17,13 @@ const Pagination = ({ page, pages, onPageChange }: PaginationProps) => {
         {pageNumbers.map((number) => (
           <li
             key={`page-${number}`}
+            onClick={() => onPageChange(number)}
             className={twMerge(
-              `px-2 py-1 rounded-md border border-slate-300 dark:bg-zinc-800 dark:border-zinc-700`,
-              page === number ? "bg-gray-200" : ""
+              `px-2 py-1 mx-0.5 rounded-md border cursor-pointer border-slate-300 dark:bg-zinc-800 dark:border-zinc-700`,
+              page === number ? "bg-gray-200 dark:bg-zinc-600" : ""
             )}
           >
-            <button
-              className="dark:text-zinc-100"
-              onClick={() => onPageChange(number)}
-            >
-              {number}
-            </button>
+            <span className="dark:text-zinc-100">{number}</span>
           </li>
         ))}
       </ul>
