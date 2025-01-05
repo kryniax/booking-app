@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { HotelSearchResponse, HotelType, SearchHotelParams } from "../types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
@@ -83,6 +83,7 @@ export const useGetHotelById = (hotelId: string) => {
 };
 
 export const useGetMainPageHotels = () => {
+  const queryClient = useQueryClient();
   const getMainPageHotelsRequest = async (): Promise<HotelType[]> => {
     const response = await fetch(`${API_BASE_URL}/api/hotel`);
     if (!response.ok) {
@@ -97,5 +98,9 @@ export const useGetMainPageHotels = () => {
     queryFn: getMainPageHotelsRequest,
   });
 
-  return { mainPageHotels, isLoading };
+  const refetch = () => {
+    queryClient.invalidateQueries({ queryKey: ["fetchMainPageHotels"] });
+  };
+
+  return { mainPageHotels, isLoading, refetch };
 };

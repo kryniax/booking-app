@@ -2,11 +2,11 @@ import { useGetMainPageHotels } from "../api/HotelApi";
 import LatestDestionationCard from "../components/LatestDestionationCard";
 import { useTranslation } from "react-i18next";
 import PulseLoader from "react-spinners/PulseLoader";
-import { TfiFaceSad } from "react-icons/tfi";
 import HelmetSEO from "../components/HelmetSEO";
+import Empty from "../components/Empty";
 
 const HomePage = () => {
-  const { mainPageHotels, isLoading } = useGetMainPageHotels();
+  const { mainPageHotels, isLoading, refetch } = useGetMainPageHotels();
   const { t } = useTranslation();
 
   if (isLoading) {
@@ -19,22 +19,21 @@ const HomePage = () => {
 
   if (!mainPageHotels) {
     return (
-      <div className="flex flex-col flex-1 gap-5 items-center justify-center py-10">
-        <TfiFaceSad size={90} className="text-black/80 " />
-        <span className="font-bold text-2xl text-black/80">
-          {t("HomePage.noHotel")}
-        </span>
-      </div>
+      <Empty
+        title={t("HomePage.noHotel")}
+        button={t("BookingApp.refresh")}
+        onClick={refetch}
+      />
     );
   }
 
   const topRowHotels = mainPageHotels.slice(0, 2);
-  const bottomRowHotels = mainPageHotels.slice(2);
+  const bottomRowHotels = mainPageHotels.slice(2, 11);
 
   return (
     <div className="space-y-3">
       <HelmetSEO
-        title="Niceplace.com | Find Best Hotel Deals"
+        title="Niceplace.com | Find your nice place"
         description="Find and book your ideal hotel stay. Compare prices, read reviews, and get the best deals on hotels worldwide. Easy booking process and 24/7 customer support."
         keywords="niceplace, hotel booking, hotel reservations, best hotel deals, hotel comparison, accommodation booking"
         pathName="/"

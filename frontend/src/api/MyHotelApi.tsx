@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
 import { HotelType } from "../types";
@@ -44,6 +44,7 @@ export const useCreateMyHotel = () => {
 };
 
 export const useGetMyHotels = () => {
+  const queryClient = useQueryClient();
   const getMyHotelsRequest = async (): Promise<HotelType[]> => {
     const response = await fetch(`${API_BASE_URL}/api/my/hotel`, {
       credentials: "include",
@@ -56,15 +57,20 @@ export const useGetMyHotels = () => {
     return response.json();
   };
 
-  const { data: myHotels, status } = useQuery({
+  const { data: myHotels, isLoading } = useQuery({
     queryKey: ["fetchMyHotels"],
     queryFn: getMyHotelsRequest,
     retry: false,
   });
 
+  const refetch = () => {
+    queryClient.invalidateQueries({ queryKey: ["fetchMyHotels"] });
+  };
+
   return {
     myHotels,
-    isLoading: status === "pending",
+    isLoading,
+    refetch,
   };
 };
 

@@ -6,10 +6,20 @@ import { BiMoney, BiHotel, BiStar } from "react-icons/bi";
 import { useTranslation } from "react-i18next";
 import { TfiFaceSad } from "react-icons/tfi";
 import HelmetSEO from "../components/HelmetSEO";
+import PulseLoader from "react-spinners/PulseLoader";
+import Empty from "../components/Empty";
 
 const MyHotelsPage = () => {
-  const { myHotels } = useGetMyHotels();
+  const { myHotels, isLoading, refetch } = useGetMyHotels();
   const { t } = useTranslation();
+
+  if (isLoading) {
+    return (
+      <div className="flex flex-1 items-center justify-center py-10">
+        <PulseLoader color="#1e40af" size={25} />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-5 flex flex-col flex-1">
@@ -33,12 +43,13 @@ const MyHotelsPage = () => {
         </Link>
       </span>
       {myHotels?.length === 0 ? (
-        <div className="flex flex-col flex-1 gap-5 items-center justify-center py-10">
-          <TfiFaceSad size={90} className="text-black/80 dark:text-zinc-300" />
-          <span className="font-bold text-2xl text-black/80 dark:text-zinc-300">
-            {t("MyHotelsPage.noHotels")}
-          </span>
-        </div>
+        <Empty
+          title={t("MyHotelsPage.noHotels")}
+          link={t("HomePage.title")}
+          href="/"
+          button={t("BookingApp.refresh")}
+          onClick={refetch}
+        />
       ) : (
         <div className="grid grid-cols-1 gap-8">
           {myHotels?.map((hotel) => (

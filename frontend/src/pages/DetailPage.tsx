@@ -5,13 +5,21 @@ import GuestInfoForm from "../forms/guest-info-form/GuestInfoForm";
 import { useTranslation } from "react-i18next";
 import ImageSlider from "../components/ImageSlider";
 import HelmetSEO from "../components/HelmetSEO";
+import Empty from "../components/Empty";
 
 const DetailPage = () => {
   const { hotelId } = useParams();
   const { hotelDataById } = useGetHotelById(hotelId as string);
   const { t } = useTranslation();
+
   if (!hotelDataById) {
-    return <span>{t("BookingApp.noHotel")}</span>;
+    return (
+      <Empty
+        title={t("BookingApp.noHotel")}
+        link={t("BookingApp.back")}
+        href={-1}
+      />
+    );
   }
 
   return (

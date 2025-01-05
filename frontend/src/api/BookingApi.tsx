@@ -76,6 +76,7 @@ export const useCreateBooking = () => {
 };
 
 export const useGetMyBooking = () => {
+  const queryClient = useQueryClient();
   const getMyBookingRequest = async (): Promise<MyBookingType[]> => {
     const response = await fetch(`${API_BASE_URL}/api/booking/my-bookings`, {
       credentials: "include",
@@ -93,7 +94,11 @@ export const useGetMyBooking = () => {
     queryFn: getMyBookingRequest,
   });
 
-  return { bookings, isLoading };
+  const refetch = () => {
+    queryClient.invalidateQueries({ queryKey: ["getMyBookings"] });
+  };
+
+  return { bookings, isLoading, refetch };
 };
 
 export const useDeleteBooking = () => {

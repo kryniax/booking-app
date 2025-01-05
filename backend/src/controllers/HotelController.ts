@@ -1,17 +1,22 @@
 import { query, Request } from "express";
 import Hotel from "../models/hotel";
+import mongoose from "mongoose";
 
 const getHotel = async (req: Request, res: any) => {
   try {
     const hotelId = req.params.hotelId;
 
+    if (!mongoose.Types.ObjectId.isValid(hotelId)) {
+      return res.status(404).json({ message: "Hotel not found" });
+    }
+
     const hotel = await Hotel.findById(hotelId);
 
     if (!hotel) {
-      return res.status(400).json({ message: "Hotel not found" });
+      return res.status(404).json({ message: "Hotel not found" });
     }
 
-    res.json(hotel);
+    return res.json(hotel);
   } catch (error) {
     console.log("get hotel error: ", error);
     return res.status(500).json({ message: "Failed to get hotel" });
