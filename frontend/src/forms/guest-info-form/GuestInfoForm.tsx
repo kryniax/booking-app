@@ -134,7 +134,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: GuestInfoFormProps) => {
             <div className="flex flex-1">
               <DatePicker
                 locale={calendarLanguage}
-                dateFormat="dd/MM/yyyy"
+                dateFormat="dd-MM-yyyy"
                 selected={checkIn}
                 onChange={(date) => {
                   setValue("checkIn", date as Date);
@@ -160,7 +160,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: GuestInfoFormProps) => {
             <div className="flex flex-1">
               <DatePicker
                 locale={calendarLanguage}
-                dateFormat="dd/MM/yyyy"
+                dateFormat="dd-MM-yyyy"
                 selected={checkOut}
                 onChange={(date) => {
                   setValue("checkOut", date as Date);

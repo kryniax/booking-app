@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
-import { RegisterFormData } from "../pages/RegisterPage";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { LoginFormData } from "../pages/LoginPage";
 import { UserType } from "../types";
+import { RegisterFormData } from "../forms/register-form/RegisterForm";
+import { LoginFormData } from "../forms/login-form/LoginForm";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 

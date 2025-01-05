@@ -1,7 +1,6 @@
 import { TFunction } from "i18next";
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { z } from "zod";
-import HelmetSEO from "../../components/HelmetSEO";
 import Input from "../../components/Input";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";

@@ -4,7 +4,6 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { BsBuilding } from "react-icons/bs";
 import { BiMoney, BiHotel, BiStar } from "react-icons/bi";
 import { useTranslation } from "react-i18next";
-import { TfiFaceSad } from "react-icons/tfi";
 import HelmetSEO from "../components/HelmetSEO";
 import PulseLoader from "react-spinners/PulseLoader";
 import Empty from "../components/Empty";

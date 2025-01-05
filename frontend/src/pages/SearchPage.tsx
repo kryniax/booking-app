@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSearchContext } from "../contexts/SearchContext";
 import { useSearchHotel } from "../api/HotelApi";
 import SearchResultCard from "../components/SearchResultCard";
