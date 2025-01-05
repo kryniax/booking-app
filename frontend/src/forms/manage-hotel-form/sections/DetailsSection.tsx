@@ -2,6 +2,8 @@ import { useFormContext } from "react-hook-form";
 import Input from "../../../components/Input";
 import { HotelFormData } from "../ManageHotelForm";
 import { useTranslation } from "react-i18next";
+import { FaArrowLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 type DetailsSectionProps = {
   title: string;
@@ -16,7 +18,16 @@ const DetailsSection = ({ title, isLoading }: DetailsSectionProps) => {
   } = useFormContext<HotelFormData>();
   return (
     <div className="flex flex-col gap-4 ">
-      <h1 className="text-3xl font-bold mb-3 dark:text-zinc-100">{title}</h1>
+      <header className="flex gap-2 items-center mb-3">
+        <Link
+          to="/my-hotels"
+          className="hover:bg-black/10 rounded-md p-3 transition duration-100"
+        >
+          <FaArrowLeft size={20} />
+        </Link>
+        <h1 className="text-3xl font-bold dark:text-zinc-100">{title}</h1>
+      </header>
+
       <Input
         label={t("DetailsSection.name.label")}
         type="text"
@@ -46,21 +57,20 @@ const DetailsSection = ({ title, isLoading }: DetailsSectionProps) => {
           {...register("country")}
         />
       </div>
-      <label className="text-zinc-700 dark:text-zinc-100 text-sm font-bold flex-1">
-        {t("DetailsSection.description.label")}
+      <Input
+        label={t("DetailsSection.description.label")}
+        error={errors.description}
+      >
         <textarea
           rows={10}
           disabled={isLoading}
           className="border rounded w-full py-1 px-2 font-normal resize-none  dark:bg-zinc-800 dark:border-zinc-700"
           {...register("description")}
         ></textarea>
-        {errors.description && (
-          <span className="text-red-500">{errors.description.message}</span>
-        )}
-      </label>
+      </Input>
       <Input
         label={t("DetailsSection.pricePerNight.label")}
-        labelClass="max-w-[50%] dark:text-zinc-100"
+        labelClass="max-w-[50%]"
         className="dark:bg-zinc-800 dark:border-zinc-700"
         type="number"
         min={1}
@@ -68,8 +78,11 @@ const DetailsSection = ({ title, isLoading }: DetailsSectionProps) => {
         error={errors.pricePerNight}
         {...register("pricePerNight", { valueAsNumber: true })}
       />
-      <label className="text-zinc-700 dark:text-zinc-100 text-sm font-bold max-w-[50%]">
-        {t("DetailsSection.starRating.label")}
+      <Input
+        label={t("DetailsSection.starRating.label")}
+        labelClass="max-w-[50%]"
+        error={errors.starRating}
+      >
         <select
           disabled={isLoading}
           {...register("starRating", { valueAsNumber: true })}
@@ -84,10 +97,7 @@ const DetailsSection = ({ title, isLoading }: DetailsSectionProps) => {
             </option>
           ))}
         </select>
-        {errors.starRating && (
-          <span className="text-red-500">{errors.starRating.message}</span>
-        )}
-      </label>
+      </Input>
     </div>
   );
 };

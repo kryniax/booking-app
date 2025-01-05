@@ -11,6 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TFunction } from "i18next";
 import { hotelTypeKeys } from "../../config/hotel-options-config";
+import { Link } from "react-router-dom";
 
 const createFormSchema = (t: TFunction) =>
   z.object({
@@ -36,12 +37,10 @@ const createFormSchema = (t: TFunction) =>
       .min(1, t("ManageHotelForm.validation.pricePerNight.min")),
     starRating: z.coerce
       .number({
-        required_error: t("ManageHotelForm.validation.pricePerNight.required"),
-        invalid_type_error: t(
-          "ManageHotelForm.validation.pricePerNight.invalid"
-        ),
+        required_error: t("ManageHotelForm.validation.starRating.required"),
+        invalid_type_error: t("ManageHotelForm.validation.starRating.invalid"),
       })
-      .min(1, t("ManageHotelForm.validation.pricePerNight.min")),
+      .min(1, t("ManageHotelForm.validation.starRating.min")),
     facilities: z
       .array(z.string())
       .min(1, t("ManageHotelForm.validation.facilities")),
@@ -132,7 +131,13 @@ const ManageHotelForm = (props: ManageHotelFormProps) => {
         <FacilitiesSection isLoading={isLoading} />
         <GuestSection isLoading={isLoading} />
         <ImagesSection isLoading={isLoading} />
-        <span className="flex justify-end">
+        <span className="flex justify-end gap-3">
+          <Link
+            to="/my-hotels"
+            className="bg-zinc-500 dark:bg-zinc-600 dark:hover:bg-zinc-500 text-xl flex items-center justify-center text-white px-3 py-2 font-bold hover:bg-zinc-400 transition duration-50 rounded-md"
+          >
+            {t("BookingApp.cancel")}
+          </Link>
           <button
             disabled={isLoading}
             type="submit"
