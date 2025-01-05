@@ -105,31 +105,6 @@ const SearchPage = () => {
           >
             <TbFilter size={22} className="dark:text-zinc-100" />
             <span className="dark:text-zinc-100">{t("SearchPage.filter")}</span>
-            <Modal
-              isOpen={isModalFilterOpen}
-              onClose={() => setIsModalFilterOpen(false)}
-              title={t("SearchPage.filter")}
-              className="overflow-y-scroll"
-            >
-              <div className="flex flex-col">
-                <StarRatingFilter
-                  selectedStars={selectedStars}
-                  onChange={starsChangeHandler}
-                />
-                <HotelTypesFilter
-                  selectedHotel={selectedHotelType}
-                  onChange={hotelTypeChangeHandler}
-                />
-                <FacilitiesFilter
-                  selectedFacilities={selectedHotelFacilities}
-                  onChange={hotelFacilityChangeHandler}
-                />
-                <PriceFilter
-                  selectedPrice={selectedPrice}
-                  onChange={hotelSelectedPriceHandler}
-                />
-              </div>
-            </Modal>
           </div>
           <div
             className="flex items-center gap-2 cursor-pointer"
@@ -137,18 +112,6 @@ const SearchPage = () => {
           >
             <TbArrowsSort size={22} className="dark:text-zinc-100" />
             <span className="dark:text-zinc-100">{t("SearchPage.sort")}</span>
-            <Modal
-              isOpen={isModalSortOpen}
-              onClose={() => setIsModalSortOpen(false)}
-              title={t("SearchPage.sort")}
-            >
-              <div className="py-4">
-                <SortHotelFilter
-                  selectedSortOption={selectedSortOption}
-                  onChange={hotelSelectedFilterHandler}
-                />
-              </div>
-            </Modal>
           </div>
         </div>
         <div className="hidden lg:block space-y-5">
@@ -212,6 +175,43 @@ const SearchPage = () => {
         </div>
       </div>
       <ScrollToTop />
+      <Modal
+        isOpen={isModalFilterOpen}
+        onClose={() => setIsModalFilterOpen(false)}
+        title={t("SearchPage.filter")}
+        className="overflow-y-scroll"
+      >
+        <div className="flex flex-col">
+          <StarRatingFilter
+            selectedStars={selectedStars}
+            onChange={starsChangeHandler}
+          />
+          <HotelTypesFilter
+            selectedHotel={selectedHotelType}
+            onChange={hotelTypeChangeHandler}
+          />
+          <FacilitiesFilter
+            selectedFacilities={selectedHotelFacilities}
+            onChange={hotelFacilityChangeHandler}
+          />
+          <PriceFilter
+            selectedPrice={selectedPrice}
+            onChange={hotelSelectedPriceHandler}
+          />
+        </div>
+      </Modal>
+      <Modal
+        isOpen={isModalSortOpen}
+        onClose={() => setIsModalSortOpen(false)}
+        title={t("SearchPage.sort")}
+      >
+        <div className="py-4">
+          <SortHotelFilter
+            selectedSortOption={selectedSortOption}
+            onChange={hotelSelectedFilterHandler}
+          />
+        </div>
+      </Modal>
     </div>
   );
 };
