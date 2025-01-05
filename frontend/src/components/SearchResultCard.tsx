@@ -49,7 +49,7 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
           </article>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 items-end whitespace-nowrap">
-          <div className="flex gap-1 items-center">
+          <div className="flex flex-wrap 2xl:flex-nowrap gap-1 items-center">
             {hotel.facilities.slice(0, 3).map((facility) => (
               <span
                 key={facility}
@@ -58,7 +58,7 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
                 {t(`FacilitiesSection.hotelFacilities.${facility}`)}
               </span>
             ))}
-            <span className="text-sm">
+            <span className="text-sm dark:text-zinc-300">
               {hotel.facilities.length > 3 &&
                 `+${hotel.facilities.length - 3} more`}
             </span>
