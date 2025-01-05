@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage";
 import MyProfilePage from "./pages/MyProfilePage";
 import PolicyPage from "./pages/PolicyPage";
 import TermsPage from "./pages/TermsPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function AppRoutes() {
   const { isLoggedIn } = useAppContext();
@@ -28,7 +29,7 @@ function AppRoutes() {
         }
       />
       <Route
-        path="/search"
+        path="/search/:page"
         element={
           <Layout showSearchBar>
             <SearchPage />
@@ -127,7 +128,14 @@ function AppRoutes() {
           />
         </>
       )}
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route
+        path="*"
+        element={
+          <Layout>
+            <NotFoundPage />
+          </Layout>
+        }
+      />
     </Routes>
   );
 }

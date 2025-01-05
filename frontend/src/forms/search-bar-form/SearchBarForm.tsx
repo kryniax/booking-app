@@ -101,7 +101,7 @@ const SearchBarForm = () => {
       data.childCount
     );
 
-    navigate("/search");
+    navigate("/search/1");
   };
 
   useEffect(() => {
@@ -176,7 +176,7 @@ const SearchBarForm = () => {
         <div className="flex flex-1">
           <DatePicker
             locale={calendarLanguage}
-            dateFormat="dd/MM/yyyy"
+            dateFormat="dd-MM-yyyy"
             selected={checkIn}
             onChange={(date) => {
               setValue("checkIn", date as Date);
@@ -203,7 +203,7 @@ const SearchBarForm = () => {
         <div className="flex flex-1">
           <DatePicker
             locale={calendarLanguage}
-            dateFormat="dd/MM/yyyy"
+            dateFormat="dd-MM-yyyy"
             selected={checkOut}
             onChange={(date) => {
               setValue("checkOut", date as Date);

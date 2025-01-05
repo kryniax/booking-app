@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchContext } from "../contexts/SearchContext";
 import { useSearchHotel } from "../api/HotelApi";
 import SearchResultCard from "../components/SearchResultCard";
@@ -13,6 +13,7 @@ import { TbArrowsSort, TbFilter } from "react-icons/tb";
 import Modal from "../components/Modal";
 import PulseLoader from "react-spinners/PulseLoader";
 import HelmetSEO from "../components/HelmetSEO";
+import ScrollToTop from "../components/ScrollToTop";
 
 const SearchPage = () => {
   const search = useSearchContext();
@@ -178,9 +179,9 @@ const SearchPage = () => {
         <div className="flex justify-between items-center">
           <header>
             <h2 className="text-xl font-bold dark:text-zinc-100">
-              {`${hotelData?.pagination.total} ${t("SearchPage.hotelsFound")}`}
+              {`${hotelData?.pagination.total} ${t("SearchPage.hotelsFound", { count: Number(hotelData?.pagination.total) })}`}
               {search.destination
-                ? ` ${t("SearchPage.in")} ${search.destination}`
+                ? ` ${t("SearchPage.in")}: ${search.destination}`
                 : ""}
             </h2>
           </header>
@@ -210,6 +211,7 @@ const SearchPage = () => {
           />
         </div>
       </div>
+      <ScrollToTop />
     </div>
   );
 };
