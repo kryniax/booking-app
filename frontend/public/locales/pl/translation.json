@@ -21,7 +21,8 @@
     "perNight": "noc",
     "starRating": "gwiazdki",
     "sortBy": "sortuj według",
-    "noHotel": "Nie ma takiego hotelu"
+    "noHotel": "Nie ma takiego hotelu",
+    "refresh": "Odśwież"
   },
   "BookingCard": {
     "dates": "Daty: ",
@@ -53,8 +54,8 @@
     "myProfile": "Mój Profil"
   },
   "Hero": {
-    "header": "Znajdź swój następny pobyt",
-    "description": "Szukaj niskich cen w hotelach na swoje wymarzone wakacje."
+    "header": "Myślisz o wakacjach?",
+    "description": "Znajdź swoje wymarzone miejsce."
   },
   "PriceFilter": {
     "maxPrice": "Maksymalna Cena",
@@ -314,7 +315,9 @@
   },
   "SearchPage": {
     "filterBy": "Filtruj według:",
-    "hotelsFound": "Znalezione Hotele",
+    "hotelsFound_one": "znaleziony hotel",
+    "hotelsFound_few": "znalezione hotele",
+    "hotelsFound_many": "znalezionych hoteli",
     "in": "w",
     "filter": "Filtruj",
     "sort": "Sortuj"

@@ -30,14 +30,18 @@
     "yes": "Yes",
     "no": "No",
     "accountYet": "Don't have an account yet?",
-    "perNight": "night"
+    "perNight": "night",
+    "refresh": "Refresh",
+    "cancel": "Cancel",
+    "back": "Back"
   },
   "BookingCard": {
     "dates": "Dates: ",
     "guests": "Guests: ",
     "adults": "adults ",
     "children": "children ",
-    "cancelBooking": "Cancel reservation"
+    "cancelBooking": "Cancel reservation",
+    "cancelAvailable": "Cancellation not available"
   },
   "BookingCancelConfirmation": {
     "title": "Are you sure to cancel the reservation?",
@@ -66,8 +70,8 @@
     "myProfile": "My Profile"
   },
   "Hero": {
-    "header": "Find your next stay",
-    "description": "Search low prices on hotels for your dream holidays."
+    "header": "Thinking about vacation?",
+    "description": "Find your nice place."
   },
   "PriceFilter": {
     "maxPrice": "Max Price",
@@ -272,6 +276,7 @@
     "noHotel": "Hotel doesn't exist"
   },
   "HomePage": {
+    "title": "Home Page",
     "noHotel": "We haven't hotels yet",
     "latestDestinations": "Latest Destinations",
     "recentDestinations": "Most recent destinations addes by our hosts"
@@ -294,10 +299,10 @@
     "createAccount": "Create an account"
   },
   "MyBookingPage": {
-    "noBooking": "Bookings not found"
+    "noBooking": "You don't have any reservations"
   },
   "MyHotelsPage": {
-    "noHotels": "You haven't hotels",
+    "noHotels": "You don't have any hotels",
     "title": "My Hotels",
     "viewDetails": "View Details"
   },
@@ -333,10 +338,17 @@
   },
   "SearchPage": {
     "filterBy": "Filter by:",
-    "hotelsFound": "Hotels Found",
+    "hotelsFound_one": "hotel found",
+    "hotelsFound_many": "hotels found",
     "in": "in",
     "filter": "Filter",
     "sort": "Sort"
+  },
+  "NotFoundPage": {
+    "empty": {
+      "alert": "Page not found",
+      "link": "Return to the Main Page"
+    }
   },
   "PrivacyPage": {
     "title": "Privacy Policy",

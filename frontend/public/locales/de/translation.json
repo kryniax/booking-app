@@ -245,7 +245,8 @@
   },
   "SearchPage": {
     "filterBy": "Filtern nach:",
-    "hotelsFound": "Hotels gefunden",
+    "hotelsFound_one": "Hotel gefunden",
+    "hotelsFound_other": "Hotels gefunden",
     "in": "in"
   },
   "PrivacyPage": {
