@@ -60,12 +60,6 @@ const hotelSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  bookings: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Booking",
-    },
-  ],
 });
 
 const Hotel = mongoose.model("Hotel", hotelSchema);

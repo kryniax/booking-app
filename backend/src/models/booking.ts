@@ -6,6 +6,11 @@ const bookingSchema = new mongoose.Schema({
     ref: "Hotel",
     required: true,
   },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   firstName: {
     type: String,
     required: true,
@@ -34,12 +39,16 @@ const bookingSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  userId: {
-    type: String,
-    required: true,
-  },
   totalCost: {
     type: Number,
+    required: true,
+  },
+  cancelStatus: {
+    type: Boolean,
+    required: true,
+  },
+  reservationDate: {
+    type: Date,
     required: true,
   },
 });

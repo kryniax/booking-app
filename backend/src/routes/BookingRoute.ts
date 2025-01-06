@@ -18,6 +18,8 @@ router.post(
 
 router.get("/my-bookings", verifyToken, BookingController.getMyBooking);
 
+router.put("/cancel/:bookingId", verifyToken, BookingController.cancelBooking);
+
 router.delete(
   "/delete/:bookingId",
   verifyToken,

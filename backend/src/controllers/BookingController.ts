@@ -2,6 +2,7 @@ import { Request } from "express";
 import Stripe from "stripe";
 import Hotel from "../models/hotel";
 import Booking from "../models/booking";
+import mongoose from "mongoose";
 
 const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
@@ -68,23 +69,14 @@ const processPayment = async (req: Request, res: any) => {
       });
     }
 
-    const newBooking = new Booking({
+    const booking = new Booking({
       ...req.body,
       userId: req.userId,
+      reservationDate: new Date(),
+      cancelStatus: false,
     });
-    const savedBooking = await newBooking.save();
 
-    const hotel = await Hotel.findByIdAndUpdate(
-      { _id: req.params.hotelId },
-      { $push: { bookings: savedBooking._id } }
-    );
-
-    if (!hotel) {
-      await Booking.findByIdAndDelete(savedBooking._id);
-      return res.status(400).json({ message: "Hotel not found" });
-    }
-
-    await hotel.save();
+    await booking.save();
     return res.status(200).send();
   } catch (error) {
     console.log(error);
@@ -96,13 +88,16 @@ const processPayment = async (req: Request, res: any) => {
 
 const getMyBooking = async (req: Request, res: any) => {
   try {
-    const bookings = await Booking.find({ userId: req.userId }).populate({
-      path: "hotelId",
-      select: "name city country imageUrls",
-    });
+    const userObjectId = new mongoose.Types.ObjectId(req.userId);
+    const bookings = await Booking.find({ userId: userObjectId })
+      .sort({ reservationDate: -1 })
+      .populate({
+        path: "hotelId",
+        select: "name city country imageUrls",
+      });
 
     if (!bookings) {
-      return res.status(400).json({ message: "Bookings not found" });
+      return res.status(404).json({ message: "Bookings not found" });
     }
 
     const bookingsWithCancelStatus = bookings.map((booking) => {
@@ -115,7 +110,7 @@ const getMyBooking = async (req: Request, res: any) => {
 
       return {
         ...booking.toObject(),
-        cancelStatus: daysUntilCheckIn > 2,
+        isOutdated: daysUntilCheckIn < 2,
       };
     });
 
@@ -125,6 +120,34 @@ const getMyBooking = async (req: Request, res: any) => {
     return res
       .status(500)
       .json({ message: "Something went wrong while getting my booking" });
+  }
+};
+
+const cancelBooking = async (req: Request, res: any) => {
+  const { bookingId } = req.params;
+
+  try {
+    const booking = await Booking.findOneAndUpdate(
+      {
+        _id: bookingId,
+        userId: req.userId,
+      },
+      {
+        $set: { cancelStatus: true, lastUpdated: new Date() },
+      },
+      { new: true }
+    );
+    console.log(booking);
+    if (!booking) {
+      return res.status(404).json({ message: "Reservation not found" });
+    }
+
+    return res.status(200).json(booking);
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "Something went wrong while canceling my booking" });
   }
 };
 
@@ -143,34 +166,23 @@ const deleteBooking = async (req: Request, res: any) => {
       });
     }
 
-    const checkInDate = new Date(booking.checkIn);
-    const currentDate = new Date();
-
-    const timeDifference = checkInDate.getTime() - currentDate.getTime();
-    const daysUntilCheckIn = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-
-    if (daysUntilCheckIn <= 2) {
-      return res.status(400).json({
-        message:
-          "Booking can only be cancelled at least 2 days before check-in date",
-      });
-    }
-
-    await Hotel.findByIdAndUpdate(booking.hotelId, {
-      $pull: { bookings: bookingId },
-    });
-
     await Booking.findByIdAndDelete(bookingId);
 
     return res.status(200).json({
-      message: "Booking cancelled successfully",
+      message: "Booking deleted successfully",
     });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
-      message: "Something went wrong while cancelling the booking",
+      message: "Something went wrong while deleting the booking",
     });
   }
 };
 
-export default { createPayment, processPayment, getMyBooking, deleteBooking };
+export default {
+  createPayment,
+  processPayment,
+  getMyBooking,
+  deleteBooking,
+  cancelBooking,
+};
