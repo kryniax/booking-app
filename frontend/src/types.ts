@@ -64,9 +64,10 @@ export type BookingType = {
   checkIn: Date;
   checkOut: Date;
   totalCost: number;
+  cancelStatus: boolean;
 };
 
 export type MyBookingType = Omit<BookingType, "hotelId"> & {
   hotelId: HotelType;
-  cancelStatus: boolean;
+  isOutdated: boolean;
 };

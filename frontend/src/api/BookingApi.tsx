@@ -101,6 +101,43 @@ export const useGetMyBooking = () => {
   return { bookings, isLoading, refetch };
 };
 
+export const useCancelBooking = () => {
+  const queryClient = useQueryClient();
+  const { showToast } = useAppContext();
+  const cancelBookingRequest = async (bookingId: string): Promise<void> => {
+    const response = await fetch(
+      `${API_BASE_URL}/api/booking/cancel/${bookingId}`,
+      {
+        method: "PUT",
+        credentials: "include",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to cancel booking");
+    }
+
+    return response.json();
+  };
+
+  const {
+    mutateAsync: cancelBooking,
+    isPending,
+    isSuccess,
+  } = useMutation({
+    mutationFn: cancelBookingRequest,
+    onSuccess: async () => {
+      queryClient.invalidateQueries({ queryKey: ["getMyBookings"] });
+      showToast({ message: "Booking Cancelled", type: "SUCCESS" });
+    },
+    onError: (error: Error) => {
+      showToast({ message: error.message, type: "ERROR" });
+    },
+  });
+
+  return { cancelBooking, isPending, isSuccess };
+};
+
 export const useDeleteBooking = () => {
   const queryClient = useQueryClient();
   const { showToast } = useAppContext();
@@ -116,7 +153,7 @@ export const useDeleteBooking = () => {
 
     if (!response.ok) {
       const error = await response.json();
-      throw new Error(error.message || "Failed to cancel booking");
+      throw new Error(error.message || "Failed to delete booking");
     }
   };
 
@@ -129,10 +166,10 @@ export const useDeleteBooking = () => {
     mutationFn: deleteBookingRequest,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["getMyBookings"] });
-      showToast({ message: "Booking Canceled", type: "SUCCESS" });
+      showToast({ message: "Booking Deleted", type: "SUCCESS" });
     },
     onError: () => {
-      showToast({ message: "Error cancelling booking", type: "ERROR" });
+      showToast({ message: "Error deletting booking", type: "ERROR" });
     },
   });
 

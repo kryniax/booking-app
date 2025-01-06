@@ -1,29 +1,26 @@
-import { useState } from "react";
 import { MyBookingType } from "../types";
 import { useTranslation } from "react-i18next";
-import { useDeleteBooking } from "../api/BookingApi";
-import Modal from "./Modal";
-import CancelBookingConfirmation from "./BookingCancelConfirmation";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 type BookingCardProps = {
   booking: MyBookingType;
+  onOpenCancelModal: (bookingId: string) => void;
+  onOpenDeleteModal: (bookingId: string) => void;
 };
 
-const BookingCard = ({ booking }: BookingCardProps) => {
+const BookingCard = ({
+  booking,
+  onOpenCancelModal,
+  onOpenDeleteModal,
+}: BookingCardProps) => {
   const { t } = useTranslation();
-  const { deleteBooking, isPending, isSuccess } = useDeleteBooking();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const cancelBookingHandler = () => {
-    try {
-      deleteBooking(booking._id);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const shouldShowDeleteButton =
+    (booking.cancelStatus && !booking.isOutdated) ||
+    (!booking.cancelStatus && booking.isOutdated);
 
   return (
-    <div className="w-full border border-slate-300 dark:border-zinc-700 dark:bg-zinc-800 rounded-md p-5 grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-5">
+    <div className="w-full border border-slate-300 dark:border-zinc-700 dark:bg-zinc-800 rounded-md p-5 grid grid-cols-1 lg:grid-cols-[2fr_2fr_1fr] gap-5">
       <div className="w-full h-[250px]">
         <img
           src={booking.hotelId.imageUrls[0]}
@@ -52,33 +49,46 @@ const BookingCard = ({ booking }: BookingCardProps) => {
             {t("BookingCard.children")}
           </p>
         </div>
-        <div className="mt-auto">
-          {booking.cancelStatus ? (
+      </div>
+      <div className="flex flex-row gap-2 justify-between md:justify-start md:items-end md:flex-col">
+        <div className="">
+          {booking.isOutdated ? (
+            booking.cancelStatus ? (
+              <button
+                onClick={() => onOpenCancelModal(booking._id)}
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+              >
+                {t("BookingCard.cancelBooking")}
+              </button>
+            ) : (
+              <button className="bg-zinc-500 text-white px-4 py-2 rounded cursor-default">
+                {t("BookingCard.cancelNotAvailable")}
+              </button>
+            )
+          ) : booking.cancelStatus ? (
+            <button className="bg-zinc-500 text-white px-4 py-2 rounded cursor-default">
+              {t("BookingCard.cancelledBooking")}
+            </button>
+          ) : (
             <button
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => onOpenCancelModal(booking._id)}
               className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
             >
               {t("BookingCard.cancelBooking")}
             </button>
-          ) : (
-            <button className="bg-zinc-500 text-white px-4 py-2 rounded cursor-default">
-              {t("BookingCard.cancelAvailable")}
+          )}
+        </div>
+        <div className="">
+          {shouldShowDeleteButton && (
+            <button
+              onClick={() => onOpenDeleteModal(booking._id)}
+              className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
+            >
+              <FaRegTrashAlt size={25} />
             </button>
           )}
         </div>
       </div>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title={t("BookingCard.cancelBooking")}
-      >
-        <CancelBookingConfirmation
-          onConfirm={cancelBookingHandler}
-          onCancel={() => setIsModalOpen(false)}
-          isPending={isPending}
-          isSuccess={isSuccess}
-        />
-      </Modal>
     </div>
   );
 };

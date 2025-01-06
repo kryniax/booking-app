@@ -41,11 +41,15 @@
     "adults": "adults ",
     "children": "children ",
     "cancelBooking": "Cancel reservation",
-    "cancelAvailable": "Cancellation not available"
+    "cancelledBooking": "Reservation cancelled",
+    "cancelNotAvailable": "Cancellation not available",
+    "deleteBooking": "Delete reservation"
   },
-  "BookingCancelConfirmation": {
-    "title": "Are you sure to cancel the reservation?",
-    "cancelling": "Cancelling..."
+  "BookingOperationConfirmation": {
+    "cancel": "Are you sure to cancel the reservation?",
+    "delete": "Are you sure to delete the reservation?",
+    "canceled": "Canceled!",
+    "deleted": "Deleted!"
   },
   "BookingDetailSummary": {
     "yourBookingDetails": "Your Booking Details",
