@@ -23,7 +23,7 @@ const DetailPage = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       <HelmetSEO
         title={`${hotelDataById.name} - Niceplace.com`}
         description={hotelDataById.description.substring(0, 160)}
