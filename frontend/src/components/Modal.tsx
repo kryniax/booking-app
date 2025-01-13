@@ -39,12 +39,12 @@ const Modal = ({ isOpen, onClose, title, children, className }: ModalProps) => {
         >
           <div
             className={twMerge(
-              "relative md:w-1/2 w-3/4 max-w-[350px] max-h-[80%] inset-0 bg-white dark:bg-zinc-800 dark:border dark:border-zinc-700 rounded-md flex flex-col gap-2",
+              "relative w-auto min-w-[300px] md:min-w-[350px] max-w-screen-3xl mx-auto max-h-[90%] inset-0 bg-white dark:bg-zinc-800 dark:border dark:border-zinc-700 rounded-md flex flex-col gap-2",
               className
             )}
             onClick={modalOnClick}
           >
-            <div className="flex justify-between p-4">
+            <div className="flex justify-between p-4 pb-1">
               <header>
                 <h3 className="text-xl font-bold dark:text-zinc-100">
                   {title}
