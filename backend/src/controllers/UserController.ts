@@ -13,6 +13,7 @@ const createUser = async (req: Request, res: any) => {
       return res.status(404).json({ message: "User already exists!" });
     }
     const newUser = new User(req.body);
+    newUser.lastUpdated = new Date();
     newUser.save();
 
     const token = jwt.sign(
@@ -30,6 +31,39 @@ const createUser = async (req: Request, res: any) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Error creating user" });
+  }
+};
+
+const updateUser = async (req: Request, res: any) => {
+  try {
+    const { email, oldPassword, password } = req.body;
+
+    const user = await User.findById(req.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
+    console.log(`${oldPassword}, ${isPasswordValid}`);
+    if (!isPasswordValid) {
+      return res.status(400).json({
+        code: "INVALID_OLD_PASSWORD",
+        message: "Invalid current password",
+      });
+    }
+
+    user.email = email;
+    if (password) {
+      user.password = password;
+    }
+    user.lastUpdated = new Date();
+
+    await user.save();
+    return res.status(200).json({ message: "User updated correctly" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Error updating user" });
   }
 };
 
@@ -94,4 +128,11 @@ const getUserToken = async (req: Request, res: any) => {
   return res.status(200).send({ userId: req.userId });
 };
 
-export default { createUser, getUser, getUserToBook, getUserToken, logoutUser };
+export default {
+  createUser,
+  getUser,
+  getUserToBook,
+  getUserToken,
+  logoutUser,
+  updateUser,
+};

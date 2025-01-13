@@ -114,6 +114,43 @@ export const useLogoutUser = () => {
   return { logoutUser };
 };
 
+export const useUpdateUser = () => {
+  const { showToast } = useAppContext();
+  const updateUserRequest = async (formData: LoginFormData) => {
+    const response = await fetch(`${API_BASE_URL}/api/user/update`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw { code: errorData.code, message: errorData.message };
+    }
+
+    return response.json();
+  };
+
+  const {
+    mutateAsync: updateUser,
+    isPending,
+    isSuccess,
+  } = useMutation({
+    mutationFn: updateUserRequest,
+    onSuccess: async () => {
+      showToast({ message: "Credential updated!", type: "SUCCESS" });
+    },
+    onError: (error: any) => {
+      showToast({ message: error.message, type: "ERROR" });
+    },
+  });
+
+  return { updateUser, isPending, isSuccess };
+};
+
 export const useValidateToken = () => {
   const validateToken = async () => {
     const response = await fetch(`${API_BASE_URL}/api/user/validate-token`, {
@@ -157,10 +194,10 @@ export const useGetCurrentUser = () => {
     return response.json();
   };
 
-  const { data: currentUser, isError } = useQuery({
+  const { data: currentUser, isLoading } = useQuery({
     queryKey: ["fetchCurrent"],
     queryFn: getCurrentUserRequest,
   });
 
-  return { currentUser, isError };
+  return { currentUser, isLoading };
 };

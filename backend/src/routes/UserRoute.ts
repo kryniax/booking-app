@@ -3,6 +3,7 @@ import UserController from "../controllers/UserController";
 import {
   validateLoginUserRequest,
   validateRegisterUserRequest,
+  validateUpdateUserRequest,
 } from "../middleware/validation";
 import verifyToken from "../middleware/auth";
 
@@ -17,5 +18,11 @@ router.post("/login", validateLoginUserRequest, UserController.getUser);
 router.get("/validate-token", verifyToken, UserController.getUserToken);
 router.post("/logout", UserController.logoutUser);
 router.get("/me", verifyToken, UserController.getUserToBook);
+router.post(
+  "/update",
+  validateUpdateUserRequest,
+  verifyToken,
+  UserController.updateUser
+);
 
 export default router;

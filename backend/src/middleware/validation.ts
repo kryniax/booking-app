@@ -39,6 +39,19 @@ export const validateLoginUserRequest = [
   handleValidationErrors,
 ];
 
+export const validateUpdateUserRequest = [
+  body("email").isEmail().notEmpty().withMessage("Email is required!"),
+  body("oldPassword")
+    .isStrongPassword()
+    .notEmpty()
+    .withMessage("Current password is required!"),
+  body("password")
+    .isStrongPassword()
+    .notEmpty()
+    .withMessage("New password is required!"),
+  handleValidationErrors,
+];
+
 export const validateCreateHotelRequest = [
   body("name").notEmpty().withMessage("Name is required"),
   body("city").notEmpty().withMessage("City is required"),
