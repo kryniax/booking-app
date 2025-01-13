@@ -22,7 +22,9 @@
     "starRating": "gwiazdki",
     "sortBy": "sortuj według",
     "noHotel": "Nie ma takiego hotelu",
-    "refresh": "Odśwież"
+    "refresh": "Odśwież",
+    "save": "Zapisz",
+    "delete": "Usuń"
   },
   "BookingCard": {
     "dates": "Daty: ",
@@ -267,7 +269,8 @@
       },
       "password": {
         "label": "Hasło",
-        "min": "Hasło jest wymagane",
+        "required": "Hasło jest wymagane",
+        "min": "Hasło jest zbyt krótkie (min. 8 znaków)",
         "upperCase": "Hasło musi zawierać co najmniej jedną wielką literę",
         "number": "Hasło musi zawierać co najmniej jedną cyfrę",
         "special": "Hasło musi zawierać co najmniej jeden znak specjalny"
@@ -283,6 +286,18 @@
     "noHotels": "Nie znaleziono hoteli",
     "title": "Moje Hotele",
     "viewDetails": "Zobacz Szczegóły"
+  },
+  "MyProfilePage": {
+    "editUser": "Zmień dane logowania",
+    "noUser": "Nie jesteś użytkownikiem",
+    "deleteAccount": "Usuń konto",
+    "oldPassword": "Obecne hasło",
+    "newPassword": "Nowe hasło",
+    "validation": {
+      "oldPassword": {
+        "invalid": "Obecne hasło jest niepoprawne"
+      }
+    }
   },
   "RegisterPage": {
     "title": "Utwórz Konto",
@@ -307,7 +322,7 @@
         "special": "Hasło musi zawierać co najmniej jeden znak specjalny"
       },
       "confirmPassword": {
-        "label": "potwierdź hasło",
+        "label": "Potwierdź hasło",
         "message": "Hasła nie są takie same"
       }
     },

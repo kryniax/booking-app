@@ -19,7 +19,7 @@ const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
         labelClass
       )}
     >
-      <span className="capitalize">{label}</span>
+      <span>{label}</span>
       {children ? (
         children
       ) : (
@@ -27,7 +27,7 @@ const Input = forwardRef((props: InputProps, ref: Ref<HTMLInputElement>) => {
           {...inputProps}
           ref={ref}
           className={twMerge(
-            `border rounded w-full py-1 px-2 font-normal dark:bg-zinc-800 dark:border-zinc-700`,
+            `border rounded w-full py-1 px-2 font-normal dark:bg-zinc-800 dark:border-zinc-700 disabled:bg-slate-200 dark:disabled:bg-zinc-600`,
             className
           )}
         />
