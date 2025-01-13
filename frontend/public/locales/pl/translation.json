@@ -320,7 +320,8 @@
     "hotelsFound_many": "znalezionych hoteli",
     "in": "w",
     "filter": "Filtruj",
-    "sort": "Sortuj"
+    "sort": "Sortuj",
+    "map": "Mapa"
   },
   "PrivacyPage": {
     "title": "Polityka Prywatności",

@@ -14,6 +14,8 @@ import Modal from "../components/Modal";
 import PulseLoader from "react-spinners/PulseLoader";
 import HelmetSEO from "../components/HelmetSEO";
 import ScrollToTop from "../components/ScrollToTop";
+import MapView from "../components/Map";
+import MapImg from "../assets/map.jpg";
 
 const SearchPage = () => {
   const search = useSearchContext();
@@ -31,6 +33,7 @@ const SearchPage = () => {
 
   const [isModalFilterOpen, setIsModalFilterOpen] = useState(false);
   const [isModalSortOpen, setIsModalSortOpen] = useState(false);
+  const [isModalMapOpen, setIsModalMapOpen] = useState<boolean>(false);
 
   const searchParams = {
     destination: search.destination,
@@ -90,52 +93,72 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
+    <div className="grid lg:grid-cols-[250px_1fr] gap-5">
       <HelmetSEO
         title="Search Hotels - Find Your Perfect Accommodation at Niceplace"
         description="Search through thousands of hotels worldwide. Filter by price, location, amenities, and more to find your perfect accommodation."
         keywords="search hotels, hotel finder, hotel search engine, find accommodation, compare hotels"
         pathName="/search"
       />
-      <div className="rounded-lg border border-slate-300 dark:border-zinc-700 dark:bg-zinc-800 p-5 h-fit lg:block top-10">
-        <div className="flex justify-between px-8 lg:hidden">
-          <div
-            className="flex items-center gap-2 cursor-pointer"
-            onClick={() => setIsModalFilterOpen(true)}
-          >
-            <TbFilter size={22} className="dark:text-zinc-100" />
-            <span className="dark:text-zinc-100">{t("SearchPage.filter")}</span>
-          </div>
-          <div
-            className="flex items-center gap-2 cursor-pointer"
-            onClick={() => setIsModalSortOpen(true)}
-          >
-            <TbArrowsSort size={22} className="dark:text-zinc-100" />
-            <span className="dark:text-zinc-100">{t("SearchPage.sort")}</span>
-          </div>
-        </div>
-        <div className="hidden lg:block space-y-5">
+      <div className="flex flex-col gap-5">
+        <div
+          onClick={() => setIsModalMapOpen(true)}
+          className="flex flex-col max-h-[250px] xl:max-h-max gap-5 rounded-lg border border-slate-300 dark:border-zinc-700 dark:bg-zinc-800 p-5 h-fit lg:block top-10 cursor-pointer"
+        >
           <header>
-            <h3 className="text-lg dark:text-zinc-100 font-semibold border-b border-slate-300 dark:border-slate-200 pb-5">
-              {t("SearchPage.filterBy")}
+            <h3 className="text-lg dark:text-zinc-100 font-semibold">
+              {t("SearchPage.map")}
             </h3>
           </header>
-          <StarRatingFilter
-            selectedStars={selectedStars}
-            onChange={starsChangeHandler}
+          <img
+            className="flex items-center object-cover overflow-hidden"
+            src={MapImg}
+            alt={t("SearchPage.map")}
+            title={t("SearchPage.map")}
           />
-          <HotelTypesFilter
-            selectedHotel={selectedHotelType}
-            onChange={hotelTypeChangeHandler}
-          />
-          <FacilitiesFilter
-            selectedFacilities={selectedHotelFacilities}
-            onChange={hotelFacilityChangeHandler}
-          />
-          <PriceFilter
-            selectedPrice={selectedPrice}
-            onChange={hotelSelectedPriceHandler}
-          />
+        </div>
+        <div className="rounded-lg border border-slate-300 dark:border-zinc-700 dark:bg-zinc-800 p-5 h-fit lg:block top-10">
+          <div className="flex justify-between px-8 lg:hidden">
+            <div
+              className="flex items-center gap-2 cursor-pointer"
+              onClick={() => setIsModalFilterOpen(true)}
+            >
+              <TbFilter size={22} className="dark:text-zinc-100" />
+              <span className="dark:text-zinc-100">
+                {t("SearchPage.filter")}
+              </span>
+            </div>
+            <div
+              className="flex items-center gap-2 cursor-pointer"
+              onClick={() => setIsModalSortOpen(true)}
+            >
+              <TbArrowsSort size={22} className="dark:text-zinc-100" />
+              <span className="dark:text-zinc-100">{t("SearchPage.sort")}</span>
+            </div>
+          </div>
+          <div className="hidden lg:block space-y-5">
+            <header>
+              <h3 className="text-lg dark:text-zinc-100 font-semibold border-b border-slate-300 dark:border-slate-200 pb-5">
+                {t("SearchPage.filterBy")}
+              </h3>
+            </header>
+            <StarRatingFilter
+              selectedStars={selectedStars}
+              onChange={starsChangeHandler}
+            />
+            <HotelTypesFilter
+              selectedHotel={selectedHotelType}
+              onChange={hotelTypeChangeHandler}
+            />
+            <FacilitiesFilter
+              selectedFacilities={selectedHotelFacilities}
+              onChange={hotelFacilityChangeHandler}
+            />
+            <PriceFilter
+              selectedPrice={selectedPrice}
+              onChange={hotelSelectedPriceHandler}
+            />
+          </div>
         </div>
       </div>
       <div className="flex flex-col gap-5">
@@ -211,6 +234,13 @@ const SearchPage = () => {
             onChange={hotelSelectedFilterHandler}
           />
         </div>
+      </Modal>
+      <Modal
+        isOpen={isModalMapOpen}
+        onClose={() => setIsModalMapOpen(false)}
+        title={t("SearchPage.map")}
+      >
+        <MapView className="w-[80vw] h-[70vh] max-w-screen-3xl px-2 pb-2" />
       </Modal>
     </div>
   );

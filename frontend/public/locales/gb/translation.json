@@ -346,7 +346,8 @@
     "hotelsFound_many": "hotels found",
     "in": "in",
     "filter": "Filter",
-    "sort": "Sort"
+    "sort": "Sort",
+    "map": "Map"
   },
   "NotFoundPage": {
     "empty": {
