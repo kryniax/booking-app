@@ -48,9 +48,8 @@
     "cancelNotAvailable": "Cancellation not available",
     "deleteBooking": "Delete reservation"
   },
-  "BookingOperationConfirmation": {
-    "cancel": "Are you sure to cancel the reservation?",
-    "delete": "Are you sure to delete the reservation?",
+  "ModalOperationConfirmation": {
+    "operation": "Are you sure to {{operation}} the {{name}}?",
     "canceled": "Canceled!",
     "deleted": "Deleted!"
   },
@@ -60,10 +59,9 @@
     "totalStay": "Total stay: ",
     "checkIn": "check-in",
     "checkOut": "check-out",
-    "nights": {
-      "1": "night",
-      "2": "nights"
-    }
+    "night_one": "night",
+    "night_few": "nights",
+    "night_many": "nights"
   },
   "Footer": {
     "privacyPolicy": "Privacy Policy",
@@ -140,7 +138,7 @@
     "includesTaxesAndCharges": "includes taxes and charges",
     "paymentDetails": "Payment Details",
     "confirmBooking": "Confirm Booking",
-    "successBooking": "Success Booking"
+    "successPayment": "Reservation paid!"
   },
   "GuestInfoForm": {
     "bookNow": "Book Now",
@@ -330,19 +328,19 @@
     "title": "Create an Account",
     "validation": {
       "firstName": {
-        "label": "first name",
+        "label": "First name",
         "message": "Firstname is required"
       },
       "lastName": {
-        "label": "last name",
+        "label": "Last name",
         "message": "Lastname is required"
       },
       "email": {
-        "label": "email",
+        "label": "Email",
         "message": "Invalid email address"
       },
       "password": {
-        "label": "password",
+        "label": "Password",
         "required": "Password is required",
         "min": "Password is too short (min. 8 chars)",
         "upperCase": "Password must contain at least one uppercase letter",

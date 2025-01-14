@@ -38,11 +38,9 @@
     "totalStay": "Całkowity pobyt: ",
     "checkIn": "zameldowanie",
     "checkOut": "wymeldowanie",
-    "nights": {
-      "1": "noc",
-      "2": "noce",
-      "5": "nocy"
-    }
+    "night_one": "noc",
+    "night_few": "noce",
+    "night_many": "nocy"
   },
   "Footer": {
     "privacyPolicy": "Polityka Prywatności",
@@ -119,7 +117,7 @@
     "includesTaxesAndCharges": "zawiera podatki i opłaty",
     "paymentDetails": "Szczegóły Płatności",
     "confirmBooking": "Potwierdź Rezerwację",
-    "successBooking": "Rezerwacja Udana"
+    "successPayment": "Rezerwacja opłacona!"
   },
   "GuestInfoForm": {
     "bookNow": "Zarezerwuj Teraz",
@@ -303,19 +301,19 @@
     "title": "Utwórz Konto",
     "validation": {
       "firstName": {
-        "label": "imię",
+        "label": "Imię",
         "message": "Imię jest wymagane"
       },
       "lastName": {
-        "label": "nazwisko",
+        "label": "Nazwisko",
         "message": "Nazwisko jest wymagane"
       },
       "email": {
-        "label": "email",
+        "label": "Email",
         "message": "Nieprawidłowy adres email"
       },
       "password": {
-        "label": "hasło",
+        "label": "Hasło",
         "min": "Hasło jest wymagane",
         "upperCase": "Hasło musi zawierać co najmniej jedną wielką literę",
         "number": "Hasło musi zawierać co najmniej jedną cyfrę",
