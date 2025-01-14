@@ -16,8 +16,7 @@ const BookingCard = ({
   const { t } = useTranslation();
 
   const shouldShowDeleteButton =
-    (booking.cancelStatus && !booking.isOutdated) ||
-    (!booking.cancelStatus && booking.isOutdated);
+    (booking.cancelStatus && !booking.isAfterCheckIn) || booking.isAfterCheckIn;
 
   return (
     <div className="w-full border border-slate-300 dark:border-zinc-700 dark:bg-zinc-800 rounded-md p-5 grid grid-cols-1 lg:grid-cols-[2fr_2fr_1fr] gap-5">
@@ -52,19 +51,14 @@ const BookingCard = ({
       </div>
       <div className="flex flex-row gap-2 justify-between md:justify-start md:items-end md:flex-col">
         <div className="">
-          {booking.isOutdated ? (
-            booking.cancelStatus ? (
-              <button
-                onClick={() => onOpenCancelModal(booking._id)}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-              >
-                {t("BookingCard.cancelBooking")}
-              </button>
-            ) : (
-              <button className="bg-zinc-500 text-white px-4 py-2 rounded cursor-default">
-                {t("BookingCard.cancelNotAvailable")}
-              </button>
-            )
+          {booking.isAfterCheckIn ? (
+            <button className="bg-zinc-500 text-white px-4 py-2 rounded cursor-default">
+              {t("BookingCard.cancelNotAvailable")}
+            </button>
+          ) : booking.isOutdated ? (
+            <button className="bg-zinc-500 text-white px-4 py-2 rounded cursor-default">
+              {t("BookingCard.cancelNotAvailable")}
+            </button>
           ) : booking.cancelStatus ? (
             <button className="bg-zinc-500 text-white px-4 py-2 rounded cursor-default">
               {t("BookingCard.cancelledBooking")}

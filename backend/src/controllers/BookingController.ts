@@ -107,10 +107,11 @@ const getMyBooking = async (req: Request, res: any) => {
       const daysUntilCheckIn = Math.ceil(
         timeDifference / (1000 * 60 * 60 * 24)
       );
-
+      const isAfterCheckIn = currentDate > checkInDate;
       return {
         ...booking.toObject(),
         isOutdated: daysUntilCheckIn < 2,
+        isAfterCheckIn,
       };
     });
 

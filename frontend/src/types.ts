@@ -72,4 +72,5 @@ export type BookingType = {
 export type MyBookingType = Omit<BookingType, "hotelId"> & {
   hotelId: HotelType;
   isOutdated: boolean;
+  isAfterCheckIn: boolean;
 };
