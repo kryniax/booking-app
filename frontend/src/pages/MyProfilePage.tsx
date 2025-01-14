@@ -1,14 +1,19 @@
 import { useTranslation } from "react-i18next";
-import { useGetCurrentUser } from "../api/UserApi";
+import { useDeleteUser, useGetCurrentUser } from "../api/UserApi";
 import { Link } from "react-router-dom";
 import HelmetSEO from "../components/HelmetSEO";
 import EditUserForm from "../forms/edit-user-form/EditUserForm";
 import Empty from "../components/Empty";
 import PulseLoader from "react-spinners/PulseLoader";
+import Modal from "../components/Modal";
+import ModalOperationConfirmation from "../components/ModalOperationConfirmation";
+import { useState } from "react";
 
 const MyProfilePage = () => {
   const { t } = useTranslation();
   const { currentUser, isLoading } = useGetCurrentUser();
+  const { deleteUser, isPending, isSuccess } = useDeleteUser();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   if (isLoading) {
     return (
@@ -27,6 +32,14 @@ const MyProfilePage = () => {
       />
     );
   }
+
+  const deleteUserHandler = async () => {
+    try {
+      await deleteUser();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <section className="flex flex-col gap-7">
@@ -75,7 +88,10 @@ const MyProfilePage = () => {
             >
               {t("Header.myHotels")}
             </Link>
-            <button className="flex items-center bg-red-500 dark:bg-red-900 py-2 text-white px-3 font-bold hover:bg-red-400 dark:hover:bg-red-800 rounded-md transition duration-50">
+            <button
+              className="flex items-center bg-red-500 dark:bg-red-900 py-2 text-white px-3 font-bold hover:bg-red-400 dark:hover:bg-red-800 rounded-md transition duration-50"
+              onClick={() => setIsModalOpen(true)}
+            >
               {t("MyProfilePage.deleteAccount")}
             </button>
           </div>
@@ -84,6 +100,20 @@ const MyProfilePage = () => {
           <EditUserForm currentUser={currentUser} />
         </div>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={t("BookingCard.cancelBooking")}
+      >
+        <ModalOperationConfirmation
+          operation="delete"
+          name="account"
+          onConfirm={deleteUserHandler}
+          onCancel={() => setIsModalOpen(false)}
+          isPending={isPending}
+          isSuccess={isSuccess}
+        />
+      </Modal>
     </section>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useGetMyBooking,
   useCancelBooking,
@@ -10,7 +10,7 @@ import HelmetSEO from "../components/HelmetSEO";
 import Empty from "../components/Empty";
 import PulseLoader from "react-spinners/PulseLoader";
 import Modal from "../components/Modal";
-import BookingOperationConfirmation from "../components/BookingOperationConfirmation";
+import ModalOperationConfirmation from "../components/ModalOperationConfirmation";
 
 const MyBookingPage = () => {
   const { bookings, isLoading, refetch } = useGetMyBooking();
@@ -38,10 +38,10 @@ const MyBookingPage = () => {
     setIsDeleteModalOpen(true);
   };
 
-  const cancelBookingHandler = () => {
+  const cancelBookingHandler = async () => {
     if (selectedBookingId) {
       try {
-        cancelBooking(selectedBookingId);
+        await cancelBooking(selectedBookingId);
       } catch (error) {
         console.log(error);
       }
@@ -57,6 +57,15 @@ const MyBookingPage = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (isCancelSuccess) {
+      setIsCancelModalOpen(false);
+    }
+    if (isSuccess) {
+      setIsDeleteModalOpen(false);
+    }
+  }, [isSuccess, isCancelSuccess, setIsCancelModalOpen, setIsDeleteModalOpen]);
 
   if (isLoading) {
     return (
@@ -100,8 +109,9 @@ const MyBookingPage = () => {
         onClose={() => setIsCancelModalOpen(false)}
         title={t("BookingCard.cancelBooking")}
       >
-        <BookingOperationConfirmation
+        <ModalOperationConfirmation
           operation="cancel"
+          name="reservation"
           onConfirm={cancelBookingHandler}
           onCancel={() => setIsCancelModalOpen(false)}
           isPending={isCancelPending}
@@ -114,8 +124,9 @@ const MyBookingPage = () => {
         onClose={() => setIsDeleteModalOpen(false)}
         title={t("BookingCard.deleteBooking")}
       >
-        <BookingOperationConfirmation
+        <ModalOperationConfirmation
           operation="delete"
+          name="reservation"
           onConfirm={deleteBookingHandler}
           onCancel={() => setIsDeleteModalOpen(false)}
           isPending={isPending}
