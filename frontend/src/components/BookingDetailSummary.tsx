@@ -52,7 +52,9 @@ const BookingDetailSummary = (props: BookingDetailSummaryProps) => {
       <div className="border-t border-b py-2 dark:border-zinc-200">
         <span>{t("BookingDetailSummary.totalStay")}</span>
         <p className="font-bold">
-          {numberOfNights} {numberOfNights > 1 ? "nights" : "night"}
+          {`${numberOfNights} ${t("BookingDetailSummary.night", {
+            count: Number(numberOfNights),
+          })}`}
         </p>
       </div>
       <div>

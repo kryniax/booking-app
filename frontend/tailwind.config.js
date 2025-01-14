@@ -9,6 +9,9 @@ export default {
         sm: "576px",
         md: "768px",
       },
+      blur: {
+        xs: "2px",
+      },
     },
     container: {
       center: true,

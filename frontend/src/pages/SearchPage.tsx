@@ -165,7 +165,9 @@ const SearchPage = () => {
         <div className="flex justify-between items-center">
           <header>
             <h2 className="text-xl font-bold dark:text-zinc-100">
-              {`${hotelData?.pagination.total} ${t("SearchPage.hotelsFound", { count: Number(hotelData?.pagination.total) })}`}
+              {`${hotelData?.pagination.total} ${t("SearchPage.hotelsFound", {
+                count: Number(hotelData?.pagination.total),
+              })}`}
               {search.destination
                 ? ` ${t("SearchPage.in")}: ${search.destination}`
                 : ""}

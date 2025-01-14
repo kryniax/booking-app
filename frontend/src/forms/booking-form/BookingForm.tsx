@@ -5,11 +5,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { StripeCardElement } from "@stripe/stripe-js";
 import { useSearchContext } from "../../contexts/SearchContext";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useCreateBooking } from "../../api/BookingApi";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "../../contexts/AppContext";
 import { useCurrencyContext } from "../../contexts/CurrencyContext";
+import PulseLoader from "react-spinners/PulseLoader";
+import { CiCircleCheck } from "react-icons/ci";
 
 type BookingFormProps = {
   currentUser: UserType;
@@ -40,7 +42,11 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
   const { t } = useTranslation();
   const { theme } = useAppContext();
   const { formatPrice } = useCurrencyContext();
-  const { handleSubmit, register } = useForm<BookingFormData>({
+  const {
+    handleSubmit,
+    register,
+    formState: { isSubmitting },
+  } = useForm<BookingFormData>({
     resolver: zodResolver(bookingFormSchema),
     defaultValues: {
       firstName: currentUser.firstName,
@@ -85,7 +91,7 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="grid grid-cols-1 gap-5 rounded-lg border border-slate-300 dark:bg-zinc-800 dark:border-zinc-700 p-5"
+      className="relative grid grid-cols-1 gap-5 rounded-lg border border-slate-300 dark:bg-zinc-800 dark:border-zinc-700 p-5"
     >
       <span className="text-3xl font-bold dark:text-zinc-100">
         {t("BookingForm.title")}
@@ -148,7 +154,9 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
       </div>
       <div className="flex justify-end">
         {isSuccess ? (
-          <span>{t("BookingForm.successBooking")}</span>
+          <span className="bg-lime-600 dark:bg-lime-900 text-white p-2 font-bold rounded-md">
+            {t("BookingForm.successPayment")}
+          </span>
         ) : (
           <button
             disabled={isPending}
@@ -159,6 +167,41 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
           </button>
         )}
       </div>
+      {isSubmitting ? (
+        <div className="z-10 absolute top-0 left-0 w-full h-full rounded-lg backdrop-blur-xs">
+          <div className="flex h-full flex-1 items-center justify-center py-10">
+            <PulseLoader color="#1e40af" size={25} />
+          </div>
+        </div>
+      ) : isSuccess ? (
+        <div className="z-10 absolute top-0 left-0 w-full h-full rounded-lg bg-white dark:bg-zinc-800">
+          <div className="flex flex-col h-full flex-1 items-center justify-center">
+            <CiCircleCheck
+              size={200}
+              className="text-lime-600 dark:text-lime-700"
+            />
+            <span className="text-2xl lg:text-3xl font-semibold text-lime-600 dark:text-lime-700 mb-16">
+              {t("BookingForm.successPayment")}
+            </span>
+            <div className="flex gap-3">
+              <Link
+                to="/"
+                className="flex items-center text-white bg-blue-500 dark:bg-blue-900 py-2 px-3 font-bold hover:bg-blue-400 dark:hover:bg-blue-800 rounded-md transition duration-50"
+              >
+                {t("Header.mainPage")}
+              </Link>
+              <Link
+                to="/my-bookings"
+                className="flex items-center text-white bg-blue-500 dark:bg-blue-900 py-2 px-3 font-bold hover:bg-blue-400 dark:hover:bg-blue-800 rounded-md transition duration-50"
+              >
+                {t("Header.myBookings")}
+              </Link>
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </form>
   );
 };
