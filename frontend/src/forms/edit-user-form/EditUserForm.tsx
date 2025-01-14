@@ -9,7 +9,7 @@ import { z } from "zod";
 import { UserType } from "../../types";
 import { CiEdit } from "react-icons/ci";
 
-const loginFormSchema = (t: TFunction) =>
+const updateFormSchema = (t: TFunction) =>
   z
     .object({
       email: z
@@ -54,7 +54,7 @@ const loginFormSchema = (t: TFunction) =>
       path: ["confirmPassword"],
     });
 
-export type LoginFormData = z.infer<ReturnType<typeof loginFormSchema>>;
+export type UpdateFormData = z.infer<ReturnType<typeof updateFormSchema>>;
 
 type EditUserFormProps = {
   currentUser: UserType;
@@ -68,7 +68,7 @@ const EditUserForm = ({ currentUser }: EditUserFormProps) => {
   const [serverError, setServerError] = useState<string>();
 
   const formSchema = useMemo(() => {
-    return loginFormSchema(t);
+    return updateFormSchema(t);
   }, [t, serverError]);
 
   const {
@@ -76,7 +76,7 @@ const EditUserForm = ({ currentUser }: EditUserFormProps) => {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<LoginFormData>({
+  } = useForm<UpdateFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: currentUser.email,
