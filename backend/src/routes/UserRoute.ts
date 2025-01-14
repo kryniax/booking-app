@@ -24,5 +24,6 @@ router.post(
   verifyToken,
   UserController.updateUser
 );
+router.delete("/delete", verifyToken, UserController.deleteUser);
 
 export default router;

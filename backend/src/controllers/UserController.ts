@@ -3,6 +3,8 @@ import User from "../models/user";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import "dotenv/config";
+import Booking from "../models/booking";
+import Hotel from "../models/hotel";
 
 const createUser = async (req: Request, res: any) => {
   try {
@@ -128,6 +130,28 @@ const getUserToken = async (req: Request, res: any) => {
   return res.status(200).send({ userId: req.userId });
 };
 
+const deleteUser = async (req: Request, res: any) => {
+  try {
+    console.log(req.userId);
+    await Hotel.deleteMany({ userId: req.userId });
+    await Booking.deleteMany({ userId: req.userId });
+    await User.findByIdAndDelete(req.userId);
+
+    res.cookie("auth_token", "", {
+      expires: new Date(0),
+    });
+
+    return res
+      .status(200)
+      .json({ message: "User account deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "Something went wrong with delete account" });
+  }
+};
+
 export default {
   createUser,
   getUser,
@@ -135,4 +159,5 @@ export default {
   getUserToken,
   logoutUser,
   updateUser,
+  deleteUser,
 };

@@ -151,6 +151,41 @@ export const useUpdateUser = () => {
   return { updateUser, isPending, isSuccess };
 };
 
+export const useDeleteUser = () => {
+  const navigate = useNavigate();
+  const { showToast } = useAppContext();
+  const queryClient = useQueryClient();
+
+  const deleteUserRequest = async () => {
+    const response = await fetch(`${API_BASE_URL}/api/user/delete`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      throw new Error("Error during deleting an account");
+    }
+  };
+
+  const {
+    mutateAsync: deleteUser,
+    isPending,
+    isSuccess,
+  } = useMutation({
+    mutationFn: deleteUserRequest,
+    onSuccess: async () => {
+      showToast({ message: "User deleted!", type: "SUCCESS" });
+      await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
+      navigate("/");
+    },
+    onError: (error: Error) => {
+      showToast({ message: error.message, type: "ERROR" });
+    },
+  });
+
+  return { deleteUser, isPending, isSuccess };
+};
+
 export const useValidateToken = () => {
   const validateToken = async () => {
     const response = await fetch(`${API_BASE_URL}/api/user/validate-token`, {
