@@ -1,10 +1,15 @@
 {
   "BookingApp": {
-    "language": "Polski",
+    "language": "Język",
     "languagePL": "Polski",
     "languageEN": "Angielski",
     "languageDE": "Niemiecki",
     "selectLanguage": "Wybierz język",
+    "selectCurrency": "Wybierz walutę",
+    "currencyPLN": "Złoty polski",
+    "currencyUSD": "Dolar",
+    "currencyEUR": "Euro",
+    "currencyGBP": "Funt brytyjski",
     "adult": "dorosły",
     "adults": "dorośli",
     "child": "dziecko",
@@ -16,21 +21,37 @@
     "hotelType": "typ hotelu",
     "signIn": "Zaloguj się",
     "signOut": "Wyloguj się",
-    "search": "szukaj",
+    "search": "Szukaj",
     "clear": "wyczyść",
-    "perNight": "noc",
+    "total": "Suma",
     "starRating": "gwiazdki",
     "sortBy": "sortuj według",
-    "noHotel": "Nie ma takiego hotelu",
+    "noHotel": "Nie ma hotelu",
+    "yes": "Tak",
+    "no": "Nie",
+    "accountYet": "Nie masz jeszcze konta?",
+    "perNight": "noc",
     "refresh": "Odśwież",
+    "cancel": "Anuluj",
+    "back": "Powrót",
     "save": "Zapisz",
+    "saving": "Zapisywanie",
     "delete": "Usuń"
   },
   "BookingCard": {
     "dates": "Daty: ",
     "guests": "Goście: ",
     "adults": "dorośli ",
-    "children": "dzieci "
+    "children": "dzieci ",
+    "cancelBooking": "Anuluj rezerwację",
+    "cancelledBooking": "Rezerwacja anulowana",
+    "cancelNotAvailable": "Anulowanie niedostępne",
+    "deleteBooking": "Usuń rezerwację"
+  },
+  "ModalOperationConfirmation": {
+    "operation": "Czy na pewno chcesz {{operation}} {{name}}?",
+    "canceled": "Anulowano!",
+    "deleted": "Usunięto!"
   },
   "BookingDetailSummary": {
     "yourBookingDetails": "Szczegóły Twojej Rezerwacji",
@@ -62,7 +83,7 @@
     "selectMaxPrice": "Wybierz Maksymalną Cenę"
   },
   "SearchResultCard": {
-    "viewMore": "Sprawdź"
+    "viewMore": "Zobacz Więcej"
   },
   "SortHotelFilter": {
     "pricePerNightAsc": "Cena za noc (od najniższej)",
@@ -113,7 +134,7 @@
     "lastName": "Nazwisko",
     "email": "Email",
     "yourPriceSummary": "Podsumowanie Ceny",
-    "totalCost": "Całkowity Koszt",
+    "totalCost": "Koszt Całkowity",
     "includesTaxesAndCharges": "zawiera podatki i opłaty",
     "paymentDetails": "Szczegóły Płatności",
     "confirmBooking": "Potwierdź Rezerwację",
@@ -121,7 +142,7 @@
   },
   "GuestInfoForm": {
     "bookNow": "Zarezerwuj Teraz",
-    "signInToBook": "Zaloguj się, aby Zarezerwować",
+    "signInToBook": "Zaloguj się aby zarezerwować",
     "validation": {
       "checkIn": {
         "required": "Data zameldowania jest wymagana",
@@ -146,22 +167,27 @@
   },
   "ManageHotelForm": {
     "title": "Dodaj Hotel",
-    "titleUpdate": "Zaktualizuj Hotel",
+    "titleUpdate": "Aktualizuj Hotel",
     "validation": {
       "name": "Nazwa jest wymagana",
       "city": "Miasto jest wymagane",
       "country": "Kraj jest wymagany",
       "description": "Opis jest wymagany",
-      "type": "Typ jest wymagany",
+      "type": {
+        "required": "Typ jest wymagany",
+        "invalid": "Nieprawidłowy typ hotelu"
+      },
       "pricePerNight": {
         "required": "Cena za noc jest wymagana",
-        "invalid": "Musi być prawidłową liczbą"
+        "invalid": "Musi być prawidłową liczbą",
+        "min": "Cena musi być większa niż 0"
       },
       "starRating": {
         "required": "Ocena gwiazdkowa jest wymagana",
-        "invalid": "Musi być prawidłową liczbą"
+        "invalid": "Musi być prawidłową liczbą",
+        "min": "Proszę wybrać ocenę"
       },
-      "facilities": "Wybierz co najmniej jedno udogodnienie",
+      "facilities": "Proszę wybrać co najmniej jedno udogodnienie",
       "adultCount": {
         "required": "Liczba dorosłych jest wymagana",
         "invalid": "Musi być prawidłową liczbą"
@@ -202,7 +228,7 @@
     "validation": {
       "required": "To pole jest wymagane",
       "invalidPrice": "Cena musi być większa niż 0",
-      "invalidRating": "Wybierz prawidłową ocenę"
+      "invalidRating": "Proszę wybrać prawidłową ocenę"
     }
   },
   "TypeSection": {
@@ -217,8 +243,8 @@
       "romantic": "Romantyczny",
       "hikingResort": "Ośrodek Turystyczny",
       "cabin": "Domek",
-      "beachResort": "Kurort Nadmorski",
-      "golfResort": "Pole Golfowe",
+      "beachResort": "Ośrodek Nadmorski",
+      "golfResort": "Ośrodek Golfowy",
       "motel": "Motel",
       "allInclusive": "All Inclusive",
       "petFriendly": "Przyjazny Zwierzętom",
@@ -255,6 +281,7 @@
     "noHotel": "Hotel nie istnieje"
   },
   "HomePage": {
+    "title": "Strona Główna",
     "noHotel": "Nie mamy jeszcze hoteli",
     "latestDestinations": "Najnowsze Destynacje",
     "recentDestinations": "Najnowsze destynacje dodane przez naszych gospodarzy"
@@ -268,20 +295,20 @@
       "password": {
         "label": "Hasło",
         "required": "Hasło jest wymagane",
-        "min": "Hasło jest zbyt krótkie (min. 8 znaków)",
+        "min": "Hasło jest za krótkie (min. 8 znaków)",
         "upperCase": "Hasło musi zawierać co najmniej jedną wielką literę",
         "number": "Hasło musi zawierać co najmniej jedną cyfrę",
         "special": "Hasło musi zawierać co najmniej jeden znak specjalny"
       }
     },
-    "notRegistered": "Nie masz konta?",
+    "notRegistered": "Nie zarejestrowany?",
     "createAccount": "Utwórz konto"
   },
   "MyBookingPage": {
-    "noBooking": "Nie znaleziono rezerwacji"
+    "noBooking": "Nie masz żadnych rezerwacji"
   },
   "MyHotelsPage": {
-    "noHotels": "Nie znaleziono hoteli",
+    "noHotels": "Nie masz żadnych hoteli",
     "title": "Moje Hotele",
     "viewDetails": "Zobacz Szczegóły"
   },
@@ -293,12 +320,12 @@
     "newPassword": "Nowe hasło",
     "validation": {
       "oldPassword": {
-        "invalid": "Obecne hasło jest niepoprawne"
+        "invalid": "Obecne hasło jest nieprawidłowe"
       }
     }
   },
   "RegisterPage": {
-    "title": "Utwórz Konto",
+    "title": "Utwórz konto",
     "validation": {
       "firstName": {
         "label": "Imię",
@@ -314,27 +341,34 @@
       },
       "password": {
         "label": "Hasło",
-        "min": "Hasło jest wymagane",
-        "upperCase": "Hasło musi zawierać co najmniej jedną wielką literę",
-        "number": "Hasło musi zawierać co najmniej jedną cyfrę",
-        "special": "Hasło musi zawierać co najmniej jeden znak specjalny"
+        "required": "Hasło jest wymagane",
+        "min": "Hasło jest za krótkie (min. 8 znaków)",
+        "upperCase": "Hasło musi zawierać przynajmniej jedną wielką literę",
+        "number": "Hasło musi zawierać przynajmniej jedną cyfrę",
+        "special": "Hasło musi zawierać przynajmniej jeden znak specjalny"
       },
       "confirmPassword": {
         "label": "Potwierdź hasło",
-        "message": "Hasła nie są takie same"
+        "message": "Hasła nie są zgodne"
       }
     },
-    "button": "Utwórz Konto"
+    "alreadyAccount": "Masz już konto?",
+    "button": "Utwórz konto"
   },
   "SearchPage": {
     "filterBy": "Filtruj według:",
     "hotelsFound_one": "znaleziony hotel",
-    "hotelsFound_few": "znalezione hotele",
     "hotelsFound_many": "znalezionych hoteli",
     "in": "w",
     "filter": "Filtruj",
     "sort": "Sortuj",
     "map": "Mapa"
+  },
+  "NotFoundPage": {
+    "empty": {
+      "alert": "Nie znaleziono strony",
+      "link": "Powrót do strony głównej"
+    }
   },
   "PrivacyPage": {
     "title": "Polityka Prywatności",
