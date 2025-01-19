@@ -74,3 +74,15 @@ export type MyBookingType = Omit<BookingType, "hotelId"> & {
   isOutdated: boolean;
   isAfterCheckIn: boolean;
 };
+
+export type ButtonProps = {
+  variant:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "quaternary"
+    | "delete"
+    | "cancel"
+    | "disabled"
+    | "text";
+};
