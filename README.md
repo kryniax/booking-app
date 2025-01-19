@@ -24,7 +24,7 @@
 - **Backend**: Node.js, Express
 - **Frontend**: Vite, React, TypeScript
 - **Database**: MongoDB
-- **Testing**: Playwright (end-to-end tests)
+- **Testing**: Playwright (end-to-end tests), Vitest
 
 ## Installation
 
@@ -101,6 +101,20 @@
 
      ```bash
      npx playwright test
+     ```
+
+2. **Vitest**:
+
+   - Navigate to the `vitests` directory:
+
+     ```bash
+     cd frontend
+     ```
+
+   - Run the tests:
+
+     ```bash
+     npm run test
      ```
 
 ## Demo
