@@ -9,7 +9,7 @@ import { useCreateUser } from "../../api/UserApi";
 import ButtonLink from "../../components/ButtonLink";
 import Button from "../../components/Button";
 
-const registerFormSchema = (t: TFunction) =>
+export const registerFormSchema = (t: TFunction) =>
   z
     .object({
       firstName: z
