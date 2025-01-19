@@ -3,6 +3,7 @@ import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCurrencyContext } from "../contexts/CurrencyContext";
+import ButtonLink from "./ButtonLink";
 
 type SearchResultsCardProps = {
   hotel: HotelType;
@@ -68,12 +69,13 @@ const SearchResultCard = ({ hotel }: SearchResultsCardProps) => {
               <span className="font-normal">{t("BookingApp.total")}:</span>{" "}
               {formatPrice(hotel.pricePerNight)}
             </div>
-            <Link
+            <ButtonLink
+              variant="primary"
               to={`/detail/${hotel._id}`}
-              className="bg-blue-600 hover:bg-blue-500 dark:bg-blue-900 dark:hover:bg-blue-800 text-white h-full p-3 font-bold text-xl max-w-fit rounded-md transition duration:100"
+              className="text-xl p-3"
             >
               {t("SearchResultCard.viewMore")}
-            </Link>
+            </ButtonLink>
           </div>
         </div>
       </div>

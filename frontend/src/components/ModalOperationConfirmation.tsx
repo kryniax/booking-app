@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import Button from "./Button";
 
 type ModalOperationConfirmationProps = {
   operation: "cancel" | "delete";
@@ -27,20 +28,22 @@ const ModalOperationConfirmation = ({
         })}
       </p>
       <div className="flex justify-center gap-4">
-        <button
+        <Button
+          variant="cancel"
           onClick={onCancel}
           disabled={isPending}
-          className="px-6 py-2 bg-zinc-300 dark:bg-zinc-500 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-400 disabled:opacity-50"
+          className="px-6 font-normal"
         >
           {t("BookingApp.no")}
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="delete"
           onClick={onConfirm}
           disabled={isPending}
-          className="px-6 py-2 bg-red-500 dark:bg-red-700 text-white rounded-md hover:bg-red-400 dark:hover:bg-red-600 disabled:opacity-50"
+          className="px-6 font-normal !rounded-md"
         >
           {t("BookingApp.yes")}
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { useDeleteUser, useGetCurrentUser } from "../api/UserApi";
-import { Link } from "react-router-dom";
 import HelmetSEO from "../components/HelmetSEO";
 import EditUserForm from "../forms/edit-user-form/EditUserForm";
 import Empty from "../components/Empty";
@@ -8,6 +7,8 @@ import PulseLoader from "react-spinners/PulseLoader";
 import Modal from "../components/Modal";
 import ModalOperationConfirmation from "../components/ModalOperationConfirmation";
 import { useState } from "react";
+import Button from "../components/Button";
+import ButtonLink from "../components/ButtonLink";
 
 const MyProfilePage = () => {
   const { t } = useTranslation();
@@ -76,24 +77,15 @@ const MyProfilePage = () => {
             </div>
           </div>
           <div className="w-full flex justify-start gap-3 mt-10">
-            <Link
-              className="flex items-center text-white bg-blue-500 dark:bg-blue-900 py-2 px-3 font-bold hover:bg-blue-400 dark:hover:bg-blue-800 rounded-md transition duration-50"
-              to="/my-bookings"
-            >
+            <ButtonLink variant="secondary" to="/my-bookings">
               {t("Header.myBookings")}
-            </Link>
-            <Link
-              className="flex items-center bg-blue-500 dark:bg-blue-900 py-2 text-white px-3 font-bold hover:bg-blue-400 dark:hover:bg-blue-800 rounded-md transition duration-50"
-              to="/my-hotels"
-            >
+            </ButtonLink>
+            <ButtonLink variant="secondary" to="/my-hotels">
               {t("Header.myHotels")}
-            </Link>
-            <button
-              className="flex items-center bg-red-500 dark:bg-red-900 py-2 text-white px-3 font-bold hover:bg-red-400 dark:hover:bg-red-800 rounded-md transition duration-50"
-              onClick={() => setIsModalOpen(true)}
-            >
+            </ButtonLink>
+            <Button variant="delete" onClick={() => setIsModalOpen(true)}>
               {t("MyProfilePage.deleteAccount")}
-            </button>
+            </Button>
           </div>
         </div>
         <div className="flex flex-1 md:px-6">

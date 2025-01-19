@@ -11,7 +11,8 @@ import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TFunction } from "i18next";
 import { hotelTypeKeys } from "../../config/hotel-options-config";
-import { Link } from "react-router-dom";
+import ButtonLink from "../../components/ButtonLink";
+import Button from "../../components/Button";
 
 const createFormSchema = (t: TFunction) =>
   z.object({
@@ -132,21 +133,19 @@ const ManageHotelForm = (props: ManageHotelFormProps) => {
         <GuestSection isLoading={isLoading} />
         <ImagesSection isLoading={isLoading} />
         <span className="flex justify-end gap-3">
-          <Link
-            to="/my-hotels"
-            className="bg-zinc-500 dark:bg-zinc-600 dark:hover:bg-zinc-500 text-xl flex items-center justify-center text-white px-3 py-2 font-bold hover:bg-zinc-400 transition duration-50 rounded-md"
-          >
+          <ButtonLink variant="cancel" to="/my-hotels" className="text-xl">
             {t("BookingApp.cancel")}
-          </Link>
-          <button
+          </ButtonLink>
+          <Button
+            variant="primary"
             disabled={isLoading}
+            className="text-xl"
             type="submit"
-            className="bg-blue-600 text-white p-2 font-bold rounded-md hover:bg-blue-500 text-xl disabled:bg-gray-500"
           >
             {isLoading
               ? t("ManageHotelForm.savingHotelButton")
               : t("ManageHotelForm.saveHotelButton")}
-          </button>
+          </Button>
         </span>
       </form>
     </FormProvider>

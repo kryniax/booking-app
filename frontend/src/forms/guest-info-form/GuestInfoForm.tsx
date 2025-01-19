@@ -12,6 +12,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TFunction } from "i18next";
 import { useCurrencyContext } from "../../contexts/CurrencyContext";
+import Button from "../../components/Button";
 registerLocale("en", enGB);
 registerLocale("pl", pl);
 registerLocale("de", de);
@@ -219,13 +220,13 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: GuestInfoFormProps) => {
             )}
           </div>
           {isLoggedIn ? (
-            <button className="bg-blue-600 dark:bg-blue-900 text-white text-xl h-full p-3 font-bold rounded-md hover:bg-blue-500 hover:dark:bg-blue-800 transition duration-100">
+            <Button variant="primary" className="text-xl p-3 justify-center">
               {t("GuestInfoForm.bookNow")}
-            </button>
+            </Button>
           ) : (
-            <button className="bg-blue-600 dark:bg-blue-900 text-white text-xl h-full p-3 font-bold rounded-md hover:bg-blue-500 hover:dark:bg-blue-800 transition duration-100">
+            <Button variant="primary" className="text-xl p-3 justify-center">
               {t("GuestInfoForm.signInToBook")}
-            </button>
+            </Button>
           )}
         </div>
       </form>

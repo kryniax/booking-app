@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useLoginUser } from "../../api/UserApi";
 import Input from "../../components/Input";
-import { Link } from "react-router-dom";
 import { TFunction } from "i18next";
 import { z } from "zod";
+import ButtonLink from "../../components/ButtonLink";
+import Button from "../../components/Button";
 
 const loginFormSchema = (t: TFunction) =>
   z.object({
@@ -73,21 +74,15 @@ const LoginForm = () => {
         {...register("password")}
       />
       <div className="flex items-center justify-between">
-        <span className="text-sm dark:text-zinc-100">
+        <span className="flex gap-1 text-sm dark:text-zinc-200">
           {t("LoginPage.notRegistered")}{" "}
-          <Link
-            className="underline hover:text-black/80 transition duration-100"
-            to="/register"
-          >
+          <ButtonLink variant="text" to="/register" className="p-0 font-normal">
             {t("LoginPage.createAccount")}
-          </Link>
+          </ButtonLink>
         </span>
-        <button
-          type="submit"
-          className="bg-blue-600 dark:bg-blue-900 text-white text-xl capitalize p-2 font-bold rounded-md hover:bg-blue-500 hover:dark:bg-blue-800 transition duration-100"
-        >
+        <Button variant="primary" type="submit" className="text-xl">
           {t("BookingApp.signIn")}
-        </button>
+        </Button>
       </div>
     </form>
   );

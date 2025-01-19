@@ -8,6 +8,7 @@ import { TFunction } from "i18next";
 import { z } from "zod";
 import { UserType } from "../../types";
 import { CiEdit } from "react-icons/ci";
+import Button from "../../components/Button";
 
 const updateFormSchema = (t: TFunction) =>
   z
@@ -141,13 +142,14 @@ const EditUserForm = ({ currentUser }: EditUserFormProps) => {
         error={errors.confirmPassword}
         {...register("confirmPassword")}
       />
-      <button
-        disabled={isPending || isDisabled}
+      <Button
+        variant="primary"
         type="submit"
-        className="bg-blue-600 dark:bg-blue-900 text-white text-xl p-2 font-bold rounded-md hover:bg-blue-500 hover:dark:bg-blue-800 transition duration-100 disabled:bg-gray-500"
+        disabled={isPending || isDisabled}
+        className="text-xl justify-center"
       >
         {isPending ? `${t("BookingApp.saving")}...` : t("BookingApp.save")}
-      </button>
+      </Button>
     </form>
   );
 };

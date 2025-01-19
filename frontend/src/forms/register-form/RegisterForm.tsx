@@ -6,7 +6,8 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateUser } from "../../api/UserApi";
-import { Link } from "react-router-dom";
+import ButtonLink from "../../components/ButtonLink";
+import Button from "../../components/Button";
 
 const registerFormSchema = (t: TFunction) =>
   z
@@ -109,21 +110,15 @@ const RegisterForm = () => {
         {...register("confirmPassword")}
       />
       <div className="flex items-center justify-between">
-        <span className="text-sm dark:text-zinc-100">
+        <span className="flex gap-1 text-sm dark:text-zinc-200">
           {t("RegisterPage.alreadyAccount")}{" "}
-          <Link
-            className="underline hover:text-black/80 transition duration-100"
-            to="/login"
-          >
+          <ButtonLink variant="text" to="/login" className="p-0 font-normal">
             {t("BookingApp.signIn")}
-          </Link>
+          </ButtonLink>
         </span>
-        <button
-          type="submit"
-          className="bg-blue-600 dark:bg-blue-900 text-white text-xl p-2 font-bold rounded-md hover:bg-blue-500 dark:hover:bg-blue-800 transition duration-100"
-        >
+        <Button variant="primary" type="submit" className="text-xl">
           {t("RegisterPage.button")}
-        </button>
+        </Button>
       </div>
     </form>
   );

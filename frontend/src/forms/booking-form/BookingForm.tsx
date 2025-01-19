@@ -5,13 +5,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { StripeCardElement } from "@stripe/stripe-js";
 import { useSearchContext } from "../../contexts/SearchContext";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useCreateBooking } from "../../api/BookingApi";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "../../contexts/AppContext";
 import { useCurrencyContext } from "../../contexts/CurrencyContext";
 import PulseLoader from "react-spinners/PulseLoader";
 import { CiCircleCheck } from "react-icons/ci";
+import ButtonLink from "../../components/ButtonLink";
+import Button from "../../components/Button";
 
 type BookingFormProps = {
   currentUser: UserType;
@@ -158,13 +160,9 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
             {t("BookingForm.successPayment")}
           </span>
         ) : (
-          <button
-            disabled={isPending}
-            type="submit"
-            className="bg-blue-600 dark:bg-blue-900 text-white p-2 font-bold rounded-md hover:bg-blue-500 dark:hover:bg-blue-800 transition duration-100 disabled:bg-zinc-500"
-          >
+          <Button variant="primary" disabled={isPending} type="submit">
             {isPending ? "Saving..." : t("BookingForm.confirmBooking")}
-          </button>
+          </Button>
         )}
       </div>
       {isSubmitting ? (
@@ -184,18 +182,12 @@ const BookingForm = ({ currentUser, paymentIntent }: BookingFormProps) => {
               {t("BookingForm.successPayment")}
             </span>
             <div className="flex gap-3">
-              <Link
-                to="/"
-                className="flex items-center text-white bg-blue-500 dark:bg-blue-900 py-2 px-3 font-bold hover:bg-blue-400 dark:hover:bg-blue-800 rounded-md transition duration-50"
-              >
+              <ButtonLink variant="secondary" to="/">
                 {t("Header.mainPage")}
-              </Link>
-              <Link
-                to="/my-bookings"
-                className="flex items-center text-white bg-blue-500 dark:bg-blue-900 py-2 px-3 font-bold hover:bg-blue-400 dark:hover:bg-blue-800 rounded-md transition duration-50"
-              >
+              </ButtonLink>
+              <ButtonLink variant="secondary" to="/my-bookings">
                 {t("Header.myBookings")}
-              </Link>
+              </ButtonLink>
             </div>
           </div>
         </div>

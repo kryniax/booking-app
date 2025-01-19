@@ -1,6 +1,7 @@
 import { MyBookingType } from "../types";
 import { useTranslation } from "react-i18next";
 import { FaRegTrashAlt } from "react-icons/fa";
+import Button from "./Button";
 
 type BookingCardProps = {
   booking: MyBookingType;
@@ -52,34 +53,36 @@ const BookingCard = ({
       <div className="flex flex-row gap-2 justify-between md:justify-start md:items-end md:flex-col">
         <div className="">
           {booking.isAfterCheckIn ? (
-            <button className="bg-zinc-500 text-white px-4 py-2 rounded cursor-default">
+            <Button variant="disabled" className="font-normal">
               {t("BookingCard.cancelNotAvailable")}
-            </button>
+            </Button>
           ) : booking.isOutdated ? (
-            <button className="bg-zinc-500 text-white px-4 py-2 rounded cursor-default">
+            <Button variant="disabled" className="font-normal">
               {t("BookingCard.cancelNotAvailable")}
-            </button>
+            </Button>
           ) : booking.cancelStatus ? (
-            <button className="bg-zinc-500 text-white px-4 py-2 rounded cursor-default">
+            <Button variant="disabled" className="font-normal">
               {t("BookingCard.cancelledBooking")}
-            </button>
+            </Button>
           ) : (
-            <button
+            <Button
+              variant="delete"
               onClick={() => onOpenCancelModal(booking._id)}
-              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+              className="font-normal"
             >
               {t("BookingCard.cancelBooking")}
-            </button>
+            </Button>
           )}
         </div>
         <div className="">
           {shouldShowDeleteButton && (
-            <button
+            <Button
+              variant="delete"
               onClick={() => onOpenDeleteModal(booking._id)}
-              className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
+              className="font-normal text-white p-2"
             >
               <FaRegTrashAlt size={25} />
-            </button>
+            </Button>
           )}
         </div>
       </div>

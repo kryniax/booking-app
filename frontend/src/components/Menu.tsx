@@ -3,9 +3,9 @@ import AnimateButton from "./AnimateButton";
 import { IoLogOutOutline } from "react-icons/io5";
 import { useGetCurrentUser, useLogoutUser } from "../api/UserApi";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 import Logo from "../assets/logo2.svg";
+import ButtonLink from "./ButtonLink";
 
 type MenuProps = {
   onClick: () => void;
@@ -60,27 +60,30 @@ const Menu = ({ isOpen, onClick }: MenuProps) => {
             {isLoggedIn === true ? (
               <>
                 <div className="flex flex-col flex-1 gap-10 justify-center items-center border-b border-t border-white/40">
-                  <Link
-                    onClick={toggleMenuHandler}
-                    className="text-white text-2xl font-semibold transition p-4 rounded-lg hover:bg-white/10"
+                  <ButtonLink
+                    variant="tertiary"
                     to="/"
+                    onClick={toggleMenuHandler}
+                    className="text-2xl font-semibold p-4"
                   >
                     {t("Header.mainPage")}
-                  </Link>
-                  <Link
-                    onClick={toggleMenuHandler}
-                    className="text-white text-2xl font-semibold transition p-4 rounded-lg hover:bg-white/10"
+                  </ButtonLink>
+                  <ButtonLink
+                    variant="tertiary"
                     to="/my-bookings"
+                    onClick={toggleMenuHandler}
+                    className="text-2xl font-semibold p-4"
                   >
                     {t("Header.myBookings")}
-                  </Link>
-                  <Link
-                    onClick={toggleMenuHandler}
-                    className="text-white text-2xl font-semibold transition p-4 rounded-lg hover:bg-white/10"
+                  </ButtonLink>
+                  <ButtonLink
+                    variant="tertiary"
                     to="/my-hotels"
+                    onClick={toggleMenuHandler}
+                    className="text-2xl font-semibold p-4"
                   >
                     {t("Header.myHotels")}
-                  </Link>
+                  </ButtonLink>
                 </div>
                 <div
                   className="container w-full flex items-center justify-between p-3"
@@ -101,13 +104,14 @@ const Menu = ({ isOpen, onClick }: MenuProps) => {
               <div className="flex flex-col flex-1 items-center gap-4 pt-16">
                 <img src={Logo} className="size-48" />
                 <p className="text-white mt-16">{t("BookingApp.accountYet")}</p>
-                <Link
-                  onClick={toggleMenuHandler}
+                <ButtonLink
+                  variant="secondary"
                   to="/login"
-                  className="text-white text-2xl font-semibold transition p-4 rounded-lg bg-white/20 hover:bg-white/40"
+                  className="text-2xl font-semibold p-4"
+                  onClick={toggleMenuHandler}
                 >
                   {t("BookingApp.signIn")}
-                </Link>
+                </ButtonLink>
               </div>
             )}
           </div>

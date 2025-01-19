@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import LanguageSwitch from "./LanguageSwitch";
 import Languages from "./Languages";
 import Modal from "./Modal";
 import CurrencySwitch from "./CurrencySwitch";
 import Currencies from "./Currencies";
+import ButtonLink from "./ButtonLink";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -33,18 +33,12 @@ const Footer = () => {
             <span className="block md:hidden pl-2">{t("Footer.currency")}</span>
             <CurrencySwitch />
           </div>
-          <Link
-            to="/privacy"
-            className="hover:bg-white/10 transition duration-100 rounded-md p-3"
-          >
+          <ButtonLink variant="tertiary" to="/privacy" className="p-3">
             {t("Footer.privacyPolicy")}
-          </Link>
-          <Link
-            to="/terms-of-service"
-            className="hover:bg-white/10 transition duration-100 rounded-md p-3"
-          >
+          </ButtonLink>
+          <ButtonLink variant="tertiary" to="/terms-of-service" className="p-3">
             {t("Footer.termsOfService")}
-          </Link>
+          </ButtonLink>
         </div>
       </div>
       <Modal

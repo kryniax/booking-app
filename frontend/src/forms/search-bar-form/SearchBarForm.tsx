@@ -10,6 +10,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import "react-datepicker/dist/react-datepicker.css";
+import Button from "../../components/Button";
 
 const searchBarSchema = (t: TFunction) =>
   z
@@ -228,12 +229,13 @@ const SearchBarForm = () => {
       </div>
 
       <div className="flex gap-1">
-        <button
+        <Button
+          variant="primary"
           type="submit"
-          className="w-full bg-blue-600 dark:bg-blue-900 text-white capitalize h-full p-2 rounded-md font-bold text-xl hover:bg-blue-500 hover:dark:bg-blue-800 transition duration-100"
+          className="text-xl w-full font-bold justify-center"
         >
           {t("BookingApp.search")}
-        </button>
+        </Button>
       </div>
     </form>
   );

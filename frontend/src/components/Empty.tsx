@@ -1,5 +1,6 @@
 import { TfiFaceSad } from "react-icons/tfi";
-import { Link } from "react-router-dom";
+import Button from "./Button";
+import ButtonLink from "./ButtonLink";
 
 type EmptyProps = {
   title: string;
@@ -18,20 +19,14 @@ const Empty = ({ title, link, href, button, onClick }: EmptyProps) => {
       </span>
       <div className="flex flex-col sm:flex-row gap-3 ">
         {button && onClick && (
-          <button
-            onClick={onClick}
-            className="flex items-center text-white bg-blue-500 dark:bg-blue-900 py-2 px-3 font-bold hover:bg-blue-400 dark:hover:bg-blue-800 rounded-md transition duration-50"
-          >
+          <Button variant="secondary" onClick={onClick}>
             {button}
-          </button>
+          </Button>
         )}
         {link && href && (
-          <Link
-            to={href}
-            className="flex items-center text-white bg-blue-500 dark:bg-blue-900 py-2 px-3 font-bold hover:bg-blue-400 dark:hover:bg-blue-800 rounded-md transition duration-50"
-          >
+          <ButtonLink variant="secondary" to={href}>
             {link}
-          </Link>
+          </ButtonLink>
         )}
       </div>
     </div>

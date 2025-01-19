@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
-import LogoutButton from "./LogoutButton";
 import LanguageSwitch from "./LanguageSwitch";
 import { useTranslation } from "react-i18next";
 import AnimateButton from "./AnimateButton";
@@ -10,15 +9,23 @@ import Modal from "./Modal";
 import Languages from "./Languages";
 import { PiUserCircleThin } from "react-icons/pi";
 import DarkMode from "./DarkMode";
+import ButtonLink from "./ButtonLink";
+import Button from "./Button";
+import { useLogoutUser } from "../api/UserApi";
 
 const Header = () => {
   const { isLoggedIn } = useAppContext();
+  const { logoutUser } = useLogoutUser();
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const isOpenHandler = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const logoutHandler = () => {
+    logoutUser();
   };
 
   return (
@@ -43,52 +50,46 @@ const Header = () => {
           </div>
           <div className="flex lg:hidden capitalize">
             {isLoggedIn ? (
-              <Link
+              <ButtonLink
+                variant="tertiary"
                 to="/profile"
                 title={t("BookingApp.signIn")}
-                className="rounded-md hover:bg-white/10 transition duration-100"
+                className="p-0"
               >
-                <PiUserCircleThin color="white" size={35} />
-              </Link>
+                <PiUserCircleThin size={35} />
+              </ButtonLink>
             ) : (
-              <Link
+              <ButtonLink
+                variant="tertiary"
                 to="/login"
                 title={t("BookingApp.signIn")}
-                className="rounded-md hover:bg-white/10 transition duration-100"
+                className="p-0"
               >
-                <PiUserCircleThin color="white" size={35} />
-              </Link>
+                <PiUserCircleThin size={35} />
+              </ButtonLink>
             )}
           </div>
           {isLoggedIn ? (
             <div className="hidden lg:flex gap-1">
-              <Link
-                className="flex items-center text-white dark:text-zinc-300 px-3 font-bold hover:bg-white/10 rounded-md transition duration-50"
-                to="/my-bookings"
-              >
+              <ButtonLink variant="tertiary" to="/my-bookings">
                 {t("Header.myBookings")}
-              </Link>
-              <Link
-                className="flex items-center text-white dark:text-zinc-300 px-3 font-bold hover:bg-white/10 rounded-md transition duration-50"
-                to="/my-hotels"
-              >
+              </ButtonLink>
+              <ButtonLink variant="tertiary" to="/my-hotels">
                 {t("Header.myHotels")}
-              </Link>
-              <Link
-                className="flex items-center text-white dark:text-zinc-300 px-3 font-bold hover:bg-white/10 rounded-md transition duration-50"
-                to="/profile"
-              >
+              </ButtonLink>
+              <ButtonLink variant="tertiary" to="/profile">
                 {t("Header.myProfile")}
-              </Link>
-              <LogoutButton />
+              </ButtonLink>
+              <Button variant="quaternary" onClick={logoutHandler}>
+                {t("BookingApp.signOut")}
+              </Button>
             </div>
           ) : (
-            <Link
-              to="/login"
-              className="bg-white dark:bg-zinc-500 hidden lg:flex py-2 items-center justify-center text-blue-600 dark:text-white capitalize px-3 font-bold  hover:bg-gray-200 transition duration-50 rounded-md"
-            >
-              {t("BookingApp.signIn")}
-            </Link>
+            <div className="hidden lg:flex">
+              <ButtonLink variant="quaternary" to="/login">
+                {t("BookingApp.signIn")}
+              </ButtonLink>
+            </div>
           )}
           <AnimateButton
             onClick={isOpenHandler}

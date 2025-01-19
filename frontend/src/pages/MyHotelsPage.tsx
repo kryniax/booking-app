@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useGetMyHotels } from "../api/MyHotelApi";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { BsBuilding } from "react-icons/bs";
@@ -7,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import HelmetSEO from "../components/HelmetSEO";
 import PulseLoader from "react-spinners/PulseLoader";
 import Empty from "../components/Empty";
+import ButtonLink from "../components/ButtonLink";
 
 const MyHotelsPage = () => {
   const { myHotels, isLoading, refetch } = useGetMyHotels();
@@ -34,12 +34,9 @@ const MyHotelsPage = () => {
             {t("MyHotelsPage.title")}
           </h1>
         </header>
-        <Link
-          to="/add-hotel"
-          className="flex bg-blue-600 dark:bg-blue-900 text-white text-xl font-bold p-2 rounded-md hover:bg-blue-500 dark:hover:bg-blue-800"
-        >
+        <ButtonLink variant="primary" to="/add-hotel" className="text-xl">
           {t("ManageHotelForm.title")}
-        </Link>
+        </ButtonLink>
       </span>
       {myHotels?.length === 0 ? (
         <Empty
@@ -89,12 +86,9 @@ const MyHotelsPage = () => {
                 </div>
               </div>
               <span className="flex justify-end">
-                <Link
-                  to={`/edit-hotel/${hotel._id}`}
-                  className="flex bg-blue-600 dark:bg-blue-900 text-white text-md font-bold p-2 rounded-md hover:bg-blue-500 dark:hover:bg-blue-800"
-                >
+                <ButtonLink variant="primary" to={`/edit-hotel/${hotel._id}`}>
                   {t("MyHotelsPage.viewDetails")}
-                </Link>
+                </ButtonLink>
               </span>
             </div>
           ))}
